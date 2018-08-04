@@ -1,0 +1,10 @@
+// Сброс стандартных стилей
+@import 'normalize';
+
+@import 'hello-box';
+@import 'info-item';
+
+
+body {
+    padding: 0 20px;
+}

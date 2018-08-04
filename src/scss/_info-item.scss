@@ -1,0 +1,35 @@
+.info-item {
+    height: 100%;
+    width: 200px;
+    background: #F7F7F7;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    &:hover,
+    &:active,
+    &:focus {
+        background: #FFFFFF;
+        box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.50);
+    }
+    &:not(:first-child) {
+        margin-left: 20px;
+    }
+    &__title {
+        font-family: Arial;
+        font-size: 14px;
+        color: #333333;
+        font-weight: 600;
+    }
+    &__info {
+        font-family: Arial;
+        font-size: 12px;
+        color: #858585;
+        letter-spacing: 0.01px;
+        margin-top: 3px;
+    }
+    &__icon>img {
+        height: 22px;
+    }
+}
