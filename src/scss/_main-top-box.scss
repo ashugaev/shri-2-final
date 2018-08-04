@@ -1,0 +1,32 @@
+.main-top-box {
+    margin-top: 63px;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .main-top-box {
+        display: flex;
+        
+    }
+    .scenarios-box {
+        margin-left: 26px;
+        width: 500px;
+        margin-top: 0;
+        & .info-item-box {
+            &__abs {
+                flex-direction: column;
+                height: 100%;
+                flex-wrap: wrap;
+            }
+            &__rel {
+                height: 100%;
+            }
+        }
+        & .info-item {
+            height: 100px;
+            &:not(:first-child) {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+    }
+}

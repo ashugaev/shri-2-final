@@ -1,10 +1,22 @@
 // Сброс стандартных стилей
 @import 'normalize';
 
-@import 'hello-box';
 @import 'info-item';
+@import 'hello-box';
+@import 'scenarios';
+@import 'main-top-box';
+
+//Элементы
+@import 'icons_buttons';
 
 
 body {
     padding: 0 20px;
+    min-width: 320px;
+}
+
+.arrows {
+    display: flex;
+    width: 33px;
+    justify-content: space-between;
 }

@@ -1,20 +1,47 @@
-.hello-box {
-    background-image: url(../img/bg@1x.png);
-    background-size: cover; // width: 335px;
-    // height: 282px;
-    min-height: 331px;
-    max-width: 630;
+.hello-box-container {
     width: 100%;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px 0;
-    box-sizing: border-box;
-    border-radius: 20px;
+}
+.hello-box {
     position: relative;
-    margin: 0 auto;
+    max-height: 331px;
+    max-width: 630px;
+    min-height: 282px; //280px исходя из Mobile S(320px) в chrome
+    min-width: 280px;
+    width: 100%;
+    // margin: 0 auto;
+
+    &:before {
+        content: '';
+        display: block;
+        padding-top: 282px;
+    }
+    &__abs {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+    &__rel {
+        background-image: url(../img/bg@1x.png);
+        background-size: cover; // width: 335px;
+        // height: 282px;
+        height: 100%;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 0;
+        box-sizing: border-box;
+        border-radius: 20px;
+        position: relative;
+    }
     &__title {
+        font: 600 18px Arial;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+    &__name {
         font-family: Arial;
         font-size: 18px;
         color: #333333;
@@ -36,10 +63,11 @@
         position: absolute;
         width: auto;
         height: 100%;
-        padding: 0 20px;
+        // padding: 0 20px;
     }
     &__info {
         padding: 0 20px;
+        max-width: calc(100% - 220px);
     }
 }
 
@@ -59,6 +87,7 @@
     &__temperature {
         font-family: Arial;
         font-size: 24px;
+        line-height: 1.17;
         color: #333333;
         letter-spacing: 0;
         text-align: left;
@@ -69,24 +98,94 @@
     }
     &__outside-icon {
         margin-left: 5px;
-        &_drizzle {
-            margin-top: 3px;
-        }
+        height: 18px;
+        width: 18px;
+        // &_drizzle {
+        //     margin-top: 3px;
+        // }
         & img {
             height: 22px;
         }
     }
 }
 
-@media all and (min-width: 570px) {
+//Шрифт
+// 670px - ширина при которой hello-box перестает расти
+@media screen and (min-width: 376px) and (max-width: 670px) {
     .hello-box {
-        flex-direction: row;
+        &__name {
+            //Функция вычисляющая шрифт по указанным брейкпойнтам
+            font-size: calc(18px + (27 - 18) * (100vw - 376px) / (670 - 376));
+        } //Тут у нас изменени в 3 px, возможно избыточно делать это через формулу, но я думаю, что если делать адаптивность шрифтов, то делать в едином стиле, так этот вариант позволяем нам вносить изменения
+        &__subtitle {
+            font-size: calc(12px + (14 - 12) * (100vw - 376px) / (670 - 376));
+        }
+    }
+    .temperature-info {
+        &__title {
+            font-size: calc(12px + (14 - 12) * (100vw - 376px) / (670 - 376));
+        }
+        &__temperature {
+            font-size: calc(24px + (36 - 24) * (100vw - 376px) / (670 - 376));
+        }
+    }
+}
+
+//Шрифты
+@media screen and (min-width: 671px) {
+    .hello-box {
+        &__name {
+            font-size: 27px;
+        }
+        &__subtitle {
+            font-size: 14px;
+        }
+    }
+    .temperature-info {
+        &__title {
+            font-size: 14px;
+        } 
+        &__temperature {
+            font-size: 36px;
+        }
+    }
+}
+
+//620px просто на мой взгляд достаточная ширина для переноса слайдера влево
+@media screen and (min-width: 620px) and (max-width: 800px) {
+    .hello-box {
+        &__rel {
+            flex-direction: row;
+            padding-bottom: 0;
+        }
         &__appliances-rel {
-            width: 120px;
+            width: 200px;
+            //min-width что бы флекс-бокс не сжимал ширину 
+            min-width: 200px;
             height: 100%;
             right: 20px;
             top: 0;
             overflow: hidden;
         }
+        &__appliances-abs {
+            padding: 0;
+            flex-direction: column;
+            height: auto;
+        }
+    }
+    .hello-box .info-item {
+        height: 120px;
+        &:not(:first-child) {
+            margin-top: 20px;
+            margin-left: 0;
+        }
+    }
+}
+
+//Адаптивная высота
+// 376px исходя из того, что ширина мобильного макета 375px. Дальше начинается адаптив, который растягивается пока не упрется в max-height  и max-width большого макета
+@media all and (min-width: 376px) {
+    .hello-box:before {
+        padding-top: 84.2%;
     }
 }

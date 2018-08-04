@@ -1,0 +1,52 @@
+.scenarios-box {
+    margin-top: 31px;
+    width: 100%;
+    overflow: hidden;
+    &__slider {
+        overflow: hidden;
+    }
+    &__title {
+        font: 600 18px Arial;
+        color:  #333333;
+        display: flex;
+        justify-content: space-between;
+    }
+    // &__rel {
+    //     position: relative;
+    //     height: 120px;
+    //     margin-top: 20px;
+    // }
+    // &__abs {
+    //     display: flex;
+    //     position: absolute;
+    //     width: auto;
+    //     height: 100%;
+    // }
+}
+
+.appliances-box {
+    margin-top: 31px;
+    width: 100%;
+    &__slider {
+        overflow: hidden;
+    }
+    &__title {
+        font: 600 18px Arial;
+        color:  #333333;
+    }
+
+}
+
+.info-item-box {
+    &__rel {
+        position: relative;
+        height: 120px;
+        margin-top: 20px;
+    }
+    &__abs {
+        display: flex;
+        position: absolute;
+        width: auto;
+        height: 100%;
+    }
+}
