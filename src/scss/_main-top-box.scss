@@ -2,15 +2,22 @@
     margin-top: 63px;
 }
 
-@media screen and (min-width: 800px) and (max-width: 1000px) {
+@media screen and (min-width: 900px) and (max-width: 1000px) {
     .main-top-box {
         display: flex;
         
     }
+    .hello-box-container {
+        width: calc(100% - 446px);
+    }
     .scenarios-box {
-        margin-left: 26px;
-        width: 500px;
+        margin-left: 6px;
+        width: 446px;
         margin-top: 0;
+        &__title {
+            // Смещаем на один уровень с info-item
+            margin-left: 20px;
+        }
         & .info-item-box {
             &__abs {
                 flex-direction: column;
@@ -19,14 +26,18 @@
             }
             &__rel {
                 height: 100%;
+                //Меняем на 5px, потому что 15px отступа теперь у info-item
+                margin-top: 5px;
             }
         }
         & .info-item {
             height: 100px;
-            &:not(:first-child) {
-                margin-left: 0;
-                margin-top: 20px;
-            }
+            margin-top: 15px;
+            margin-left: 20px;
+            // &:not(:first-child) {
+            //     margin-left: 0;
+            //     margin-top: 20px;
+            // }
         }
     }
 }

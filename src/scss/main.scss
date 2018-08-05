@@ -1,12 +1,15 @@
 // Сброс стандартных стилей
 @import 'normalize';
 
+// Секции
+@import 'header';
 @import 'info-item';
 @import 'hello-box';
 @import 'scenarios';
 @import 'main-top-box';
+@import 'slide-menu';
 
-//Элементы
+// Элементы
 @import 'icons_buttons';
 
 

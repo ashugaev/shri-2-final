@@ -67,7 +67,7 @@
     }
     &__info {
         padding: 0 20px;
-        max-width: calc(100% - 220px);
+        width: 100%;
     }
 }
 
@@ -151,7 +151,7 @@
     }
 }
 
-//620px просто на мой взгляд достаточная ширина для переноса слайдера влево
+//620px просто на мой взгляд достаточная ширина для переноса слайдера вправо
 @media screen and (min-width: 620px) and (max-width: 800px) {
     .hello-box {
         &__rel {
@@ -172,6 +172,10 @@
             flex-direction: column;
             height: auto;
         }
+        &__info {
+            max-width: calc(100% - 220px);
+        }        
+
     }
     .hello-box .info-item {
         height: 120px;
