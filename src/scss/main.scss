@@ -1,5 +1,9 @@
 // Сброс стандартных стилей
+
 @import 'normalize';
+
+// Элементы
+@import 'icons_buttons';
 
 // Секции
 @import 'header';
@@ -8,10 +12,10 @@
 @import 'scenarios';
 @import 'main-top-box';
 @import 'slide-menu';
+@import 'popup';
 @import 'footer';
 
-// Элементы
-@import 'icons_buttons';
+
 
 
 body {
