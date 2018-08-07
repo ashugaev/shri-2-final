@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 .blur-box {
     filter: blur(2px);
 }
@@ -93,5 +97,6 @@
         position: absolute;
         bottom: 50%;
         background-position: top;
+        transform-origin: 50% 100%;
     }
 }

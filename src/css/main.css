@@ -784,6 +784,9 @@ template {
   -webkit-transform: translateX(0);
           transform: translateX(0); }
 
+body {
+  overflow: hidden; }
+
 .blur-box {
   -webkit-filter: blur(2px);
           filter: blur(2px); }
@@ -890,7 +893,9 @@ template {
     height: 50%;
     position: absolute;
     bottom: 50%;
-    background-position: top; }
+    background-position: top;
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%; }
 
 .footer {
   font-family: Arial;
