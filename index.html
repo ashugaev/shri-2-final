@@ -328,7 +328,7 @@
                 </div>
             </div>
             <div class="footer__copy">
-                ©2001-2018 ООО «Яндекс»
+                © 2001-2018 ООО «Яндекс»
             </div>
         </footer>
     </div>
@@ -343,6 +343,31 @@
                 Выключено
             </div>
             <div class="popup__settings">
+                <div class="light-settings">
+                    <form action="index.php" id="light-mode-form">
+                        <fieldset class="light-settings__fieldset">
+                            <div class="light-settings__buttons-box">
+                                <input checked="true" type="radio" value="manual" name="light-mode" id="light-settings__manual-mode" class="light-settings__manual-mode">
+                                <label for="light-settings__manual-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <input type="radio" value="70" name="light-mode" id="light-settings__day-mode" class="light-settings__day-mode">
+                                <label for="light-settings__day-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <input type="radio" value="30" name="light-mode" id="light-settings__evening-mode" class="light-settings__evening-mode">
+                                <label for="light-settings__evening-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <input type="radio" value="10" name="light-mode" id="light-settings__night-mode" class="light-settings__night-mode">
+                                <label for="light-settings__night-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <input type="radio" value="90" name="light-mode" id="light-settings__sunrise-mode" class="light-settings__sunrise-mode">
+                                <label for="light-settings__sunrise-mode" name="light-mode" class="btn btn_yellow"></label>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                    <div class="light-settings__gradient-stripe">
+                        <div class="light-settings__outer-circle">
+                            <div class="light-settings__inner-circle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="temperature-box" id="temperature-box">
                     <div class="temperature-box__shadow">
                         <div class="icon icon_arrow-solid temperature-box__arrow"></div>
@@ -388,7 +413,7 @@
                 if (rotation > rotated && !gray) {
                     gray = true
                     document.querySelector('.temperature-box__arrow').style.transform = `rotate(${rotation-3}deg)`
-                   
+
                 }
                 rotation += 3;
             }
@@ -474,6 +499,131 @@
                 }
             }
         };
+
+        ///////////СКРИПТ ПОПАПЧИКА
+        let zWidth, zHeight, zTop, zLeft
+
+        // console.log(document.getElementsByClassName('a'))
+        document.querySelector('body').addEventListener('click', function (event) {
+            console.log(event.target.className)
+            if (event.target.className.indexOf('info-item') >= 0) {
+                console.log('Есть');
+                zTop = event.target.getBoundingClientRect().top;
+                zLeft = event.target.getBoundingClientRect().left;
+                zWidth = event.target.clientWidth + 'px'
+                zHeight = event.target.clientHeight + 'px'
+                document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
+                document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
+                // document.querySelector('.popup').style.width = event.target.clientWidth + 'px';
+                // document.querySelector('.popup').style.height = '50px';
+                // document.querySelector('.popup').style.transform = 'scale(.1)';
+                // document.querySelector('.popup').style.height = event.target.clientHeight + 'px';
+                document.querySelector('.popup').style.opacity = 1;
+                document.querySelector('.popup').style.display = 'block';
+
+                console.log(event.target.clientHeight)
+
+                document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
+                document.querySelector('.popup').style.top = '50%';
+                document.querySelector('.popup').style.left = '50%';
+
+                // document.querySelector('.popup').style.width = '200px';
+                // document.querySelector('.popup').style.height = '200px';
+
+                // Включим blur и темный фон
+                let popBgStyle = document.querySelector('.popup-bg').style;
+                popBgStyle.display = 'block';
+                popBgStyle.opacity = 1;
+
+                document.querySelector('.blur-box').style.filter = 'blur(2px)'
+
+            }
+        })
+
+
+        // document.querySelector('.c').addEventListener('click', function () {
+
+        //     document.querySelector('.c').style.top = zTop;
+        //     document.querySelector('.c').style.left = zLeft;
+
+        //     document.querySelector('.c').style.width = zWidth;
+        //     document.querySelector('.c').style.height = zHeight;
+        //     document.querySelector('.c').style.opacity = 0;
+
+
+        // })
+
+        /// для радиокнопок
+        var form = document.querySelector("#light-mode-form");
+        form.addEventListener('click', function (event) {
+            if (event.target.getAttribute('name') === 'light-mode' && event.target.getAttribute('value') !=
+                'manual') {
+                console.log(event.target.getAttribute('value'));
+                let forInput = event.target.getAttribute('for')
+                let value = document.querySelector('#' + forInput).getAttribute('value')
+                let containerHeight = document.querySelector(".light-settings__gradient-stripe").clientHeight
+                let circleHeight = document.querySelector(".light-settings__outer-circle").clientHeight
+                let circleBottom = (containerHeight - circleHeight) / 100 * value
+                document.querySelector(".light-settings__outer-circle").style.bottom = circleBottom + 'px'
+                console.log(value)
+            }
+        })
+
+
+        /// Для полоски
+        let gradientStripe = document.querySelector(".light-settings__gradient-stripe")
+        let circle = document.querySelector(".light-settings__outer-circle")
+
+        gradientStripe.addEventListener('click', function (event) {
+            // changeTemperature(event.x, event.y);
+        })
+
+        gradientStripe.addEventListener('touchmove', function (event) {
+            changeCirclePosition(event)
+
+
+            // // Позиция круга на экране
+            // let circleCurrentTop = circle.getBoundingClientRect().top
+            // // Место тача
+            // let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
+            // let diff = circleCurrentTop - firstTouch
+            // console.log(parseInt(circle.style.bottom))
+            // circle.style.bottom = (parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff) +
+            //     'px'
+
+        })
+        gradientStripe.addEventListener('touchstart', function (event) {
+
+            changeCirclePosition(event)
+
+
+        })
+
+        let changeCirclePosition = function (event) {
+            // Позиция круга на экране
+            let circleCurrentTop = circle.getBoundingClientRect().top
+            // Место тача
+            let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
+            let diff = circleCurrentTop - firstTouch
+            console.log(parseInt(circle.style.bottom))
+            let bottom = parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff
+            if (bottom < 0) {
+                bottom = 0
+            } else if (bottom > (gradientStripe.clientHeight - 70)) {
+                bottom = gradientStripe.clientHeight - 70
+            }
+            circle.style.bottom = bottom + 'px'
+        }
+        // form.addEventListener("submit", function (event) {
+        //     // var data = new FormData(form);
+        //     console.log(event)
+        //     // var output = "";
+        //     // for (const entry of data) {
+        //     //     output = entry[0] + "=" + entry[1] + "\r";
+        //     // };
+        //     // log.innerText = output;
+        //     event.preventDefault();
+        // }, false);
     </script>
     <!-- END POPUP -->
 </body>
