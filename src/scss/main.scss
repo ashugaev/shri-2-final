@@ -5,6 +5,9 @@
 // Элементы
 @import 'icons_buttons';
 
+// Переменные 
+@import 'helpers/variables';
+
 // Секции
 @import 'header';
 @import 'info-item';
@@ -12,7 +15,7 @@
 @import 'scenarios';
 @import 'main-top-box';
 @import 'slide-menu';
-@import 'popup';
+@import 'layouts/popup/popup';
 @import 'footer';
 
 

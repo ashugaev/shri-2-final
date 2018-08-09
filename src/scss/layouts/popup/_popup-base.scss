@@ -1,0 +1,57 @@
+.blur-box {
+    filter: blur(0px);
+    transition: filter .3s
+}
+
+.popup-bg {
+    background: rgba(51, 51, 51, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2999;
+    height: 100%;
+    width: 100%; //
+    display: none;
+    opacity: 0;
+    transition: opacity 3s;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) scale(.1);
+    z-index: 3000;
+    height: 642px;
+    width: 334px;
+    display: none;
+    opacity: 0;
+    transition: all .5s;
+    &__title {
+        font-family: Arial;
+        font-weight: 600;
+        color: #333333;
+    }
+    &__state {
+        font-family: Arial;
+        color: #333333;
+    }
+    &__body {
+        background: white;
+        height: 492px;
+        border-radius: 20px;
+    }
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    &__close,
+    &__apply {
+        margin-top: 15px;
+        width: 100%;
+        height: 60px;
+    }
+    &__body-text-box {
+        padding: 20px 20px 0;
+    }
+}

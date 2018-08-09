@@ -386,6 +386,17 @@ template {
   .btn_white:active {
     background: #f0f0f0; }
 
+.btn_gray {
+  background-color: #f2f1f0;
+  color: #000;
+  font-weight: 600; }
+  .btn_gray:hover {
+    background: #ecebea; }
+  .btn_gray:focus {
+    background: #ecebea; }
+  .btn_gray:active {
+    background: #e2e1df; }
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -784,9 +795,6 @@ template {
   -webkit-transform: translateX(0);
           transform: translateX(0); }
 
-body {
-  overflow: hidden; }
-
 .blur-box {
   -webkit-filter: blur(0px);
           filter: blur(0px);
@@ -803,10 +811,10 @@ body {
   z-index: 2999;
   height: 100%;
   width: 100%;
-  opacity: 0;
   display: none;
-  -webkit-transition: opacity .3s;
-  transition: opacity .3s; }
+  opacity: 0;
+  -webkit-transition: opacity 3s;
+  transition: opacity 3s; }
 
 .popup {
   position: fixed;
@@ -829,7 +837,6 @@ body {
     font-family: Arial;
     color: #333333; }
   .popup__body {
-    padding: 20px;
     background: white;
     height: 492px;
     border-radius: 20px; }
@@ -845,6 +852,8 @@ body {
     margin-top: 15px;
     width: 100%;
     height: 60px; }
+  .popup__body-text-box {
+    padding: 20px 20px 0; }
 
 .temperature-box {
   position: absolute;
@@ -867,13 +876,10 @@ body {
   display: none; }
   .temperature-box__dash {
     height: 50%;
-    Width: 1px;
-    /*   background: #000; */
     border-top: solid 21px #333333;
     position: absolute;
     left: 50%;
     top: 0;
-    /* transform: rotate(45deg); */
     -webkit-transform-origin: 50% 100%;
             transform-origin: 50% 100%; }
   .temperature-box__temperature {
@@ -930,13 +936,24 @@ body {
   height: 30px; }
   .light-settings__fieldset input[type="radio"] {
     display: none; }
-  .light-settings__fieldset input:checked + label {
-    background: red; }
+  .light-settings__fieldset input:checked + .light-settings__btn {
+    background-color: #ffd93e;
+    color: #333333; }
+    .light-settings__fieldset input:checked + .light-settings__btn:hover {
+      background: #fad32b; }
+    .light-settings__fieldset input:checked + .light-settings__btn:focus {
+      background: #ffd633; }
+    .light-settings__fieldset input:checked + .light-settings__btn:active {
+      background: #fecb2f; }
   .light-settings__fieldset label {
-    width: 84px;
-    height: 30px; }
+    height: 30px;
+    padding: 0 15px;
+    font-family: Arial;
+    font-weight: 400; }
     .light-settings__fieldset label:not(:first-child) {
       margin-left: 10px; }
+    .light-settings__fieldset label:first-child {
+      margin-left: 20px; }
 .light-settings__outer-circle {
   border: solid 5px white;
   height: 70px;
@@ -962,6 +979,40 @@ body {
   margin: 25px auto 0;
   position: relative; }
 
+@media screen and (min-width: 700px) {
+  .popup {
+    width: 630px;
+    height: 238px; }
+
+  .light-settings__horizontal-stripe {
+    width: 580px;
+    height: 60px;
+    background-image: -webkit-gradient(linear, left top, right top, from(#ffe88c), to(#ffb100));
+    background-image: linear-gradient(90deg, #ffe88c, #ffb100); }
+
+  .popup__body {
+    height: 238px; }
+
+  .popup__apply,
+  .popup__close {
+    width: calc(50% - 8px); }
+
+  .popup__buttons {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+
+  .popup__title {
+    font-size: 27px; }
+  .popup__state {
+    font-size: 14px; }
+
+  .light-settings__btn {
+    font-weight: 600 !important; } }
 .footer {
   font-family: Arial;
   font-size: 12px;

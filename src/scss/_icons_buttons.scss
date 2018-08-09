@@ -85,3 +85,18 @@
         background: #f0f0f0;
     }
 }
+
+.btn_gray {
+    background-color: #f2f1f0;
+    color: #000;
+    font-weight: 600;
+    &:hover {
+        background: #ecebea;
+    }
+    &:focus {
+        background: #ecebea
+    }
+    &:active {
+        background: #e2e1df;
+    }
+}

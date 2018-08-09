@@ -1,0 +1,47 @@
+.temperature-box {
+    position: absolute;
+    top: 163px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 221px;
+    width: 221px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    &__dash {
+        height: 50%;
+        // width: 1px;
+        border-top: solid 21px #333333;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform-origin: 50% 100%;
+    }
+    &__temperature {
+        font-size: 66px;
+        font-family: Arial;
+        font-weight: 600;
+        color: #333333;
+        user-select: none;
+    }
+    &__shadow {
+        height: 178px;
+        width: 178px;
+        box-shadow: 0 2px 4px rgba(134, 121, 71, .45);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    &__arrow {
+        width: 10px;
+        height: 50%;
+        position: absolute;
+        bottom: 50%;
+        background-position: top;
+        transform-origin: 50% 100%;
+    }
+}

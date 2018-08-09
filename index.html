@@ -336,11 +336,13 @@
     <div class="popup-bg"></div>
     <div class="popup">
         <div class="popup__body">
-            <div class="popup__title">
-                Xiaomi Warm Floor
-            </div>
-            <div class="popup__state">
-                Выключено
+            <div class="popup__body-text-box">
+                <div class="popup__title">
+                    Xiaomi Warm Floor
+                </div>
+                <div class="popup__state">
+                    Выключено
+                </div>
             </div>
             <div class="popup__settings">
                 <div class="light-settings">
@@ -348,20 +350,18 @@
                         <fieldset class="light-settings__fieldset">
                             <div class="light-settings__buttons-box">
                                 <input checked="true" type="radio" value="manual" name="light-mode" id="light-settings__manual-mode" class="light-settings__manual-mode">
-                                <label for="light-settings__manual-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <label for="light-settings__manual-mode" name="light-mode" class="btn btn_gray light-settings__btn">Вручную</label>
                                 <input type="radio" value="70" name="light-mode" id="light-settings__day-mode" class="light-settings__day-mode">
-                                <label for="light-settings__day-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <label for="light-settings__day-mode" name="light-mode" class="btn btn_gray light-settings__btn">Дневной свет</label>
                                 <input type="radio" value="30" name="light-mode" id="light-settings__evening-mode" class="light-settings__evening-mode">
-                                <label for="light-settings__evening-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <label for="light-settings__evening-mode" name="light-mode" class="btn btn_gray light-settings__btn">Вечерний свет</label>
                                 <input type="radio" value="10" name="light-mode" id="light-settings__night-mode" class="light-settings__night-mode">
-                                <label for="light-settings__night-mode" name="light-mode" class="btn btn_yellow"></label>
-                                <input type="radio" value="90" name="light-mode" id="light-settings__sunrise-mode" class="light-settings__sunrise-mode">
-                                <label for="light-settings__sunrise-mode" name="light-mode" class="btn btn_yellow"></label>
+                                <label for="light-settings__night-mode" name="light-mode" class="btn btn_gray light-settings__btn">Рассвет</label>
                             </div>
                         </fieldset>
 
                     </form>
-                    <div class="light-settings__gradient-stripe">
+                    <div class="light-settings__gradient-stripe light-settings__horizontal-stripe">
                         <div class="light-settings__outer-circle">
                             <div class="light-settings__inner-circle">
                             </div>
@@ -534,6 +534,8 @@
                 let popBgStyle = document.querySelector('.popup-bg').style;
                 popBgStyle.display = 'block';
                 popBgStyle.opacity = 1;
+                // уберем скролл
+                document.body.style.overflow = "hidden"
 
                 document.querySelector('.blur-box').style.filter = 'blur(2px)'
 
@@ -541,17 +543,25 @@
         })
 
 
-        // document.querySelector('.c').addEventListener('click', function () {
+        document.querySelector('.popup-bg').addEventListener('click', function () {
 
-        //     document.querySelector('.c').style.top = zTop;
-        //     document.querySelector('.c').style.left = zLeft;
+            document.querySelector('.popup').style.top = zTop;
+            document.querySelector('.popup').style.left = zLeft;
+            document.querySelector('.popup').style.transform = 'scale(.1)';
 
-        //     document.querySelector('.c').style.width = zWidth;
-        //     document.querySelector('.c').style.height = zHeight;
-        //     document.querySelector('.c').style.opacity = 0;
+            // document.querySelector('.c').style.width = zWidth;
+            // document.querySelector('.c').style.height = zHeight;
+            document.querySelector('.popup').style.opacity = 0;
+            // Переключим blur и темный фон
+            let popBgStyle = document.querySelector('.popup-bg').style;
+            popBgStyle.display = 'none';
+            popBgStyle.opacity = 0;
+            // Вернем скролл
+            document.body.style.overflow = "unset"
 
+            document.querySelector('.blur-box').style.filter = 'blur(0)'
 
-        // })
+        })
 
         /// для радиокнопок
         var form = document.querySelector("#light-mode-form");
