@@ -1,51 +1,61 @@
 // Events handler
-(function() {
-	document.querySelector('body').addEventListener('click', function(event) {
-		// Клики на панели устройтсв
-		if (event.target.className.indexOf('info-item') >= 0) {
-			openPopup(event.target.closest('.info-item'));
-		}
-	});
+(function () {
+    document.querySelector('body').addEventListener('click', function (event) {
+        // Клики на панели устройтсв
+        if (event.target.className.indexOf('info-item') >= 0) {
+            openPopup(event.target.closest('.info-item'));
+        }
+    });
 })();
 
 // Popup Open/Close
-let openPopup = function(elem) {
-	let targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
-	let targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
+let openPopup = function (elem) {
+    const targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
+    const targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
 
+    const popupBodyTop = document.querySelector('.popup__body').getBoundingClientRect().top + window.pageYOffset;
+    const popupBodyHeight = document.querySelector('.popup__body').clientHeight;
+    const popupBodyWidth = document.querySelector('.popup__body').clientWidth;
 
-
-	// console.log(event.target.getBoundingClientRect().top, event.target.getBoundingClientRect().left, window.pageYOffset, window.pageXOffset)
-	elem.style.top = targetPageTop + 'px';
-	// 40 - это паддинг на body и margin на элементе
+    // Оставляя элемент на той же позиции сделаем его фиксированным
+    elem.style.top = targetPageTop + 'px';
+    // 20 это паддинг у body
     elem.style.left = targetPageLeft - 20 + 'px';
-	elem.style.position = 'fixed';
+    elem.style.position = 'fixed';
 
-	setTimeout(function() {
+    // Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков) 
+    setTimeout(function () {
         elem.classList.add('info-item_open')
+        elem.style.top = popupBodyTop + 'px';
+        elem.style.height = popupBodyHeight + 'px';
+        elem.style.width = popupBodyWidth + 'px';
     }, 100);
-    
 
-	// zTop = event.target.getBoundingClientRect().top;
-	// zLeft = event.target.getBoundingClientRect().left;
-	// zWidth = event.target.clientWidth + 'px'
-	// zHeight = event.target.clientHeight + 'px'
-	// document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
-	// document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
-	// document.querySelector('.popup').style.opacity = 1;
-	// document.querySelector('.popup').style.display = 'flex';
+    // Включаем бэкграунт и блюр
+    document.querySelector('.blur-box').style.filter = 'blur(2px)'
+    let popBgStyle = document.querySelector('.popup-bg').style;
+    popBgStyle.display = 'block';
+    popBgStyle.opacity = 1;
+    // Отключаем скролл
+    document.body.style.overflow = "hidden"
 
-	// document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
-	// document.querySelector('.popup').style.top = '50%';
-	// document.querySelector('.popup').style.left = '50%';
 
-	// let popBgStyle = document.querySelector('.popup-bg').style;
-	// popBgStyle.display = 'block';
-	// popBgStyle.opacity = 1;
-	// // уберем скролл
-	// document.body.style.overflow = "hidden"
+    // zTop = event.target.getBoundingClientRect().top;
+    // zLeft = event.target.getBoundingClientRect().left;
+    // zWidth = event.target.clientWidth + 'px'
+    // zHeight = event.target.clientHeight + 'px'
+    // document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
+    // document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
+    // document.querySelector('.popup').style.opacity = 1;
+    // document.querySelector('.popup').style.display = 'flex';
 
-	// document.querySelector('.blur-box').style.filter = 'blur(2px)'
+    // document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
+    // document.querySelector('.popup').style.top = '50%';
+    // document.querySelector('.popup').style.left = '50%';
+
+
+    // // уберем скролл
+
 };
 
 /*
