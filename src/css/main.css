@@ -481,7 +481,9 @@ template {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 15px; }
+  padding: 15px;
+  -webkit-transition: all 5s;
+  transition: all 5s; }
   .info-item:hover, .info-item:active, .info-item:focus {
     background: #FFFFFF;
     -webkit-box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5);
