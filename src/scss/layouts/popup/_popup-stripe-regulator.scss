@@ -1,11 +1,7 @@
 .light-settings {
-    &__buttons-box {
-        display: flex;
-        width: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     &__fieldset {
         border: none;
         margin-top: 15px;
@@ -44,13 +40,23 @@
             }
         }
     }
+    &__buttons-box {
+        &>label:nth-child(2) {
+            margin-left: 20px;
+        }
+        display: flex;
+        width: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
     &__outer-circle {
         border: solid 5px white;
         height: 70px;
         width: 70px;
         position: absolute;
         border-radius: 50%;
-        left: -5px;
+        left: -5px; 
         bottom: 0;
         transition: bottom .3s linear;
     }
@@ -63,10 +69,41 @@
     }
     &__gradient-stripe {
         width: 60px;
-        height: 336px;
+        max-height: 336px;
+        min-height: 210px;
         background-image: linear-gradient(0deg, #ffe88c, #ffb100);
         border-radius: 35px;
         margin: 25px auto 0;
         position: relative;
+        flex-grow: 1;
+    }
+}
+
+@media screen and (min-width: $bp-popup) {
+    .light-settings {
+        &__horizontal-stripe {
+            width: 580px;
+            min-height: 60px;
+            height: 60px;
+            background-image: linear-gradient(90deg, #ffe88c, #ffb100);
+            flex-grow: unset;
+        }
+        &__btn {
+            font-weight: 600 !important;
+        }
+        &__fieldset {
+            margin-top: 20px;
+        }
+        &__buttons-box {
+            &>label:nth-child(2) {
+                margin-left: 25px;
+            }
+        }
+    }
+    .light-settings {
+        &__outer-circle {
+            left: 0;
+            top: -5px;
+        }
     }
 }

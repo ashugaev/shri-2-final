@@ -336,21 +336,31 @@
     <div class="popup-bg"></div>
     <div class="popup">
         <div class="popup__body">
-            <div class="popup__body-text-box">
-                <div class="popup__title">
-                    Xiaomi Warm Floor
+
+            <div class="popup__header-box">
+                <div class="popup__body-text-box">
+                    <div class="popup__title">
+                        Xiaomi Warm Floor
+                    </div>
+                    <div class="popup__state">
+                        Выключено
+                    </div>
                 </div>
-                <div class="popup__state">
-                    Выключено
+                <div class="popup__header-icon-box">
+                    <div class="popup__header-icon-text">+23</div>
+                    <div class="icon icon_termometer popup__header-icon"></div>
                 </div>
             </div>
+
             <div class="popup__settings">
-                <div class="light-settings">
+
+                <!-- Горизонтальный регулятор освешения -->
+                <div class="light-settings" style="display: none;">
                     <form action="index.php" id="light-mode-form">
                         <fieldset class="light-settings__fieldset">
                             <div class="light-settings__buttons-box">
-                                <input checked="true" type="radio" value="manual" name="light-mode" id="light-settings__manual-mode" class="light-settings__manual-mode">
                                 <label for="light-settings__manual-mode" name="light-mode" class="btn btn_gray light-settings__btn">Вручную</label>
+                                <input checked="true" type="radio" value="manual" name="light-mode" id="light-settings__manual-mode" class="light-settings__manual-mode">
                                 <input type="radio" value="70" name="light-mode" id="light-settings__day-mode" class="light-settings__day-mode">
                                 <label for="light-settings__day-mode" name="light-mode" class="btn btn_gray light-settings__btn">Дневной свет</label>
                                 <input type="radio" value="30" name="light-mode" id="light-settings__evening-mode" class="light-settings__evening-mode">
@@ -359,7 +369,6 @@
                                 <label for="light-settings__night-mode" name="light-mode" class="btn btn_gray light-settings__btn">Рассвет</label>
                             </div>
                         </fieldset>
-
                     </form>
                     <div class="light-settings__gradient-stripe light-settings__horizontal-stripe">
                         <div class="light-settings__outer-circle">
@@ -368,12 +377,45 @@
                         </div>
                     </div>
                 </div>
+                <!-- END Горизонтальный регулятор освешения -->
+
+                <!-- Горизонтальный регулятор температуры (используем большинство стилей от регулятора температуры)-->
+                <div class="light-settings temperature-box-h">
+                    <form action="index.php" id="light-mode-form">
+                        <fieldset class="light-settings__fieldset">
+                            <div class="light-settings__buttons-box">
+                                <input checked="true" type="radio" value="manual" name="light-mode" id="light-settings__manual-mode" class="light-settings__manual-mode">
+                                <label for="light-settings__manual-mode" name="light-mode" class="btn btn_gray light-settings__btn">Вручную</label>
+                                <input type="radio" value="70" name="light-mode" id="light-settings__day-mode" class="light-settings__day-mode">
+                                <label for="light-settings__day-mode" name="light-mode" class="btn btn_gray light-settings__btn">Холодно</label>
+                                <input type="radio" value="30" name="light-mode" id="light-settings__evening-mode" class="light-settings__evening-mode">
+                                <label for="light-settings__evening-mode" name="light-mode" class="btn btn_gray light-settings__btn">Тепло</label>
+                                <input type="radio" value="10" name="light-mode" id="light-settings__night-mode" class="light-settings__night-mode">
+                                <label for="light-settings__night-mode" name="light-mode" class="btn btn_gray light-settings__btn">Жарко</label>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                    <div class="light-settings__gradient-stripe light-settings__horizontal-stripe temperature-box-h__gradient-stripe temperature-box-h__horizontal-stripe">
+                        <div class="light-settings__outer-circle">
+                            <div class="light-settings__inner-circle">
+                            </div>
+                        </div>
+                        <div class="temperature-box-h__min-value">-10</div>
+                        <div class="temperature-box-h__max-value">+30</div>
+                    </div>
+                </div>
+                <!-- END Горизонтальный регулятор температуры -->
+
+                <!-- Круговой регулятор температуры -->
                 <div class="temperature-box" id="temperature-box">
                     <div class="temperature-box__shadow">
                         <div class="icon icon_arrow-solid temperature-box__arrow"></div>
                         <div class="temperature-box__temperature">+23</div>
                     </div>
                 </div>
+                <!-- END Круговой регулятор температуры -->
+
             </div>
         </div>
         <div class="popup__buttons">
@@ -519,7 +561,7 @@
                 // document.querySelector('.popup').style.transform = 'scale(.1)';
                 // document.querySelector('.popup').style.height = event.target.clientHeight + 'px';
                 document.querySelector('.popup').style.opacity = 1;
-                document.querySelector('.popup').style.display = 'block';
+                document.querySelector('.popup').style.display = 'flex';
 
                 console.log(event.target.clientHeight)
 
