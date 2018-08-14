@@ -1,52 +1,52 @@
 // Events handler
-(function () {
-    document.querySelector('body').addEventListener('click', function (event) {
-        // Клики на панели устройтсв
-        if (event.target.className.indexOf('info-item') >= 0) {
-            openPopup(event)
-        }
-    })
-
-})()
+(function() {
+	document.querySelector('body').addEventListener('click', function(event) {
+		// Клики на панели устройтсв
+		if (event.target.className.indexOf('info-item') >= 0) {
+			openPopup(event.target.closest('.info-item'));
+		}
+	});
+})();
 
 // Popup Open/Close
-let openPopup = function (event) {
-    let zTop, zLeft
-
-    console.log(event.target.getBoundingClientRect().top, event.target.getBoundingClientRect().left)
-    event.target.style.position = 'fixed';
-    event.target.style.transform = 'translate(-50%, -50%)';
-    event.target.style.top = '50%';
-    event.target.style.left = '50%';
-    event.target.style.height = '300px';
-    event.target.style.width = '300px';
-
-    // zTop = event.target.getBoundingClientRect().top;
-    // zLeft = event.target.getBoundingClientRect().left;
-    // zWidth = event.target.clientWidth + 'px'
-    // zHeight = event.target.clientHeight + 'px'
-    // document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
-    // document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
-    // document.querySelector('.popup').style.opacity = 1;
-    // document.querySelector('.popup').style.display = 'flex';
+let openPopup = function(elem) {
+	let targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
+	let targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
 
 
-    // document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
-    // document.querySelector('.popup').style.top = '50%';
-    // document.querySelector('.popup').style.left = '50%';
 
+	// console.log(event.target.getBoundingClientRect().top, event.target.getBoundingClientRect().left, window.pageYOffset, window.pageXOffset)
+	elem.style.top = targetPageTop + 'px';
+	// 40 - это паддинг на body и margin на элементе
+    elem.style.left = targetPageLeft - 20 + 'px';
+	elem.style.position = 'fixed';
 
-    // let popBgStyle = document.querySelector('.popup-bg').style;
-    // popBgStyle.display = 'block';
-    // popBgStyle.opacity = 1;
-    // // уберем скролл
-    // document.body.style.overflow = "hidden"
+	setTimeout(function() {
+        elem.classList.add('info-item_open')
+    }, 100);
+    
 
-    // document.querySelector('.blur-box').style.filter = 'blur(2px)'
+	// zTop = event.target.getBoundingClientRect().top;
+	// zLeft = event.target.getBoundingClientRect().left;
+	// zWidth = event.target.clientWidth + 'px'
+	// zHeight = event.target.clientHeight + 'px'
+	// document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
+	// document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
+	// document.querySelector('.popup').style.opacity = 1;
+	// document.querySelector('.popup').style.display = 'flex';
 
-}
+	// document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
+	// document.querySelector('.popup').style.top = '50%';
+	// document.querySelector('.popup').style.left = '50%';
 
+	// let popBgStyle = document.querySelector('.popup-bg').style;
+	// popBgStyle.display = 'block';
+	// popBgStyle.opacity = 1;
+	// // уберем скролл
+	// document.body.style.overflow = "hidden"
 
+	// document.querySelector('.blur-box').style.filter = 'blur(2px)'
+};
 
 /*
 // Пределы выставляемой  температуры
