@@ -408,10 +408,10 @@
                 <!-- END Горизонтальный регулятор температуры -->
 
                 <!-- Круговой регулятор температуры -->
-                <div class="temperature-box" id="temperature-box">
-                    <div class="temperature-box__shadow">
-                        <div class="icon icon_arrow-solid temperature-box__arrow"></div>
-                        <div class="temperature-box__temperature">+23</div>
+                <div class="circle-regulator" id="circle-regulator">
+                    <div class="circle-regulator__shadow">
+                        <div class="icon icon_arrow-solid circle-regulator__arrow"></div>
+                        <div class="circle-regulator__temperature">+23</div>
                     </div>
                 </div>
                 <!-- END Круговой регулятор температуры -->
@@ -439,22 +439,22 @@
 
             let rotation = 0;
             // в rotated мы как бы получили нашу текущую температуру с сервера
-            let currentTemp = parseInt(document.querySelector('.temperature-box__temperature').textContent);
+            let currentTemp = parseInt(document.querySelector('.circle-regulator__temperature').textContent);
             // Посчитаем поворота регулятора
             let rotated = 360 / (maxTemp - minTemp) * (currentTemp - minTemp);
 
-            const circle = document.getElementById('temperature-box');
+            const circle = document.getElementById('circle-regulator');
 
             let gray = false;
             while (rotation < 359) {
                 // Выводим черточки и закрашиваем только те, которые находятся до нашей точки поворота
                 circle.insertAdjacentHTML('beforeEnd',
-                    `<div class="temperature-box__dash" style="transform:rotate( ${ rotation }deg);   ${ rotation < rotated ? 'border-color:' + color : ''};"></div>`
+                    `<div class="circle-regulator__dash" style="transform:rotate( ${ rotation }deg);   ${ rotation < rotated ? 'border-color:' + color : ''};"></div>`
                 );
                 // На первой серой черточке проставляем стрелку на предыдущую
                 if (rotation > rotated && !gray) {
                     gray = true
-                    document.querySelector('.temperature-box__arrow').style.transform = `rotate(${rotation-3}deg)`
+                    document.querySelector('.circle-regulator__arrow').style.transform = `rotate(${rotation-3}deg)`
 
                 }
                 rotation += 3;
@@ -514,10 +514,10 @@
 
                 console.log(absoluteAngle);
 
-                // console.log(document.getElementsByClassName("temperature-box__dash"))
+                // console.log(document.getElementsByClassName("circle-regulator__dash"))
 
                 // Получим все полоски
-                var dashes = document.getElementsByClassName("temperature-box__dash");
+                var dashes = document.getElementsByClassName("circle-regulator__dash");
                 var oneDashRad = 360 / dashes.length;
                 // Полосок для изменения цвета
                 var dashesToChanches = absoluteAngle / oneDashRad;
@@ -531,12 +531,12 @@
 
                     // На последней итерации меняем угол наклона стрелки
                     if (i === dashes.length - 1) {
-                        document.querySelector('.temperature-box__arrow').style.transform =
+                        document.querySelector('.circle-regulator__arrow').style.transform =
                             `rotate(${absoluteAngle}deg)`;
                         // Меняем цифру температуры
                         let newTemp = absoluteAngle / (360 / (maxTemp - minTemp)) + minTemp;
                         newTemp = Math.round(newTemp)
-                        document.querySelector('.temperature-box__temperature').textContent = '+' + newTemp;
+                        document.querySelector('.circle-regulator__temperature').textContent = '+' + newTemp;
                     }
                 }
             }

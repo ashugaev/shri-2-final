@@ -1,4 +1,4 @@
-.light-settings {
+.stripe-regulator {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
         & input[type="radio"] {
             display: none;
         }
-        & input:checked+.light-settings__btn {
+        & input:checked+.stripe-regulator__btn {
             background-color: #ffd93e;
             color: #333333;
             &:hover {
@@ -79,8 +79,54 @@
     }
 }
 
+
+.temperature-box-h {
+    &__gradient-stripe {
+        background-image: linear-gradient(0deg, #068fff, #ffd800, #f76b1c);
+    }
+    &__min-value, &__max-value {
+        font-size: 18px;
+        color: white;
+        font-family: Arial;
+        font-weight: 600;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &__min-value {
+        bottom: 15px;
+    }
+    &__max-value {
+        top: 15px;
+    }
+}
+
 @media screen and (min-width: $bp-popup) {
-    .light-settings {
+    .temperature-box-h {
+        &__horizontal-stripe {
+            background-image: linear-gradient(90deg, #068fff, #ffd800, #f76b1c);
+        }
+        &__min-value, &__max-value {
+            top: 50%;
+            transform: translateY(-50%);
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        &__min-value {
+            right: auto;
+            left: 20px;
+        }
+        &__max-value {
+            
+            left: auto;
+            right: 20px;
+        }
+    }
+}
+
+
+@media screen and (min-width: $bp-popup) {
+    .stripe-regulator {
         &__horizontal-stripe {
             width: 580px;
             min-height: 60px;
@@ -100,7 +146,7 @@
             }
         }
     }
-    .light-settings {
+    .stripe-regulator {
         &__outer-circle {
             left: 0;
             top: -5px;
