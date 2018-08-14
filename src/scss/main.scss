@@ -1,12 +1,5 @@
-// Сброс стандартных стилей
-
 @import 'normalize';
-
-// Элементы
-@import 'helpers/icons_buttons';
-
-// Переменные 
-@import 'helpers/variables';
+@import 'helpers/helpers';
 
 // Секции
 @import 'header';
