@@ -7,11 +7,10 @@
     }
     &__title {
         font: 600 18px Arial;
-        color:  #333333;
+        color: #333333;
         display: flex;
         justify-content: space-between;
-    }
-    // &__rel {
+    } // &__rel {
     //     position: relative;
     //     height: 120px;
     //     margin-top: 20px;
@@ -32,9 +31,8 @@
     }
     &__title {
         font: 600 18px Arial;
-        color:  #333333;
+        color: #333333;
     }
-
 }
 
 .info-item-box {
@@ -42,6 +40,13 @@
         position: relative;
         height: 120px;
         margin-top: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        /* Remove the default scrollbar for WebKit implementations */
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
     &__abs {
         display: flex;

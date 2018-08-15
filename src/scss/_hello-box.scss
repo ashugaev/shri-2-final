@@ -1,15 +1,14 @@
 .hello-box-container {
     width: 100%;
 }
+
 .hello-box {
     position: relative;
     max-height: 331px;
     max-width: 630px;
     min-height: 282px; //280px исходя из Mobile S(320px) в chrome
     min-width: 280px;
-    width: 100%;
-    // margin: 0 auto;
-
+    width: 100%; // margin: 0 auto;
     &:before {
         content: '';
         display: block;
@@ -56,14 +55,20 @@
     &__appliances-rel {
         position: relative;
         height: 120px;
-        overflow: hidden;
+        // overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        /* Remove the default scrollbar for WebKit implementations */
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
     &__appliances-abs {
         display: flex;
         position: absolute;
         width: auto;
-        height: 100%;
-        // padding: 0 20px;
+        height: 100%; // padding: 0 20px;
     }
     &__info {
         padding: 0 20px;
@@ -99,8 +104,7 @@
     &__outside-icon {
         margin-left: 5px;
         height: 18px;
-        width: 18px;
-        // &_drizzle {
+        width: 18px; // &_drizzle {
         //     margin-top: 3px;
         // }
         & img {
@@ -144,7 +148,7 @@
     .temperature-info {
         &__title {
             font-size: 14px;
-        } 
+        }
         &__temperature {
             font-size: 36px;
         }
@@ -159,8 +163,7 @@
             padding-bottom: 0;
         }
         &__appliances-rel {
-            width: 200px;
-            //min-width что бы флекс-бокс не сжимал ширину 
+            width: 200px; //min-width что бы флекс-бокс не сжимал ширину 
             min-width: 200px;
             height: 100%;
             right: 20px;
@@ -174,8 +177,7 @@
         }
         &__info {
             max-width: calc(100% - 220px);
-        }        
-
+        }
     }
     .hello-box .info-item {
         height: 120px;

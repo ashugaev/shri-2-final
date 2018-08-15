@@ -1,8 +1,8 @@
-(function() {
-	// Events handler
-	document.querySelector('body').addEventListener('click', function(event) {
-		// Открытие popup
-		if (event.target.className.indexOf('info-item') >= 0) {
+(function () {
+    // Events handler
+    document.querySelector('body').addEventListener('click', function (event) {
+        // Открытие popup
+        if (event.target.className.indexOf('info-item') >= 0) {
             openPopup(event.target.closest('.info-item'));
             // В завивимости от модификатора на popup включим нужный регулятор
             if (event.target.className.indexOf('popup_circle-regulator') >= 0) {
@@ -10,97 +10,184 @@
             } else if (event.target.className.indexOf('popup_stripe-regulator') >= 0) {
 
             }
-		} else if (
-			event.target.className.indexOf('popup-bg') >= 0 ||
-			event.target.className.indexOf('popup__close') >= 0 ||
-			event.target.className.indexOf('popup__apply') >= 0
-		) {
-			//Закрытие popup
-			closePopup(event.target.closest('.info-item'));
-		}
-	});
+        } else if (
+            event.target.className.indexOf('popup-bg') >= 0 ||
+            event.target.className.indexOf('popup__close') >= 0 ||
+            event.target.className.indexOf('popup__apply') >= 0
+        ) {
+            //Закрытие popup
+            closePopup(event.target.closest('.info-item'));
+        }
+    });
 
-	//Переменные, которые будут нужны для закрытия Popup
-	let targetPageTop, targetPageLeft, targetHeight, targetWidth, itemSelector;
+    //Переменные, которые будут нужны для закрытия Popup
+    let targetPageTop, targetPageLeft, targetHeight, targetWidth, itemSelector;
 
-	// Popup Open/Close
-	let openPopup = function(elem) {
-		itemSelector = elem;
+    // Popup Open/Close
+    let openPopup = function (elem) {
+        itemSelector = elem;
 
-		document.body.style.overflow = 'hidden';
-		document.querySelector('.popup').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        document.querySelector('.popup').style.display = 'flex';
 
-		targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
-		targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
-		targetWidth = elem.clientWidth;
-		targetHeight = elem.clientHeight;
+        targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
+        targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
+        targetWidth = elem.clientWidth;
+        targetHeight = elem.clientHeight;
 
-		const popUpBody = document.querySelector('.popup__body');
-		const popupBodyTop = popUpBody.getBoundingClientRect().top + window.pageYOffset;
-		const popupBodyHeight = popUpBody.clientHeight;
-		const popupBodyWidth = popUpBody.clientWidth;
+        const popUpBody = document.querySelector('.popup__body');
+        const popupBodyTop = popUpBody.getBoundingClientRect().top + window.pageYOffset;
+        const popupBodyHeight = popUpBody.clientHeight;
+        const popupBodyWidth = popUpBody.clientWidth;
 
-		// Пока откл, потому что поставил фиксированные размеры стандартно
-		// Зададим размеры, что бы элемент не растянуло при фиксированном display
-		// elem.style.width = targetWidth + 'px';
+        // Пока откл, потому что поставил фиксированные размеры стандартно
+        // Зададим размеры, что бы элемент не растянуло при фиксированном display
+        // elem.style.width = targetWidth + 'px';
         // elem.style.height = targetHeight + 'px';
-        
-		// Оставляя элемент на той же позиции сделаем его фиксированным
-		elem.style.top = targetPageTop + 'px';
-		// 20 это паддинг у body
-		elem.style.left = targetPageLeft - 20 + 'px';
-		elem.style.position = 'fixed';
 
-		// Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков)
-		setTimeout(function() {
-			elem.classList.add('info-item_open');
-			elem.style.top = popupBodyTop + 'px';
-			elem.style.height = popupBodyHeight + 'px';
-			elem.style.width = popupBodyWidth + 'px';
-		}, 50);
+        // Оставляя элемент на той же позиции сделаем его фиксированным
+        elem.style.top = targetPageTop + 'px';
+        // 20 это паддинг у body
+        elem.style.left = targetPageLeft - 20 + 'px';
+        elem.style.position = 'fixed';
 
-		setTimeout(function() {
-			document.querySelector('.popup').style.opacity = 1;
+        // Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков)
+        setTimeout(function () {
+            elem.classList.add('info-item_open');
+            elem.style.top = popupBodyTop + 'px';
+            elem.style.height = popupBodyHeight + 'px';
+            elem.style.width = popupBodyWidth + 'px';
+        }, 50);
 
-			// Включаем бэкграунт и блюр
-			let popBgStyle = document.querySelector('.popup-bg').style;
-			popBgStyle.display = 'block';
-			setTimeout(function() {
-				popBgStyle.opacity = 1;
-				// Отключаем скролл
-				document.body.style.overflow = 'hidden';
-			}, 50);
-			setTimeout(function() {
-				document.querySelector('.blur-box').style.filter = 'blur(2px)';
-			}, 300);
-		}, 500);
-	};
+        setTimeout(function () {
+            document.querySelector('.popup').style.opacity = 1;
 
-	let closePopup = function() {
-		let popup = document.querySelector('.popup');
-		popup.style.opacity = 0;
-		document.querySelector('.blur-box').style.filter = 'blur(0)';
-		let popBgStyle = document.querySelector('.popup-bg').style;
-		popBgStyle.opacity = 0;
+            // Включаем бэкграунт и блюр
+            let popBgStyle = document.querySelector('.popup-bg').style;
+            popBgStyle.display = 'block';
+            setTimeout(function () {
+                popBgStyle.opacity = 1;
+                // Отключаем скролл
+                document.body.style.overflow = 'hidden';
+            }, 50);
+            setTimeout(function () {
+                document.querySelector('.blur-box').style.filter = 'blur(2px)';
+            }, 300);
+        }, 500);
+    };
 
-		setTimeout(function() {
-			itemSelector.classList.remove('info-item_open');
-			itemSelector.style.top = targetPageTop + 'px';
-			itemSelector.style.left = targetPageLeft - 20 + 'px';
-			itemSelector.style.height = targetHeight + 'px';
-			itemSelector.style.width = targetWidth + 'px';
+    let closePopup = function () {
+        let popup = document.querySelector('.popup');
+        popup.style.opacity = 0;
+        document.querySelector('.blur-box').style.filter = 'blur(0)';
+        let popBgStyle = document.querySelector('.popup-bg').style;
+        popBgStyle.opacity = 0;
 
-			setTimeout(function() {
-				itemSelector.style.display = 'flex';
-				document.body.style.overflow = 'unset';
-				popBgStyle.display = 'none';
-				popup.style.display = 'none';
-				// Если часто открыть-закрыть окно, то блюр может не убраться, поэтому повторно убираем
-				document.querySelector('.blur-box').style.filter = 'blur(0)';
-			}, 500);
-		}, 200);
-	};
+        setTimeout(function () {
+            itemSelector.classList.remove('info-item_open');
+            itemSelector.style.top = targetPageTop + 'px';
+            itemSelector.style.left = targetPageLeft - 20 + 'px';
+            itemSelector.style.height = targetHeight + 'px';
+            itemSelector.style.width = targetWidth + 'px';
+
+            setTimeout(function () {
+                itemSelector.style.display = 'flex';
+                document.body.style.overflow = 'unset';
+                popBgStyle.display = 'none';
+                popup.style.display = 'none';
+                // Если часто открыть-закрыть окно, то блюр может не убраться, поэтому повторно убираем
+                document.querySelector('.blur-box').style.filter = 'blur(0)';
+            }, 500);
+        }, 200);
+    };
+
+
 })();
+
+
+// СКРОЛЛ
+
+// Определение content is overflowing для стрелок
+function determineOverflow(content, container) {
+    var containerMetrics = container.getBoundingClientRect();
+    var containerMetricsRight = Math.floor(containerMetrics.right);
+    var containerMetricsLeft = Math.floor(containerMetrics.left);
+    var contentMetrics = content.getBoundingClientRect();
+    var contentMetricsRight = Math.floor(contentMetrics.right);
+    var contentMetricsLeft = Math.floor(contentMetrics.left);
+    if (containerMetricsLeft > contentMetricsLeft && containerMetricsRight < contentMetricsRight) {
+        return "both";
+    } else if (contentMetricsLeft < containerMetricsLeft) {
+        return "left";
+    } else if (contentMetricsRight > containerMetricsRight) {
+        return "right";
+    } else {
+        return "none";
+    }
+}
+
+(function () {
+    // Внешний контейнер слайдера
+    let relBox = document.querySelector('.info-item-box__rel');
+    // Внутренний контейнер с контентом
+    let absBox = document.querySelector('.info-item-box__abs');
+
+    // Ставим атрибут - индикатор скрола
+    relBox.setAttribute("data-overflowing", determineOverflow(absBox, relBox));
+
+    // Отслеживаем скролл и обновляем атрибут
+    var last_known_scroll_position = 0;
+    var ticking = false;
+
+    function doSomething(scroll_pos) {
+        relBox.setAttribute("data-overflowing", determineOverflow(absBox, relBox));
+    }
+
+    // Слушаем скролл и меняем атрибуты обозночающие скролл
+    relBox.addEventListener("scroll", function () {
+        last_known_scroll_position = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                doSomething(last_known_scroll_position);
+                ticking = false;
+            });
+        }
+        ticking = true;
+    });
+}())
+
+// Функция для стрелок. 
+// Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
+const arrowScroll = function (arrows, relCont) {
+    let arrowLeft = document.querySelector(arrows + ' .arrow-left');
+    let arrowRight = document.querySelector(arrows + ' .arrow-right');
+    absCont = document.querySelector(relCont + ' > div');
+    relCont = document.querySelector(relCont);
+
+    arrowLeft.addEventListener("click", function () {
+        console.log('Что то есть')
+        // Если стрелка нажата во время скролла
+        у стрелок есть проблема с z-index, их перекрывает верхний элемент
+        if (SETTINGS.inScrollingNow === true) {
+            return;
+        }
+        // Если контент выходит в обе стороты или влево
+        if (determineOverflow(absCont, relCont) === "left" || determineOverflow(absCont, relCont) === "both") {
+            console.log('Контент выходит в обще стороны или влево')
+        }
+
+    })
+
+}
+
+// статья https://benfrain.com/a-horizontal-scrolling-navigation-pattern-for-touch-and-mouse-with-moving-current-indicator/
+
+// ИНИЦИАЛИЗАЦИИ. САМЫЙ КОНЕЦ
+// Инициализируем скролл
+arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel');
+
+
+
 /*
 // Пределы выставляемой  температуры
 const maxTemp = 35;
