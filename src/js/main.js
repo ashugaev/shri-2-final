@@ -1,63 +1,93 @@
-// Events handler
-(function () {
-    document.querySelector('body').addEventListener('click', function (event) {
-        // Клики на панели устройтсв
-        if (event.target.className.indexOf('info-item') >= 0) {
-            openPopup(event.target.closest('.info-item'));
-        }
-    });
+(function() {
+	// Events handler
+	document.querySelector('body').addEventListener('click', function(event) {
+		// Открытие popup
+		if (event.target.className.indexOf('info-item') >= 0) {
+			openPopup(event.target.closest('.info-item'));
+		} else if (
+			event.target.className.indexOf('popup-bg') >= 0 ||
+			event.target.className.indexOf('popup__close') >= 0
+		) {
+			//Закрытие popup
+			closePopup(event.target.closest('.info-item'));
+		}
+	});
+
+	//Переменные, которые будут нужны для закрытия Popup
+	let targetPageTop, targetPageLeft, targetHeight, targetWidth, itemSelector;
+
+	// Popup Open/Close
+	let openPopup = function(elem) {
+        itemSelector = elem;
+
+		document.body.style.overflow = 'hidden';
+		document.querySelector('.popup').style.display = 'flex';
+
+		targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
+		targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
+		targetWidth = elem.clientWidth;
+		targetHeight = elem.clientHeight;
+
+		const popUpBody = document.querySelector('.popup__body');
+		const popupBodyTop = popUpBody.getBoundingClientRect().top + window.pageYOffset;
+		const popupBodyHeight = popUpBody.clientHeight;
+		const popupBodyWidth = popUpBody.clientWidth;
+
+		// Оставляя элемент на той же позиции сделаем его фиксированным
+		elem.style.top = targetPageTop + 'px';
+		// 20 это паддинг у body
+		elem.style.left = targetPageLeft - 20 + 'px';
+		elem.style.position = 'fixed';
+
+		// Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков)
+		setTimeout(function() {
+			elem.classList.add('info-item_open');
+			elem.style.top = popupBodyTop + 'px';
+			elem.style.height = popupBodyHeight + 'px';
+			elem.style.width = popupBodyWidth + 'px';
+		}, 50);
+
+		setTimeout(function() {
+			document.querySelector('.popup').style.opacity = 1;
+
+			// Включаем бэкграунт и блюр
+			let popBgStyle = document.querySelector('.popup-bg').style;
+			popBgStyle.display = 'block';
+			setTimeout(function() {
+				popBgStyle.opacity = 1;
+				// Отключаем скролл
+				document.body.style.overflow = 'hidden';
+			}, 50);
+			setTimeout(function() {
+				document.querySelector('.blur-box').style.filter = 'blur(2px)';
+			}, 300);
+		}, 500);
+	};
+
+	let closePopup = function() {
+        let popup = document.querySelector('.popup');
+		popup.style.opacity = 0;
+		document.querySelector('.blur-box').style.filter = 'blur(0)';
+		let popBgStyle = document.querySelector('.popup-bg').style;
+		popBgStyle.opacity = 0;
+
+		setTimeout(function() {
+
+			itemSelector.classList.remove('info-item_open');
+			itemSelector.style.top = targetPageTop + 'px';
+			itemSelector.style.left = targetPageLeft - 20 + 'px';
+			itemSelector.style.height = targetHeight + 'px';
+            itemSelector.style.width = targetWidth + 'px';
+            
+            setTimeout(function() {
+                itemSelector.style.display = 'flex'; 
+                document.body.style.overflow = 'unset';
+                popBgStyle.display = 'none';
+                popup.style.display = 'none';
+            }, 500)
+		}, 200);
+	};
 })();
-
-// Popup Open/Close
-let openPopup = function (elem) {
-    const targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
-    const targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
-
-    const popupBodyTop = document.querySelector('.popup__body').getBoundingClientRect().top + window.pageYOffset;
-    const popupBodyHeight = document.querySelector('.popup__body').clientHeight;
-    const popupBodyWidth = document.querySelector('.popup__body').clientWidth;
-
-    // Оставляя элемент на той же позиции сделаем его фиксированным
-    elem.style.top = targetPageTop + 'px';
-    // 20 это паддинг у body
-    elem.style.left = targetPageLeft - 20 + 'px';
-    elem.style.position = 'fixed';
-
-    // Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков) 
-    setTimeout(function () {
-        elem.classList.add('info-item_open')
-        elem.style.top = popupBodyTop + 'px';
-        elem.style.height = popupBodyHeight + 'px';
-        elem.style.width = popupBodyWidth + 'px';
-    }, 100);
-
-    // Включаем бэкграунт и блюр
-    document.querySelector('.blur-box').style.filter = 'blur(2px)'
-    let popBgStyle = document.querySelector('.popup-bg').style;
-    popBgStyle.display = 'block';
-    popBgStyle.opacity = 1;
-    // Отключаем скролл
-    document.body.style.overflow = "hidden"
-
-
-    // zTop = event.target.getBoundingClientRect().top;
-    // zLeft = event.target.getBoundingClientRect().left;
-    // zWidth = event.target.clientWidth + 'px'
-    // zHeight = event.target.clientHeight + 'px'
-    // document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
-    // document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
-    // document.querySelector('.popup').style.opacity = 1;
-    // document.querySelector('.popup').style.display = 'flex';
-
-    // document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
-    // document.querySelector('.popup').style.top = '50%';
-    // document.querySelector('.popup').style.left = '50%';
-
-
-    // // уберем скролл
-
-};
-
 /*
 // Пределы выставляемой  температуры
 const maxTemp = 35;
