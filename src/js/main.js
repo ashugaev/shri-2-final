@@ -3,10 +3,17 @@
 	document.querySelector('body').addEventListener('click', function(event) {
 		// Открытие popup
 		if (event.target.className.indexOf('info-item') >= 0) {
-			openPopup(event.target.closest('.info-item'));
+            openPopup(event.target.closest('.info-item'));
+            // В завивимости от модификатора на popup включим нужный регулятор
+            if (event.target.className.indexOf('popup_circle-regulator') >= 0) {
+
+            } else if (event.target.className.indexOf('popup_stripe-regulator') >= 0) {
+
+            }
 		} else if (
 			event.target.className.indexOf('popup-bg') >= 0 ||
-			event.target.className.indexOf('popup__close') >= 0
+			event.target.className.indexOf('popup__close') >= 0 ||
+			event.target.className.indexOf('popup__apply') >= 0
 		) {
 			//Закрытие popup
 			closePopup(event.target.closest('.info-item'));
@@ -18,7 +25,7 @@
 
 	// Popup Open/Close
 	let openPopup = function(elem) {
-        itemSelector = elem;
+		itemSelector = elem;
 
 		document.body.style.overflow = 'hidden';
 		document.querySelector('.popup').style.display = 'flex';
@@ -33,6 +40,11 @@
 		const popupBodyHeight = popUpBody.clientHeight;
 		const popupBodyWidth = popUpBody.clientWidth;
 
+		// Пока откл, потому что поставил фиксированные размеры стандартно
+		// Зададим размеры, что бы элемент не растянуло при фиксированном display
+		// elem.style.width = targetWidth + 'px';
+        // elem.style.height = targetHeight + 'px';
+        
 		// Оставляя элемент на той же позиции сделаем его фиксированным
 		elem.style.top = targetPageTop + 'px';
 		// 20 это паддинг у body
@@ -65,26 +77,27 @@
 	};
 
 	let closePopup = function() {
-        let popup = document.querySelector('.popup');
+		let popup = document.querySelector('.popup');
 		popup.style.opacity = 0;
 		document.querySelector('.blur-box').style.filter = 'blur(0)';
 		let popBgStyle = document.querySelector('.popup-bg').style;
 		popBgStyle.opacity = 0;
 
 		setTimeout(function() {
-
 			itemSelector.classList.remove('info-item_open');
 			itemSelector.style.top = targetPageTop + 'px';
 			itemSelector.style.left = targetPageLeft - 20 + 'px';
 			itemSelector.style.height = targetHeight + 'px';
-            itemSelector.style.width = targetWidth + 'px';
-            
-            setTimeout(function() {
-                itemSelector.style.display = 'flex'; 
-                document.body.style.overflow = 'unset';
-                popBgStyle.display = 'none';
-                popup.style.display = 'none';
-            }, 500)
+			itemSelector.style.width = targetWidth + 'px';
+
+			setTimeout(function() {
+				itemSelector.style.display = 'flex';
+				document.body.style.overflow = 'unset';
+				popBgStyle.display = 'none';
+				popup.style.display = 'none';
+				// Если часто открыть-закрыть окно, то блюр может не убраться, поэтому повторно убираем
+				document.querySelector('.blur-box').style.filter = 'blur(0)';
+			}, 500);
 		}, 200);
 	};
 })();
