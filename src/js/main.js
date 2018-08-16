@@ -489,146 +489,174 @@ arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel');
             }
         }
     }
-})()
+})();
 
 /************************\ 
-  END КРУГОВОЙ РЕГУЛЯТОР
+ END КРУГОВОЙ РЕГУЛЯТОР
 \************************/
 
 /*
 ///////////СКРИПТ ПОПАПЧИКА
 let zWidth, zHeight, zTop, zLeft
-
+ 
 // console.log(document.getElementsByClassName('a'))
 document.querySelector('body').addEventListener('click', function (event) {
-    console.log(event.target.className)
-    if (event.target.className.indexOf('info-item') >= 0) {
-        console.log('Есть');
-        zTop = event.target.getBoundingClientRect().top;
-        zLeft = event.target.getBoundingClientRect().left;
-        zWidth = event.target.clientWidth + 'px'
-        zHeight = event.target.clientHeight + 'px'
-        document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
-        document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
-        // document.querySelector('.popup').style.width = event.target.clientWidth + 'px';
-        // document.querySelector('.popup').style.height = '50px';
-        // document.querySelector('.popup').style.transform = 'scale(.1)';
-        // document.querySelector('.popup').style.height = event.target.clientHeight + 'px';
-        document.querySelector('.popup').style.opacity = 1;
-        document.querySelector('.popup').style.display = 'flex';
-
-        console.log(event.target.clientHeight)
-
-        document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
-        document.querySelector('.popup').style.top = '50%';
-        document.querySelector('.popup').style.left = '50%';
-
-        // document.querySelector('.popup').style.width = '200px';
-        // document.querySelector('.popup').style.height = '200px';
-
-        // Включим blur и темный фон
-        let popBgStyle = document.querySelector('.popup-bg').style;
-        popBgStyle.display = 'block';
-        popBgStyle.opacity = 1;
-        // уберем скролл
-        document.body.style.overflow = "hidden"
-
-        document.querySelector('.blur-box').style.filter = 'blur(2px)'
-
-    }
-})
-
-
-document.querySelector('.popup-bg').addEventListener('click', function () {
-
-    document.querySelector('.popup').style.top = zTop;
-    document.querySelector('.popup').style.left = zLeft;
-    document.querySelector('.popup').style.transform = 'scale(.1)';
-
-    // document.querySelector('.c').style.width = zWidth;
-    // document.querySelector('.c').style.height = zHeight;
-    document.querySelector('.popup').style.opacity = 0;
-    // Переключим blur и темный фон
+console.log(event.target.className)
+if (event.target.className.indexOf('info-item') >= 0) {
+    console.log('Есть');
+    zTop = event.target.getBoundingClientRect().top;
+    zLeft = event.target.getBoundingClientRect().left;
+    zWidth = event.target.clientWidth + 'px'
+    zHeight = event.target.clientHeight + 'px'
+    document.querySelector('.popup').style.top = zTop + (120 / 2) + 'px';
+    document.querySelector('.popup').style.left = zLeft + (200 / 2) + 'px';
+    // document.querySelector('.popup').style.width = event.target.clientWidth + 'px';
+    // document.querySelector('.popup').style.height = '50px';
+    // document.querySelector('.popup').style.transform = 'scale(.1)';
+    // document.querySelector('.popup').style.height = event.target.clientHeight + 'px';
+    document.querySelector('.popup').style.opacity = 1;
+    document.querySelector('.popup').style.display = 'flex';
+ 
+    console.log(event.target.clientHeight)
+ 
+    document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
+    document.querySelector('.popup').style.top = '50%';
+    document.querySelector('.popup').style.left = '50%';
+ 
+    // document.querySelector('.popup').style.width = '200px';
+    // document.querySelector('.popup').style.height = '200px';
+ 
+    // Включим blur и темный фон
     let popBgStyle = document.querySelector('.popup-bg').style;
-    popBgStyle.display = 'none';
-    popBgStyle.opacity = 0;
-    // Вернем скролл
-    document.body.style.overflow = "unset"
-
-    document.querySelector('.blur-box').style.filter = 'blur(0)'
-
+    popBgStyle.display = 'block';
+    popBgStyle.opacity = 1;
+    // уберем скролл
+    document.body.style.overflow = "hidden"
+ 
+    document.querySelector('.blur-box').style.filter = 'blur(2px)'
+ 
+}
 })
-
+ 
+ 
+document.querySelector('.popup-bg').addEventListener('click', function () {
+ 
+document.querySelector('.popup').style.top = zTop;
+document.querySelector('.popup').style.left = zLeft;
+document.querySelector('.popup').style.transform = 'scale(.1)';
+ 
+// document.querySelector('.c').style.width = zWidth;
+// document.querySelector('.c').style.height = zHeight;
+document.querySelector('.popup').style.opacity = 0;
+// Переключим blur и темный фон
+let popBgStyle = document.querySelector('.popup-bg').style;
+popBgStyle.display = 'none';
+popBgStyle.opacity = 0;
+// Вернем скролл
+document.body.style.overflow = "unset"
+ 
+document.querySelector('.blur-box').style.filter = 'blur(0)'
+ 
+})
+ 
 /// для радиокнопок
 var form = document.querySelector("#light-mode-form");
 form.addEventListener('click', function (event) {
-    if (event.target.getAttribute('name') === 'light-mode' && event.target.getAttribute('value') !=
-        'manual') {
-        console.log(event.target.getAttribute('value'));
-        let forInput = event.target.getAttribute('for')
-        let value = document.querySelector('#' + forInput).getAttribute('value')
-        let containerHeight = document.querySelector(".stripe-regulator__gradient-stripe").clientHeight
-        let circleHeight = document.querySelector(".stripe-regulator__outer-circle").clientHeight
-        let circleBottom = (containerHeight - circleHeight) / 100 * value
-        document.querySelector(".stripe-regulator__outer-circle").style.bottom = circleBottom + 'px'
-        console.log(value)
-    }
-})
-
-
-/// Для полоски
-let gradientStripe = document.querySelector(".stripe-regulator__gradient-stripe")
-let circle = document.querySelector(".stripe-regulator__outer-circle")
-
-gradientStripe.addEventListener('click', function (event) {
-    // changeTemperature(event.x, event.y);
-})
-
-gradientStripe.addEventListener('touchmove', function (event) {
-    changeCirclePosition(event)
-
-
-    // // Позиция круга на экране
-    // let circleCurrentTop = circle.getBoundingClientRect().top
-    // // Место тача
-    // let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
-    // let diff = circleCurrentTop - firstTouch
-    // console.log(parseInt(circle.style.bottom))
-    // circle.style.bottom = (parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff) +
-    //     'px'
-
-})
-gradientStripe.addEventListener('touchstart', function (event) {
-
-    changeCirclePosition(event)
-
-
-})
-
-let changeCirclePosition = function (event) {
-    // Позиция круга на экране
-    let circleCurrentTop = circle.getBoundingClientRect().top
-    // Место тача
-    let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
-    let diff = circleCurrentTop - firstTouch
-    console.log(parseInt(circle.style.bottom))
-    let bottom = parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff
-    if (bottom < 0) {
-        bottom = 0
-    } else if (bottom > (gradientStripe.clientHeight - 70)) {
-        bottom = gradientStripe.clientHeight - 70
-    }
-    circle.style.bottom = bottom + 'px'
+if (event.target.getAttribute('name') === 'light-mode' && event.target.getAttribute('value') !=
+    'manual') {
+    console.log(event.target.getAttribute('value'));
+    let forInput = event.target.getAttribute('for')
+    let value = document.querySelector('#' + forInput).getAttribute('value')
+    let containerHeight = document.querySelector(".stripe-regulator__gradient-stripe").clientHeight
+    let circleHeight = document.querySelector(".stripe-regulator__outer-circle").clientHeight
+    let circleBottom = (containerHeight - circleHeight) / 100 * value
+    document.querySelector(".stripe-regulator__outer-circle").style.bottom = circleBottom + 'px'
+    console.log(value)
 }
-// form.addEventListener("submit", function (event) {
-//     // var data = new FormData(form);
-//     console.log(event)
-//     // var output = "";
-//     // for (const entry of data) {
-//     //     output = entry[0] + "=" + entry[1] + "\r";
-//     // };
-//     // log.innerText = output;
-//     event.preventDefault();
-// }, false);
+})*/
 
-*/
+/**************************\ 
+ ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
+\**************************/
+let touchRegulator = function (stripeSelector, circleSelector) {
+    let gradientStripe = document.querySelector(stripeSelector)
+    let circle = document.querySelector(circleSelector)
+ 
+    console.log(gradientStripe, circle)
+    // На контрольных точках меняем артибут описывающий положение полоски
+    window.addEventListener('resize', function (event) { onResise(event) })
+    let onResise = function (event) {
+        if (window.innerWidth <= 700) {
+            gradientStripe.setAttribute('stripePosition', 'vertical');
+            console.log('vertical')
+        } else {
+            gradientStripe.setAttribute('stripePosition', 'horizontal');
+            console.log('hor')
+        }
+    }
+    onResise()
+
+    ///////////////////////////
+
+    gradientStripe.addEventListener('click', function (event) {
+        // changeTemperature(event.x, event.y);
+    })
+
+    gradientStripe.addEventListener('touchmove', function (event) {
+        changeCirclePosition(event)
+
+
+        // // Позиция круга на экране
+        // let circleCurrentTop = circle.getBoundingClientRect().top
+        // // Место тача
+        // let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
+        // let diff = circleCurrentTop - firstTouch
+        // console.log(parseInt(circle.style.bottom))
+        // circle.style.bottom = (parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff) +
+        //     'px'
+
+    })
+    gradientStripe.addEventListener('touchstart', function (event) {
+
+        changeCirclePosition(event)
+
+
+    })
+
+    let changeCirclePosition = function (event) {
+        // Позиция круга на экране
+        let circleCurrentTop = circle.getBoundingClientRect().top
+        console.log(event.targetTouches[0]);
+        console.log(event.changedTouches);
+        console.dir('круг', circle)
+
+        // Место тача
+        let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
+        let diff = circleCurrentTop - firstTouch
+        console.log(parseInt(circle.style.bottom))
+        let bottom = parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff
+        if (bottom < 0) {
+            bottom = 0
+        } else if (bottom > (gradientStripe.clientHeight - 70)) {
+            bottom = gradientStripe.clientHeight - 70
+        }
+        circle.style.bottom = bottom + 'px'
+    }
+    // form.addEventListener("submit", function (event) {
+    //     // var data = new FormData(form);
+    //     console.log(event)
+    //     // var output = "";
+    //     // for (const entry of data) {
+    //     //     output = entry[0] + "=" + entry[1] + "\r";
+    //     // };
+    //     // log.innerText = output;
+    //     event.preventDefault();
+    // }, false);
+}
+
+// Инициализируем оба регулятора
+touchRegulator('.stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_three-color', '.stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_three-color   .stripe-regulator__outer-circle');
+touchRegulator('.stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_yellow', '.stripe-regulator__gradient-stripe_three-yellow .stripe-regulator__outer-circle');
+/******************************\ 
+ END ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
+\******************************/
