@@ -1,6 +1,8 @@
 .blur-box {
     filter: blur(0px);
-    transition: filter .3s
+    transition: filter .3s;
+    max-width: 1367px;
+    margin: 0 auto;
 }
 
 .popup-bg {

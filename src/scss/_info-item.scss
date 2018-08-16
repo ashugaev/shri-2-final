@@ -41,6 +41,7 @@
         color: #333333;
         font-weight: 600;
         max-width: 200px;
+        user-select: none;
     }
     &__info {
         font-family: Arial;
@@ -48,6 +49,7 @@
         color: #858585;
         letter-spacing: 0.01px;
         margin-top: 3px;
+        user-select: none;
     }
     &__icon {
         height: 24px;

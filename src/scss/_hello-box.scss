@@ -52,10 +52,13 @@
         color: #333333;
         margin-top: 5px;
     }
+    &__appliances-scroll {
+        height: 120px;
+        overflow: hidden;
+    }
     &__appliances-rel {
         position: relative;
-        height: 120px;
-        // overflow: hidden;
+        height: 150px; // overflow: hidden;
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
@@ -156,7 +159,7 @@
 }
 
 //620px просто на мой взгляд достаточная ширина для переноса слайдера вправо
-@media screen and (min-width: 620px) and (max-width: 800px) {
+@media (min-width: 620px) and (max-width: 899px), (min-width: 1030px) and (max-width: 1199px), (min-width: 1250px) {
     .hello-box {
         &__rel {
             flex-direction: row;

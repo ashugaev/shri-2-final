@@ -1,7 +1,12 @@
+.arrows {
+    z-index: 100;
+}
+
 .scenarios-box {
     margin-top: 31px;
     width: 100%;
     overflow: hidden;
+    flex-shrink: 0;
     &__slider {
         overflow: hidden;
     }
@@ -36,11 +41,17 @@
 }
 
 .info-item-box {
+    &__scroll {
+        overflow: hidden;
+        height: 120px;
+        // margin-top: 20px;
+
+    }
     &__rel {
         position: relative;
-        height: 120px;
-        margin-top: 20px;
+        height: 150px;
         overflow-x: auto;
+        // overflow: hidden;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         /* Remove the default scrollbar for WebKit implementations */
@@ -53,5 +64,13 @@
         position: absolute;
         width: auto;
         height: 100%;
+        transition: transform .2s ease-in-out;
+        // margin-bottom: -25px;
+        // overflow-y: hidden;
+        // overflow-x: scroll;
     }
+}
+
+.no-transition {
+    transition: none !important;
 }
