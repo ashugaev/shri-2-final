@@ -907,6 +907,21 @@ template {
       padding: 0; }
     .popup__body-text-box {
       padding: 25px 25px 0; } }
+.popup_circle-regulator .circle-regulator {
+  display: flex !important; }
+
+.popup.popup_circle-regulator {
+  max-height: 642px;
+  min-height: 590px; }
+
+@media screen and (min-width: 700px) {
+  .popup.popup_circle-regulator {
+    width: 630px;
+    max-height: 600px;
+    min-height: 423px;
+    width: calc(100vw - 40px);
+    min-width: 400px;
+    max-width: 630px; } }
 .circle-regulator {
   position: absolute;
   top: 163px;
@@ -924,7 +939,8 @@ template {
     position: absolute;
     left: 50%;
     top: 0;
-    transform-origin: 50% 100%; }
+    transform-origin: 50% 100%;
+    width: 2px; }
   .circle-regulator__temperature {
     font-size: 66px;
     font-family: Arial;

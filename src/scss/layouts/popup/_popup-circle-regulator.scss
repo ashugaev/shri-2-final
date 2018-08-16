@@ -1,3 +1,26 @@
+.popup_circle-regulator {
+    & .circle-regulator {
+        display: flex !important;
+    }
+}
+
+.popup.popup_circle-regulator {
+    max-height: 642px;
+    min-height: 590px;
+}
+
+@media screen and (min-width: $bp-popup) {
+    .popup.popup_circle-regulator {
+        width: 630px; 
+        max-height: 600px;
+        min-height: 423px;
+        width: calc(100vw - 40px);
+        min-width: 400px;
+        max-width: 630px;
+    }
+}
+
+///////////////
 .circle-regulator {
     position: absolute;
     top: 163px;
@@ -10,13 +33,13 @@
     align-items: center;
     justify-content: center;
     &__dash {
-        height: 50%;
-        // width: 1px;
+        height: 50%; // width: 1px;
         border-top: solid 21px #333333;
         position: absolute;
         left: 50%;
         top: 0;
         transform-origin: 50% 100%;
+        width: 2px;
     }
     &__temperature {
         font-size: 66px;
@@ -34,9 +57,9 @@
         align-items: center;
         justify-content: center;
         position: relative;
-    } 
+    }
     &__arrow {
-        width: 10px; 
+        width: 10px;
         height: 50%;
         position: absolute;
         bottom: 50%;
