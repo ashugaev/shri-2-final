@@ -660,3 +660,4 @@ touchRegulator('.stripe-regulator__gradient-stripe.stripe-regulator__gradient-st
 /******************************\ 
  END ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
 \******************************/
+https://mobiforge.com/design-development/touch-friendly-drag-and-drop
