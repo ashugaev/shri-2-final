@@ -809,7 +809,9 @@ template {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
           -ms-flex-direction: row;
-              flex-direction: row; }
+              flex-direction: row;
+      -webkit-transition: opacity .2s;
+      transition: opacity .2s; }
     .scenarios-box .info-item-box__rel {
       height: 100%;
       margin-top: 5px;

@@ -308,7 +308,12 @@ let slideNext = function(relCont, absCont) {
 
 	if (!absBlockTop) absBlockTop = 0;
 	if (step / 4 > maxStep) return;
-	absCont.style.top = parseInt(absBlockTop) - step + 'px';
+
+	absCont.style.opacity = 0;
+	setTimeout(function() {
+		absCont.style.top = parseInt(absBlockTop) - step + 'px';
+		absCont.style.opacity = 1;
+	}, 300);
 };
 
 let slidePrev = function(relCont, absCont) {
@@ -322,7 +327,11 @@ let slidePrev = function(relCont, absCont) {
 
 	if (!absBlockTop) absBlockTop = 0;
 	if (step / 4 > maxStep) return;
-	absCont.style.top = parseInt(absBlockTop) + step + 'px';
+	absCont.style.opacity = 0;
+	setTimeout(function() {
+		absCont.style.top = parseInt(absBlockTop) + step + 'px';
+		absCont.style.opacity = 1;
+	}, 300);
 };
 
 /********************************************\ 
@@ -642,9 +651,9 @@ let touchRegulator = function(stripeSelector, circleSelector) {
 		}
 
 		// Что бы не делать лишнее событие сюда же закинем сброс для слайдов
-		if(window.innerWidth < favoritesScenariosHorizontal) {
+		if (window.innerWidth < favoritesScenariosHorizontal) {
 			document.querySelector('.info-item-box__abs_favorites').style.top = 0;
-			console.log('Сброс слайдера')
+			console.log('Сброс слайдера');
 		}
 	};
 	onResise();
