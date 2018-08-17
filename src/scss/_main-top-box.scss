@@ -2,6 +2,7 @@
     margin-top: 63px;
 }
 
+// Избранные сценарии справа
 @media screen and (min-width: 900px) {
     .main-top-box {
         display: flex;
@@ -13,19 +14,31 @@
         margin-left: 6px;
         width: 446px;
         margin-top: 0;
+        display: flex;
+        flex-direction: column;
         &__title {
             // Смещаем на один уровень с info-item
             margin-left: 20px;
         }
         & .info-item-box {
             &__abs {
-                flex-direction: column;
-                height: 100%;
+                // flex-direction: column;
+                height: 120px;
                 flex-wrap: wrap;
+                transform: none;
+                display: flex;
+                width: 100%;
+                height: auto;
+                flex-wrap: wrap;
+                flex-direction: row;
             }
             &__rel {
                 height: 100%; //Меняем на 5px, потому что 15px отступа теперь у info-item
                 margin-top: 5px;
+                overflow: hidden !important;
+            }
+            &__scroll {
+                flex-grow: 1;
             }
         }
         & .info-item {

@@ -289,6 +289,7 @@ const arrowScroll = function(arrows, relCont) {
 		factory((root.dragscroll = {}));
 	}
 })(this, function(exports) {
+	var workWidth = 900;
 	var _window = window;
 	var _document = document;
 	var mousemove = 'mousemove';
@@ -316,7 +317,8 @@ const arrowScroll = function(arrows, relCont) {
 				(cont = el.container || el)[addEventListener](
 					mousedown,
 					(cont.md = function(e) {
-						if (!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) {
+						if ((!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) && window.innerWidth < workWidth) {
+							console.log(window.innerWidth)
 							pushed = 1;
 							lastClientX = e.clientX;
 							lastClientY = e.clientY;
@@ -576,11 +578,9 @@ let touchRegulator = function(stripeSelector, circleSelector) {
 	let onResise = function(event) {
 		if (window.innerWidth <= 700) {
 			gradientStripe.setAttribute('stripePosition', 'vertical');
-			console.log('vertical');
 			circle.style.left = '-5px';
 		} else {
 			gradientStripe.setAttribute('stripePosition', 'horizontal');
-			console.log('hor');
 			circle.style.bottom = '-5px';
 		}
 	};
