@@ -576,52 +576,54 @@ let touchRegulator = function(stripeSelector, circleSelector) {
 	let onResise = function(event) {
 		if (window.innerWidth <= 700) {
 			gradientStripe.setAttribute('stripePosition', 'vertical');
-            console.log('vertical');
-            circle.style.left = '-5px'
+			console.log('vertical');
+			circle.style.left = '-5px';
 		} else {
 			gradientStripe.setAttribute('stripePosition', 'horizontal');
-            console.log('hor');
-            circle.style.bottom = '-5px'
+			console.log('hor');
+			circle.style.bottom = '-5px';
 		}
 	};
 	onResise();
 
 	///////////////////////////
 
+	// Клик для пк
 	gradientStripe.addEventListener('click', function(event) {
-		// Меняем положение груга по клику на полоску, драг на пк не делаю
-		// changeTemperature(event.x, event.y);
+		let y = event.clientY;
+		let x = event.clientX;
+		changeCirclePosition(event, x, y);
 	});
 
 	// Отслеживаем тач
 	gradientStripe.addEventListener('touchmove', function(event) {
-		changeCirclePosition(event);
+		let y = event.targetTouches[0].clientY;
+		let x = event.targetTouches[0].clientX;
+		changeCirclePosition(event, x, y);
 	});
 	gradientStripe.addEventListener('touchstart', function(event) {
-		changeCirclePosition(event);
+		let y = event.targetTouches[0].clientY;
+		let x = event.targetTouches[0].clientX;
+		changeCirclePosition(event, x, y);
 	});
 
-	let changeCirclePosition = function(event) {
+	let changeCirclePosition = function(event, firstTouchX, firstTouch) {
 		let stripePosition = gradientStripe.getAttribute('stripeposition');
 		console.log('атрибут', stripePosition);
 		// Позиция круга на экране
 		let circleCurrentTop = circle.getBoundingClientRect().top;
 		let circleCurrentLeft = circle.getBoundingClientRect().left;
-		// Место тача
-		// let firstTouch = event.changedTouches[event.changedTouches.length - 1].clientY
-		let firstTouch = event.targetTouches[0].clientY;
-		let firstTouchX = event.targetTouches[0].clientX;
 
 		if (stripePosition === 'horizontal') {
-            let diff = circleCurrentLeft - firstTouchX;
+			let diff = circleCurrentLeft - firstTouchX;
 			let left = parseInt(circle.offsetLeft - 70 + 35) - diff;
 			if (left < 0) {
 				left = 0;
 			} else if (left > gradientStripe.clientWidth - 70) {
 				left = gradientStripe.clientWidth - 70;
 			}
-            circle.style.left = left + 'px';
-            console.log('asdf', diff, left, circle.offsetLeft)
+			circle.style.left = left + 'px';
+			console.log('asdf', diff, left, circle.offsetLeft);
 		} else if (stripePosition === 'vertical') {
 			let diff = circleCurrentTop - firstTouch;
 			let bottom = parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) + diff;
