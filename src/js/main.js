@@ -1,6 +1,6 @@
-// info-item_stripe-yellow
-// info-item_stripe-three-col
-// info-item_circle-regulator
+// Ширина перехода избранных сценарием на правую сторону от hello-box
+var favoritesScenariosHorizontal = 900;
+
 (function() {
 	// Events handler
 	// Сделим время зажатия кнопки, что бы не вылетали попапы при перетягивании мышью
@@ -289,7 +289,6 @@ const arrowScroll = function(arrows, relCont) {
 		factory((root.dragscroll = {}));
 	}
 })(this, function(exports) {
-	var workWidth = 900;
 	var _window = window;
 	var _document = document;
 	var mousemove = 'mousemove';
@@ -317,8 +316,8 @@ const arrowScroll = function(arrows, relCont) {
 				(cont = el.container || el)[addEventListener](
 					mousedown,
 					(cont.md = function(e) {
-						if ((!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) && window.innerWidth < workWidth) {
-							console.log(window.innerWidth)
+						// В условии дополнительно стоит отключение слайдера "избранные сценарии" для ширины >= ширины переключения
+						if ((!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) && (window.innerWidth < favoritesScenariosHorizontal || (window.innerWidth >= favoritesScenariosHorizontal && !el.classList.contains('appliances-box__slider_favorites')))) {
 							pushed = 1;
 							lastClientX = e.clientX;
 							lastClientY = e.clientY;
