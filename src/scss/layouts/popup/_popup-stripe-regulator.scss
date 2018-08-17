@@ -67,7 +67,7 @@
         border-radius: 50%;
         left: -5px;
         bottom: 0;
-        transition: bottom .3s linear;
+        transition: bottom .3s linear, left .3s linear;
     }
     &__inner-circle {
         border: solid 4px rgba(0, 0, 0, .15);
