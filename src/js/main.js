@@ -184,6 +184,7 @@ function determineOverflow(content, container) {
 /**********************\ 
   Функция для стрелок
 \**********************/
+
 // Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
 const arrowScroll = function(arrows, relCont) {
 	let arrowLeft = document.querySelector(arrows + ' .arrow-left');
@@ -199,8 +200,18 @@ const arrowScroll = function(arrows, relCont) {
 	};
 
 	// ЛЕВАЯ СТРЕЛКА
-	arrowLeft.addEventListener('click', function() {
+	arrowLeft.addEventListener('click', function(event) {
 		console.log('Что то есть');
+
+		// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
+		if (
+			window.innerWidth >= favoritesScenariosHorizontal &&
+			!event.target.className.indexOf('arrows_favorites') >= 0
+		) {
+			console.log('Делаем по -другому назад');
+			slidePrev(relCont, absCont);
+			return;
+		}
 
 		// Если стрелка нажата во время скролла
 		if (SETTINGS.inScrollingNow === true) {
@@ -228,6 +239,15 @@ const arrowScroll = function(arrows, relCont) {
 
 	// ПРАВАЯ СТРЕЛКА
 	arrowRight.addEventListener('click', function() {
+		// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
+		if (
+			window.innerWidth >= favoritesScenariosHorizontal &&
+			!event.target.className.indexOf('arrows_favorites') >= 0
+		) {
+			console.log('Делаем по -другому вперед', absCont);
+			slideNext(relCont, absCont);
+			return;
+		}
 		// Если стрелка нажата во время скролла
 		if (SETTINGS.inScrollingNow === true) {
 			return;
@@ -276,6 +296,39 @@ const arrowScroll = function(arrows, relCont) {
 	});
 };
 
+/*****************************************\ 
+  ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
+\*****************************************/
+
+let slideNext = function(relCont, absCont) {
+	let absBlockTop = absCont.style.top;
+	let step = relCont.clientHeight;
+	// Пространство снизу
+	let maxStep = absCont.clientHeight + absCont.offsetTop - relCont.clientHeight;
+
+	if (!absBlockTop) absBlockTop = 0;
+	if (step / 4 > maxStep) return;
+	absCont.style.top = parseInt(absBlockTop) - step + 'px';
+};
+
+let slidePrev = function(relCont, absCont) {
+	let absBlockTop = absCont.style.top;
+	let step = relCont.clientHeight;
+	// Пространство снизу
+	let maxStep =
+		absCont.clientHeight -
+		relCont.clientHeight -
+		(absCont.clientHeight - Math.abs(absCont.offsetTop) - relCont.clientHeight);
+
+	if (!absBlockTop) absBlockTop = 0;
+	if (step / 4 > maxStep) return;
+	absCont.style.top = parseInt(absBlockTop) + step + 'px';
+};
+
+/********************************************\ 
+  END ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
+\********************************************/
+
 /*************************************\ 
   ФУНКЦИЯ ДЛЯ СКРОЛЛА МЫШЬЮ И ПАЛЬЦЕМ
 \*************************************/
@@ -317,7 +370,12 @@ const arrowScroll = function(arrows, relCont) {
 					mousedown,
 					(cont.md = function(e) {
 						// В условии дополнительно стоит отключение слайдера "избранные сценарии" для ширины >= ширины переключения
-						if ((!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) && (window.innerWidth < favoritesScenariosHorizontal || (window.innerWidth >= favoritesScenariosHorizontal && !el.classList.contains('appliances-box__slider_favorites')))) {
+						if (
+							(!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) &&
+							(window.innerWidth < favoritesScenariosHorizontal ||
+								(window.innerWidth >= favoritesScenariosHorizontal &&
+									!el.classList.contains('appliances-box__slider_favorites')))
+						) {
 							pushed = 1;
 							lastClientX = e.clientX;
 							lastClientY = e.clientY;
@@ -581,6 +639,12 @@ let touchRegulator = function(stripeSelector, circleSelector) {
 		} else {
 			gradientStripe.setAttribute('stripePosition', 'horizontal');
 			circle.style.bottom = '-5px';
+		}
+
+		// Что бы не делать лишнее событие сюда же закинем сброс для слайдов
+		if(window.innerWidth < favoritesScenariosHorizontal) {
+			document.querySelector('.info-item-box__abs_favorites').style.top = 0;
+			console.log('Сброс слайдера')
 		}
 	};
 	onResise();
