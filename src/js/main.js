@@ -1,18 +1,18 @@
 // Ширина перехода избранных сценарием на правую сторону от hello-box
 var favoritesScenariosHorizontal = 900;
 
-(function () {
+(function() {
 	// Events handler
 	// Сделим время зажатия кнопки, что бы не вылетали попапы при перетягивании мышью
 	let timeStamp = 0;
-	document.querySelector('body').addEventListener('mousedown', function (event) {
+	document.querySelector('body').addEventListener('mousedown', function(event) {
 		timeStamp = event.timeStamp;
 	});
-	document.querySelector('body').addEventListener('mouseup', function (event) {
+	document.querySelector('body').addEventListener('mouseup', function(event) {
 		// console.log('Обычный клик', timeStamp, event)
 		// Открытие popup
 		if (
-			event.target.className.indexOf('info-item') >= 0 &&
+			event.target.className.indexOf('info-item ') >= 0 &&
 			event.timeStamp - timeStamp < 200 &&
 			event.button === 0
 		) {
@@ -35,7 +35,7 @@ var favoritesScenariosHorizontal = 900;
 	let targetPageTop, targetPageLeft, targetHeight, targetWidth, itemSelector, popupModificator;
 
 	// Popup Open/Close
-	let openPopup = function (elem) {
+	let openPopup = function(elem) {
 		// Включаем нужный контент попапа
 		if (elem.className.indexOf('info-item_stripe-yellow') >= 0) {
 			document.querySelector('.popup').classList.add('popup_stripe-yellow');
@@ -77,45 +77,45 @@ var favoritesScenariosHorizontal = 900;
 		elem.style.position = 'fixed';
 
 		// Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков)
-		setTimeout(function () {
+		setTimeout(function() {
 			elem.classList.add('info-item_open');
 			elem.style.top = popupBodyTop + 'px';
 			elem.style.height = popupBodyHeight + 'px';
 			elem.style.width = popupBodyWidth + 'px';
 		}, 50);
 
-		setTimeout(function () {
+		setTimeout(function() {
 			document.querySelector('.popup').style.opacity = 1;
 
 			// Включаем бэкграунт и блюр
 			let popBgStyle = document.querySelector('.popup-bg').style;
 			popBgStyle.display = 'block';
-			setTimeout(function () {
+			setTimeout(function() {
 				popBgStyle.opacity = 1;
 				// Отключаем скролл
 				document.body.style.overflow = 'hidden';
 			}, 50);
-			setTimeout(function () {
+			setTimeout(function() {
 				document.querySelector('.blur-box').style.filter = 'blur(2px)';
 			}, 300);
 		}, 500);
 	};
 
-	let closePopup = function () {
+	let closePopup = function() {
 		let popup = document.querySelector('.popup');
 		popup.style.opacity = 0;
 		document.querySelector('.blur-box').style.filter = 'blur(0)';
 		let popBgStyle = document.querySelector('.popup-bg').style;
 		popBgStyle.opacity = 0;
 
-		setTimeout(function () {
+		setTimeout(function() {
 			itemSelector.classList.remove('info-item_open');
 			itemSelector.style.top = targetPageTop + 'px';
 			itemSelector.style.left = targetPageLeft - 20 + 'px';
 			itemSelector.style.height = targetHeight + 'px';
 			itemSelector.style.width = targetWidth + 'px';
 
-			setTimeout(function () {
+			setTimeout(function() {
 				itemSelector.style.position = 'unset';
 				itemSelector.style.display = 'flex';
 				document.body.style.overflow = 'unset';
@@ -151,7 +151,7 @@ function determineOverflow(content, container) {
 	}
 }
 
-(function () {
+(function() {
 	// Внешний контейнер слайдера
 	let relBox = document.querySelector('.info-item-box__rel');
 	// Внутренний контейнер с контентом
@@ -169,10 +169,10 @@ function determineOverflow(content, container) {
 	}
 
 	// Слушаем скролл и меняем атрибуты обозночающие скролл
-	relBox.addEventListener('scroll', function () {
+	relBox.addEventListener('scroll', function() {
 		last_known_scroll_position = window.scrollY;
 		if (!ticking) {
-			window.requestAnimationFrame(function () {
+			window.requestAnimationFrame(function() {
 				doSomething(last_known_scroll_position);
 				ticking = false;
 			});
@@ -186,7 +186,7 @@ function determineOverflow(content, container) {
 \**********************/
 
 // Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
-const arrowScroll = function (arrows, relCont) {
+const arrowScroll = function(arrows, relCont) {
 	let arrowLeft = document.querySelector(arrows + ' .arrow-left');
 	let arrowRight = document.querySelector(arrows + ' .arrow-right');
 	absCont = document.querySelector(relCont + ' > div');
@@ -200,7 +200,7 @@ const arrowScroll = function (arrows, relCont) {
 	};
 
 	// ЛЕВАЯ СТРЕЛКА
-	arrowLeft.addEventListener('click', function (event) {
+	arrowLeft.addEventListener('click', function(event) {
 		console.log('Что то есть');
 
 		// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
@@ -238,7 +238,7 @@ const arrowScroll = function (arrows, relCont) {
 	});
 
 	// ПРАВАЯ СТРЕЛКА
-	arrowRight.addEventListener('click', function () {
+	arrowRight.addEventListener('click', function() {
 		// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
 		if (
 			window.innerWidth >= favoritesScenariosHorizontal &&
@@ -277,7 +277,7 @@ const arrowScroll = function (arrows, relCont) {
 	});
 
 	// ОТСЛЕЖИВАНИЕ ЗАВЕРШЕНИЯ ДВИЖЕНИЯ СЛАЙДЕРА
-	absCont.addEventListener('transitionend', function () {
+	absCont.addEventListener('transitionend', function() {
 		// получаем значение транзишена и заменяем его на скролл
 		var styleOfTransform = window.getComputedStyle(absCont, null);
 		var tr =
@@ -296,52 +296,55 @@ const arrowScroll = function (arrows, relCont) {
 	});
 };
 
+console.log('sss');
 
 /************************************************\ 
   СВАЙП НА ИЗБРАННЫХ СЦЕНАРИЯХ НА БОЛЬШОМ ЭКРАНЕ
 \************************************************/
-(function () {
+function swipeGesture() {
+	var relCont = document.querySelector('.appliances-box__slider_favorites')
+	var absCont = document.querySelector('.info-item-box__abs_favorites')
 	var touchstartX = 0;
-	var touchstartY = 0;
 	var touchendX = 0;
-	var touchendY = 0;
+	var scrollStart = 0;
+	var scrollEnd = 0;
+	console.log('sdf');
 
 	var scrollArea = document.querySelector('.appliances-box__slider_favorites');
 
-	scrollArea.addEventListener('touchstart', function (event) {
-		touchstartX = event.screenX;
-		touchstartY = event.screenY;
-	}, false);
- console.log('sdf')
-	scrollArea.addEventListener('touchend', function (event) {
-		touchendX = event.screenX;
-		touchendY = event.screenY;
-		handleGesure();
-	}, false);
+	scrollArea.addEventListener(
+		'touchstart',
+		function(event) {
+			touchstartX = event.changedTouches[0].screenX;
+			scrollStart = window.pageYOffset;
+		},
+		false
+	);
+	scrollArea.addEventListener(
+		'touchend',
+		function(event) {
+			touchendX = event.changedTouches[0].screenX;
+			scrollEnd = window.pageYOffset;
+			// Отменяем свайп, если был скролл или маленький экран
+			if (scrollStart != scrollEnd || window.innerWidth < favoritesScenariosHorizontal) return;
+			
+			handleGesure();
+		},
+		false
+	);
 
 	function handleGesure() {
-        console.log('Чтото есть')
-		// Отменим, если это маленький экран
-		if(window.innerWidth < favoritesScenariosHorizontal) return
-		
-		var swiped = 'swiped: ';
+
 		if (touchendX < touchstartX) {
-			alert(swiped + 'left!');
+			slidePrev(relCont, absCont);
 		}
 		if (touchendX > touchstartX) {
-			alert(swiped + 'right!');
-		}
-		if (touchendY < touchstartY) {
-			alert(swiped + 'down!');
-		}
-		if (touchendY > touchstartY) {
-			alert(swiped + 'left!');
-		}
-		if (touchendY == touchstartY) {
-			alert('tap!');
+			slideNext(relCont, absCont);
 		}
 	}
-})
+}
+
+swipeGesture();
 /***************************************************\ 
   END СВАЙП НА ИЗБРАННЫХ СЦЕНАРИЯХ НА БОЛЬШОМ ЭКРАНЕ
 \***************************************************/
@@ -350,7 +353,7 @@ const arrowScroll = function (arrows, relCont) {
   ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
 \*****************************************/
 
-let slideNext = function (relCont, absCont) {
+let slideNext = function(relCont, absCont) {
 	let absBlockTop = absCont.style.top;
 	let step = relCont.clientHeight;
 	// Пространство снизу
@@ -360,13 +363,13 @@ let slideNext = function (relCont, absCont) {
 	if (step / 4 > maxStep) return;
 
 	absCont.style.opacity = 0;
-	setTimeout(function () {
+	setTimeout(function() {
 		absCont.style.top = parseInt(absBlockTop) - step + 'px';
 		absCont.style.opacity = 1;
 	}, 300);
 };
 
-let slidePrev = function (relCont, absCont) {
+let slidePrev = function(relCont, absCont) {
 	let absBlockTop = absCont.style.top;
 	let step = relCont.clientHeight;
 	// Пространство снизу
@@ -378,7 +381,7 @@ let slidePrev = function (relCont, absCont) {
 	if (!absBlockTop) absBlockTop = 0;
 	if (step / 4 > maxStep) return;
 	absCont.style.opacity = 0;
-	setTimeout(function () {
+	setTimeout(function() {
 		absCont.style.top = parseInt(absBlockTop) + step + 'px';
 		absCont.style.opacity = 1;
 	}, 300);
@@ -388,19 +391,19 @@ let slidePrev = function (relCont, absCont) {
   END ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
 \********************************************/
 
-/*************************************\ 
-  ФУНКЦИЯ ДЛЯ СКРОЛЛА МЫШЬЮ И ПАЛЬЦЕМ
-\*************************************/
+/**************************\ 
+  ФУНКЦИЯ ДЛЯ СКРОЛЛА МЫШЬЮ 
+\**************************/
 
-(function (root, factory) {
+(function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['exports'], factory);
+		define([ 'exports' ], factory);
 	} else if (typeof exports !== 'undefined') {
 		factory(exports);
 	} else {
 		factory((root.dragscroll = {}));
 	}
-})(this, function (exports) {
+})(this, function(exports) {
 	var _window = window;
 	var _document = document;
 	var mousemove = 'mousemove';
@@ -412,8 +415,8 @@ let slidePrev = function (relCont, absCont) {
 	var newScrollX, newScrollY;
 
 	var dragged = [];
-	var reset = function (i, el) {
-		for (i = 0; i < dragged.length;) {
+	var reset = function(i, el) {
+		for (i = 0; i < dragged.length; ) {
 			el = dragged[i++];
 			el = el.container || el;
 			el[removeEventListener](mousedown, el.md, 0);
@@ -423,11 +426,11 @@ let slidePrev = function (relCont, absCont) {
 
 		// cloning into array since HTMLCollection is updated dynamically
 		dragged = [].slice.call(_document.getElementsByClassName('dragscroll'));
-		for (i = 0; i < dragged.length;) {
-			(function (el, lastClientX, lastClientY, pushed, scroller, cont) {
+		for (i = 0; i < dragged.length; ) {
+			(function(el, lastClientX, lastClientY, pushed, scroller, cont) {
 				(cont = el.container || el)[addEventListener](
 					mousedown,
-					(cont.md = function (e) {
+					(cont.md = function(e) {
 						// В условии дополнительно стоит отключение слайдера "избранные сценарии" для ширины >= ширины переключения
 						if (
 							(!el.hasAttribute('nochilddrag') || _document.elementFromPoint(e.pageX, e.pageY) == cont) &&
@@ -447,7 +450,7 @@ let slidePrev = function (relCont, absCont) {
 
 				_window[addEventListener](
 					mouseup,
-					(cont.mu = function () {
+					(cont.mu = function() {
 						pushed = 0;
 					}),
 					0
@@ -455,7 +458,7 @@ let slidePrev = function (relCont, absCont) {
 
 				_window[addEventListener](
 					mousemove,
-					(cont.mm = function (e) {
+					(cont.mm = function(e) {
 						if (pushed) {
 							(scroller = el.scroller || el).scrollLeft -= newScrollX =
 								-lastClientX + (lastClientX = e.clientX);
@@ -490,7 +493,7 @@ arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel');
 /*********************\ 
   КРУГОВОЙ РЕГУЛЯТОР
 \*********************/
-(function () {
+(function() {
 	// Пределы выставляемой  температуры
 	const maxTemp = 35;
 	const minTemp = 18;
@@ -523,22 +526,22 @@ arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel');
 		rotation += 3;
 	}
 
-	circle.addEventListener('click', function (event) {
+	circle.addEventListener('click', function(event) {
 		changeTemperature(event.x, event.y);
 	});
 
-	circle.addEventListener('touchmove', function (event) {
+	circle.addEventListener('touchmove', function(event) {
 		const posX = event.changedTouches[event.changedTouches.length - 1].pageX - window.scrollX;
 		const posY = event.changedTouches[event.changedTouches.length - 1].pageY - window.scrollY;
 		changeTemperature(posX, posY);
 	});
-	circle.addEventListener('touchstart', function (event) {
+	circle.addEventListener('touchstart', function(event) {
 		const posX = event.changedTouches[event.changedTouches.length - 1].pageX - window.scrollX;
 		const posY = event.changedTouches[event.changedTouches.length - 1].pageY - window.scrollY;
 		changeTemperature(posX, posY);
 	});
 
-	const changeTemperature = function (posX, posY) {
+	const changeTemperature = function(posX, posY) {
 		// console.log(circle.parentNode.parentNode, this.getClientRects)
 		const popupBody = document.querySelector('.popup');
 		// console.log(popupBody.offsetTop, circle.getBoundingClientRect().top, circle.getBoundingClientRect()
@@ -683,15 +686,15 @@ if (event.target.getAttribute('name') === 'light-mode' && event.target.getAttrib
 /**************************\ 
  ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
 \**************************/
-let touchRegulator = function (stripeSelector, circleSelector) {
+let touchRegulator = function(stripeSelector, circleSelector) {
 	let gradientStripe = document.querySelector(stripeSelector);
 	let circle = document.querySelector(circleSelector);
 
 	// На контрольных точках меняем артибут описывающий положение полоски
-	window.addEventListener('resize', function (event) {
+	window.addEventListener('resize', function(event) {
 		onResise(event);
 	});
-	let onResise = function (event) {
+	let onResise = function(event) {
 		if (window.innerWidth <= 700) {
 			gradientStripe.setAttribute('stripePosition', 'vertical');
 			circle.style.left = '-5px';
@@ -711,25 +714,25 @@ let touchRegulator = function (stripeSelector, circleSelector) {
 	///////////////////////////
 
 	// Клик для пк
-	gradientStripe.addEventListener('click', function (event) {
+	gradientStripe.addEventListener('click', function(event) {
 		let y = event.clientY;
 		let x = event.clientX;
 		changeCirclePosition(event, x, y);
 	});
 
 	// Отслеживаем тач
-	gradientStripe.addEventListener('touchmove', function (event) {
+	gradientStripe.addEventListener('touchmove', function(event) {
 		let y = event.targetTouches[0].clientY;
 		let x = event.targetTouches[0].clientX;
 		changeCirclePosition(event, x, y);
 	});
-	gradientStripe.addEventListener('touchstart', function (event) {
+	gradientStripe.addEventListener('touchstart', function(event) {
 		let y = event.targetTouches[0].clientY;
 		let x = event.targetTouches[0].clientX;
 		changeCirclePosition(event, x, y);
 	});
 
-	let changeCirclePosition = function (event, firstTouchX, firstTouch) {
+	let changeCirclePosition = function(event, firstTouchX, firstTouch) {
 		let stripePosition = gradientStripe.getAttribute('stripeposition');
 		console.log('атрибут', stripePosition);
 		// Позиция круга на экране
