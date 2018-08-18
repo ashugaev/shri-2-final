@@ -765,10 +765,6 @@ template {
         -ms-flex-align: center;
             align-items: center; }
   .appliances-box__filter {
-    width: 71px;
-    height: 30px;
-    background: #FFD93E;
-    border-radius: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -777,7 +773,30 @@ template {
             align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
-            justify-content: center; }
+            justify-content: center;
+    outline: none;
+    border: none;
+    font-size: 13px;
+    color: #000000;
+    font-family: Arial;
+    font-weight: 600;
+    padding-left: 14px;
+    background-color: transparent;
+    height: 30px; }
+    .appliances-box__filter option {
+      background: white;
+      border: none; }
+      .appliances-box__filter option:active, .appliances-box__filter option:focus {
+        outline: none;
+        -webkit-box-shadow: none;
+                box-shadow: none; }
+      .appliances-box__filter option:hover {
+        background: red; }
+  .appliances-box__filter-box {
+    background: #FFD93E;
+    width: 71px;
+    height: 30px;
+    border-radius: 20px; }
 
 .info-item-box__scroll {
   overflow: hidden;

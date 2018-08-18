@@ -302,8 +302,8 @@ console.log('sss');
   СВАЙП НА ИЗБРАННЫХ СЦЕНАРИЯХ НА БОЛЬШОМ ЭКРАНЕ
 \************************************************/
 function swipeGesture() {
-	var relCont = document.querySelector('.appliances-box__slider_favorites')
-	var absCont = document.querySelector('.info-item-box__abs_favorites')
+	var relCont = document.querySelector('.appliances-box__slider_favorites');
+	var absCont = document.querySelector('.info-item-box__abs_favorites');
 	var touchstartX = 0;
 	var touchendX = 0;
 	var scrollStart = 0;
@@ -327,14 +327,13 @@ function swipeGesture() {
 			scrollEnd = window.pageYOffset;
 			// Отменяем свайп, если был скролл или маленький экран
 			if (scrollStart != scrollEnd || window.innerWidth < favoritesScenariosHorizontal) return;
-			
+
 			handleGesure();
 		},
 		false
 	);
 
 	function handleGesure() {
-
 		if (touchendX < touchstartX) {
 			slidePrev(relCont, absCont);
 		}
@@ -781,3 +780,26 @@ touchRegulator(
 /******************************\ 
  END ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
 \******************************/
+
+/**********************\ 
+ ФИЛЬТР НА УСТРОЙСТВАХ
+\**********************/
+(function() {
+	var filter_select_el = document.querySelector('.appliances-box__filter');
+	var items = document.querySelectorAll('.appliances-box .info-item-box__abs > *');
+
+	filter_select_el.onchange = function() {
+		console.log(this.value, items);
+		// var items = items_el.querySelectorAll('item');
+		for (var i = 0; i < items.length; i++) {
+			if (items[i].classList.contains(this.value)) {
+				items[i].style.display = 'block';
+			} else {
+				items[i].style.display = 'none';
+			}
+		}
+	};
+})();
+/*************************\ 
+ END ФИЛЬТР НА УСТРОЙСТВАХ
+\*************************/
