@@ -9,6 +9,7 @@
     min-height: 282px; //280px исходя из Mobile S(320px) в chrome
     min-width: 280px;
     width: 100%; // margin: 0 auto;
+    margin
     &:before {
         content: '';
         display: block;
@@ -39,6 +40,7 @@
         font: 600 18px Arial;
         color: #333333;
         margin-bottom: 20px;
+        display: none;
     }
     &__name {
         font-family: Arial;
@@ -106,10 +108,9 @@
     }
     &__outside-icon {
         margin-left: 5px;
-        height: 18px;
-        width: 18px; // &_drizzle {
-        //     margin-top: 3px;
-        // }
+        height: 28px;
+        width: 17px;
+        transform: scale(1.2);
         & img {
             height: 22px;
         }
@@ -157,6 +158,8 @@
         }
     }
 }
+
+
 
 //620px просто на мой взгляд достаточная ширина для переноса слайдера вправо
 @media (min-width: 620px) and (max-width: 899px), (min-width: 1030px) and (max-width: 1199px), (min-width: 1250px) {

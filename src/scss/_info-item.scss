@@ -2,15 +2,12 @@
     height: 100%;
     width: 200px;
     &:not(:first-child) {
-        margin-left: 20px;
+        margin-left: 15px;
     }
 }
 
 .info-item {
-    height: 100%;
-    width: 100%;
     width: 200px;
-    height: 120px;
     background: #F7F7F7;
     border-radius: 20px;
     display: flex;
@@ -18,6 +15,7 @@
     justify-content: space-between;
     padding: 15px;
     transition: all .6s;
+    height: 120px;
     &_open {
         transform: translatex(-50%) !important;
         left: 50% !important;
@@ -53,6 +51,25 @@
     }
     &__icon {
         height: 24px;
-        width: 24px;
+        width: 24px; // Что бы подогнать под макет
+        // margin: -2px 0 0 -1px;
     }
+}
+
+.hello-box {
+    & .info-item {
+        height: 120px;
+    }
+    & .info-item-box {
+        margin-left: 20px;
+        &:last-child {
+            margin-right: 20px;
+        }
+    }
+}
+
+
+.scenarios-box .info-item {
+    height: 100px;
+    padding: 12px 14px;
 }

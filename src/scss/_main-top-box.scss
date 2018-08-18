@@ -1,9 +1,12 @@
 .main-top-box {
-    margin-top: 63px;
+    margin-top: 55px;
 }
 
 // Избранные сценарии справа
 @media screen and (min-width: 900px) {
+    .hello-box__title {
+        display: block;
+    }
     .main-top-box {
         display: flex;
     }
