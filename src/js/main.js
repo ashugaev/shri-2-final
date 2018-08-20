@@ -184,10 +184,10 @@ function determineOverflow(content, container) {
 \**********************/
 
 // Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
-const arrowScroll = function (arrows, relCont) {
+let arrowScroll = function (arrows, relCont, adaptiveSlider) {
 	let arrowLeft = document.querySelector(arrows + ' .arrow-left');
 	let arrowRight = document.querySelector(arrows + ' .arrow-right');
-	absCont = document.querySelector(relCont + ' > div');
+	absCont = document.querySelector(relCont + ' > .info-item-box__abs');
 	relCont = document.querySelector(relCont);
 
 	// Настройки
@@ -201,14 +201,16 @@ const arrowScroll = function (arrows, relCont) {
 	arrowLeft.addEventListener('click', function (event) {
 		console.log('Что то есть');
 
-		// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
-		if (
-			window.innerWidth >= favoritesScenariosHorizontal &&
-			!event.target.className.indexOf('arrows_favorites') >= 0
-		) {
-			console.log('Делаем по -другому назад');
-			slidePrev(relCont, absCont);
-			return;
+		if (adaptiveSlider) {
+			// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
+			if (
+				window.innerWidth >= favoritesScenariosHorizontal &&
+				!event.target.className.indexOf('arrows_favorites') >= 0
+			) {
+				console.log('Делаем по -другому назад');
+				slidePrev(relCont, absCont);
+				return;
+			}
 		}
 
 		// Если стрелка нажата во время скролла
@@ -237,14 +239,16 @@ const arrowScroll = function (arrows, relCont) {
 
 	// ПРАВАЯ СТРЕЛКА
 	arrowRight.addEventListener('click', function () {
-		// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
-		if (
-			window.innerWidth >= favoritesScenariosHorizontal &&
-			!event.target.className.indexOf('arrows_favorites') >= 0
-		) {
-			console.log('Делаем по -другому вперед', absCont);
-			slideNext(relCont, absCont);
-			return;
+		if (adaptiveSlider) {
+			// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
+			if (
+				window.innerWidth >= favoritesScenariosHorizontal &&
+				!event.target.className.indexOf('arrows_favorites') >= 0
+			) {
+				console.log('Делаем по -другому вперед', absCont, relCont);
+				slideNext(relCont, absCont);
+				return;
+			}
 		}
 		// Если стрелка нажата во время скролла
 		if (SETTINGS.inScrollingNow === true) {
@@ -294,9 +298,16 @@ const arrowScroll = function (arrows, relCont) {
 	});
 };
 
+let arrowSlide = function (arrows, relCont, adaptiveSlider) {
+	let arrowLeft = document.querySelector(arrows + ' .arrow-left');
+	let arrowRight = document.querySelector(arrows + ' .arrow-right');
+	absCont = document.querySelector(relCont + ' > .info-item-box__abs');
+	relCont = document.querySelector(relCont);
+}
 // Инициализируем скролл
-arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel');
-arrowScroll('.appliances-box .arrows', '.appliances-box .info-item-box__rel');
+// arrowSlide('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel', true);
+arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel', true)
+arrowScroll('.appliances-box .arrows', '.appliances-box .info-item-box__rel', false)
 
 /************************\ 
   END Функция для стрелок
@@ -373,6 +384,7 @@ let slideNext = function (relCont, absCont) {
 };
 
 let slidePrev = function (relCont, absCont) {
+	console.log('prev')
 	let absBlockTop = absCont.style.top;
 	let step = relCont.clientHeight;
 	// Пространство снизу
@@ -385,6 +397,7 @@ let slidePrev = function (relCont, absCont) {
 	if (step / 4 > maxStep) return;
 	absCont.style.opacity = 0;
 	setTimeout(function () {
+		console.log(parseInt(absBlockTop) + step + 'px')
 		absCont.style.top = parseInt(absBlockTop) + step + 'px';
 		absCont.style.opacity = 1;
 	}, 300);
