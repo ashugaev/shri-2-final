@@ -184,10 +184,10 @@ function determineOverflow(content, container) {
 \**********************/
 
 // Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
-let arrowScroll = function (arrows, relCont, adaptiveSlider) {
+let arrowScroll = function (arrows, relCont) {
 	let arrowLeft = document.querySelector(arrows + ' .arrow-left');
 	let arrowRight = document.querySelector(arrows + ' .arrow-right');
-	absCont = document.querySelector(relCont + ' > .info-item-box__abs');
+	absCont = document.querySelector(relCont + ' > .info-item-box__abs-appliances');
 	relCont = document.querySelector(relCont);
 
 	// Настройки
@@ -199,19 +199,11 @@ let arrowScroll = function (arrows, relCont, adaptiveSlider) {
 
 	// ЛЕВАЯ СТРЕЛКА
 	arrowLeft.addEventListener('click', function (event) {
+		absCont = document.querySelector('.info-item-box__abs-appliances');
+		relCont = document.querySelector('.appliances-box .info-item-box__rel');
 		console.log('Что то есть');
 
-		if (adaptiveSlider) {
-			// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
-			if (
-				window.innerWidth >= favoritesScenariosHorizontal &&
-				!event.target.className.indexOf('arrows_favorites') >= 0
-			) {
-				console.log('Делаем по -другому назад');
-				slidePrev(relCont, absCont);
-				return;
-			}
-		}
+
 
 		// Если стрелка нажата во время скролла
 		if (SETTINGS.inScrollingNow === true) {
@@ -239,17 +231,10 @@ let arrowScroll = function (arrows, relCont, adaptiveSlider) {
 
 	// ПРАВАЯ СТРЕЛКА
 	arrowRight.addEventListener('click', function () {
-		if (adaptiveSlider) {
-			// Если это избранные сценарии и ширина больше 900, то делаем слайд вниз
-			if (
-				window.innerWidth >= favoritesScenariosHorizontal &&
-				!event.target.className.indexOf('arrows_favorites') >= 0
-			) {
-				console.log('Делаем по -другому вперед', absCont, relCont);
-				slideNext(relCont, absCont);
-				return;
-			}
-		}
+		
+		absCont = document.querySelector('.info-item-box__abs-appliances');
+		relCont = document.querySelector('.appliances-box .info-item-box__rel');
+
 		// Если стрелка нажата во время скролла
 		if (SETTINGS.inScrollingNow === true) {
 			return;
@@ -297,17 +282,52 @@ let arrowScroll = function (arrows, relCont, adaptiveSlider) {
 		SETTINGS.inScrollingNow = false;
 	});
 };
+arrowScroll('.appliances-box .arrows_favorites', '.appliances-box .appliances-box__slider', false)
 
-let arrowSlide = function (arrows, relCont, adaptiveSlider) {
-	let arrowLeft = document.querySelector(arrows + ' .arrow-left');
-	let arrowRight = document.querySelector(arrows + ' .arrow-right');
-	absCont = document.querySelector(relCont + ' > .info-item-box__abs');
-	relCont = document.querySelector(relCont);
-}
+//////////////////
+
+let arrowSlider = function () {
+	console.log('Поехали')
+	let arrowLeft = document.querySelector('.scenarios-box .arrows .arrow-left');
+	let arrowRight = document.querySelector('.scenarios-box .arrows .arrow-right');
+	absCont = document.querySelector('.scenarios-box .info-item-box__rel > .info-item-box__abs');
+	relCont = document.querySelector('.scenarios-box .info-item-box__rel');
+
+	var SETTINGS = {
+		inScrollingNow: false,
+		scrollDirection: '',
+		scrollDistance: 220
+	};
+
+	// ЛЕВАЯ СТРЕЛКА
+	arrowLeft.addEventListener('click', function (event) {
+		absCont = document.querySelector('.scenarios-box .info-item-box__rel > .info-item-box__abs');
+		relCont = document.querySelector('.scenarios-box .info-item-box__rel');
+		// Если стрелка нажата во время скролла
+		if (SETTINGS.inScrollingNow === true) {
+			return;
+		}
+		slidePrev(relCont, absCont);
+		return;
+	})
+
+
+	// ПРАВАЯ СТРЕЛКА
+	arrowRight.addEventListener('click', function () {
+		absCont = document.querySelector('.scenarios-box .info-item-box__rel > .info-item-box__abs');
+		relCont = document.querySelector('.scenarios-box .info-item-box__rel');
+		// Если стрелка нажата во время скролла
+		if (SETTINGS.inScrollingNow === true) {
+			return;
+		}
+		console.log('Делаем по -другому вперед', absCont, relCont);
+		slideNext(relCont, absCont);
+		return;
+	});
+};
 // Инициализируем скролл
-// arrowSlide('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel', true);
-arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel', true)
-arrowScroll('.appliances-box .arrows', '.appliances-box .info-item-box__rel', false)
+// arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel', true)
+arrowSlider()
 
 /************************\ 
   END Функция для стрелок
