@@ -342,14 +342,34 @@
         <div class="appliances-box">
             <div class="appliances-box__title">
                 Избранные устройства
-                <div class="appliances-box__filter-box">
-                    <select class="appliances-box__filter">
-                        <option value="info-item-box">Все</option>
-                        <option value="kitchen">Кухня</option>
-                        <option value="hall">Зал</option>
-                        <option value="lamps">Лампы</option>
-                        <option value="cameras">Камеры</option>
-                    </select>
+                <div class="arrows-appliances-box">
+                    <div class="appliances-box__filter_btns">
+                        <input checked="true" type="radio" value="info-item-box" name="filter" id="filter-btn-1" class="stripe-regulator__manual-mode">
+                        <label for="filter-btn-1" name="light-mode" class="btn btn_gray">Все</label>
+                        <input type="radio" value="kitchen" name="filter" id="filter-btn-2" class="">
+                        <label for="filter-btn-2" name="favorites-appliances" class="btn btn_gray">Кухня</label>
+                        <input type="radio" value="hall" name="filter" id="filter-btn-3" class="">
+                        <label for="filter-btn-3" name="favorites-appliances" class="btn btn_gray">Зал</label>
+                        <input type="radio" value="lamps" name="filter" id="filter-btn-4" class="">
+                        <label for="filter-btn-4" name="favorites-appliances" class="btn btn_gray">Лампы</label>
+                        <input type="radio" value="cameras" name="filter" id="filter-btn-5" class="">
+                        <label for="filter-btn-5" name="favorites-appliances" class="btn btn_gray">Камеры</label>
+                    </div>
+
+                    <div class="appliances-box__filter-box">
+                        <select class="appliances-box__filter" id="appliances-dropdown">
+                            <option value="info-item-box">Все</option>
+                            <option value="kitchen">Кухня</option>
+                            <option value="hall">Зал</option>
+                            <option value="lamps">Лампы</option>
+                            <option value="cameras">Камеры</option>
+                        </select>
+                    </div>
+
+                    <div class="arrows arrows_favorites">
+                        <div class="icon icon_arrow-left arrow-left"></div>
+                        <div class="icon icon_arrow-right arrow-right"></div>
+                    </div>
                 </div>
             </div>
             <div class="info-item-box__scroll">

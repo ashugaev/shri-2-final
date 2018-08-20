@@ -4,14 +4,13 @@
 // Секции
 @import 'header';
 @import 'info-item';
-@import 'hello-box';
+@import 'layouts/hello-box/hello-box';
 @import 'scenarios';
 @import 'main-top-box';
 @import 'slide-menu';
 @import 'layouts/popup/popup';
+@import 'layouts/favorite-devices-btn';
 @import 'footer';
-
-
 
 
 body {
@@ -20,7 +19,22 @@ body {
 }
 
 .arrows {
-    display: flex;
-    width: 33px;
+    display: none;
+    width: 44px;
     justify-content: space-between;
+}
+.arrows-appliances-box {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media all and (min-width: $bp-change-filter-btn) {
+    .arrows {
+        display: flex;
+    }
+    .arrows-appliances-box {
+        justify-content: space-between;
+    }
 }

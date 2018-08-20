@@ -1,10 +1,6 @@
-.info-item-box {
-    height: 100%;
-    width: 200px;
-    &:not(:first-child) {
-        margin-left: 15px;
-    }
-}
+/*
+ДЛЯ ВСЕХ
+*/
 
 .info-item {
     width: 200px;
@@ -13,9 +9,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
-    transition: all .6s;
-    height: 120px;
+    transition: all .6s; // height: 120px;
     &_open {
         transform: translatex(-50%) !important;
         left: 50% !important;
@@ -51,13 +45,22 @@
     }
     &__icon {
         height: 24px;
-        width: 24px; // Что бы подогнать под макет
-        // margin: -2px 0 0 -1px;
+        width: 24px;
     }
 }
 
+.info-item-box {
+    height: 100%;
+    width: 200px;
+}
+
+/*
+ ВНУТРИ HELLO-BOX МОБ
+*/
+
 .hello-box {
     & .info-item {
+        padding: 15px;
         height: 120px;
     }
     & .info-item-box {
@@ -68,8 +71,72 @@
     }
 }
 
+/*
+  ИЗБРАННЫЕ СЦЕНАРИИ МОБ
+*/
 
-.scenarios-box .info-item {
-    height: 100px;
-    padding: 12px 14px;
+.scenarios-box {
+    & .info-item {
+        height: 120px;
+        padding: 12px 14px;
+    }
+    & .info-item-box {
+        &:not(:first-child) {
+            margin-left: 15px;
+        }
+    }
+}
+
+/*
+  ИЗБРАННЫЕ УСТРОЙСТВА МОБ
+*/
+
+.appliances-box {
+    & .info-item {
+        height: 120px;
+        padding: 13px 15px 19px;
+    }
+    & .info-item-box {
+        margin-right: 15px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@media all and (min-width: $bp-main-top-box-1) {
+    // Для всех
+    // внутри hello-box ПК
+    /*
+       ИЗБРАННЫЕ СЦЕНАРИИ ПК
+    */
+    .scenarios-box {
+        & .info-item {
+            padding: 13px 17px;
+            height: 100px;
+        }
+        & .info-item-box {
+            margin: 15px 0 0 15px;
+        }
+    }
+    /*
+       ИЗБРАННЫЕ УСТРОЙСТВА ПК
+    */
+    .appliances-box {
+        & .info-item {
+            padding: 18px 14px 13px;
+        }
+    }
+}
+
+//Перенос скролла вправо
+@media (min-width: $bp-hello-box-toRight-1) and (max-width: $bp-hello-box-toBottom-1),
+(min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
+(min-width: $bp-hello-box-toRight-3) {
+    .hello-box .info-item-box {
+        margin-left: 0;
+        &:not(:first-child) {
+            margin-top: 20px;
+        }
+    }
 }

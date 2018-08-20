@@ -8,8 +8,7 @@
     max-width: 630px;
     min-height: 282px; //280px исходя из Mobile S(320px) в chrome
     min-width: 280px;
-    width: 100%; // margin: 0 auto;
-    margin
+    width: 100%; // margin: 0 auto
     &:before {
         content: '';
         display: block;
@@ -54,27 +53,7 @@
         color: #333333;
         margin-top: 5px;
     }
-    &__appliances-scroll {
-        height: 120px;
-        overflow: hidden;
-    }
-    &__appliances-rel {
-        position: relative;
-        height: 150px; // overflow: hidden;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        /* Remove the default scrollbar for WebKit implementations */
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-    &__appliances-abs {
-        display: flex;
-        position: absolute;
-        width: auto;
-        height: 100%; // padding: 0 20px;
-    }
+
     &__info {
         padding: 0 20px;
         width: 100%;
@@ -121,6 +100,7 @@
 // 670px - ширина при которой hello-box перестает расти
 @media screen and (min-width: 376px) and (max-width: 670px) {
     .hello-box {
+        height: 75vw;
         &__name {
             //Функция вычисляющая шрифт по указанным брейкпойнтам
             font-size: calc(18px + (27 - 18) * (100vw - 376px) / (670 - 376));
@@ -159,39 +139,22 @@
     }
 }
 
-
-
-//620px просто на мой взгляд достаточная ширина для переноса слайдера вправо
-@media (min-width: 620px) and (max-width: 899px), (min-width: 1030px) and (max-width: 1199px), (min-width: 1250px) {
+//Перенос скролла вправо
+@media (min-width: $bp-hello-box-toRight-1) and (max-width: $bp-hello-box-toBottom-1),
+(min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
+(min-width: $bp-hello-box-toRight-3) {
     .hello-box {
         &__rel {
             flex-direction: row;
             padding-bottom: 0;
         }
-        &__appliances-rel {
-            width: 200px; //min-width что бы флекс-бокс не сжимал ширину 
-            min-width: 200px;
-            height: 100%;
-            right: 20px;
-            top: 0;
-            overflow: hidden;
-        }
-        &__appliances-abs {
-            padding: 0;
-            flex-direction: column;
-            height: auto;
-        }
+    
         &__info {
             max-width: calc(100% - 220px);
         }
     }
-    .hello-box .info-item {
-        height: 120px;
-        &:not(:first-child) {
-            margin-top: 20px;
-            margin-left: 0;
-        }
-    }
+
+
 }
 
 //Адаптивная высота
@@ -199,5 +162,20 @@
 @media all and (min-width: 376px) {
     .hello-box:before {
         padding-top: 84.2%;
+    }
+}
+
+// hello-box после высоты 1365
+@media all and (min-width: 1365px) {
+    .hello-box {
+        &__rel {
+            padding-top: 25px;
+        }
+        &__info {
+            padding: 0 24px;
+        }
+    }
+    .temperature-info__title {
+        margin-top: 26px;
     }
 }

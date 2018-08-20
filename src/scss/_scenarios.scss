@@ -44,38 +44,7 @@
         justify-content: space-between;
         align-items: center;
     }
-    &__filter {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        outline: none;
-        border: none;
-        font-size: 13px;
-        color: #000000;
-        font-family: Arial;
-        font-weight: 600;
-        padding-left: 14px;
-        background-color: transparent;
-        height: 30px; // width: 200px;
-        & option {
-            background: white;
-            border: none;
-            &:active,
-            &:focus {
-                outline: none;
-                box-shadow: none;
-            }
-            &:hover {
-                background: red;
-            }
-        }
-    }
-    &__filter-box {
-        background: #FFD93E;
-        width: 71px;
-        height: 30px;
-        border-radius: 20px;
-    }
+
 }
 
 .appliances-box .info-item-box__rel,
@@ -115,4 +84,19 @@
 
 .no-transition {
     transition: none !important;
+}
+
+// hello-box после высоты 1365
+@media all and (min-width: 1365px) {
+    .appliances-box {
+        margin-top: 28px;
+    }
+}
+
+@media (min-width: $bp-change-filter-btn) {
+    .appliances-box {
+        &__title {
+            justify-content: unset;
+        }
+    }
 }
