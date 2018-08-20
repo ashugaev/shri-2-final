@@ -132,6 +132,9 @@ var favoritesScenariosHorizontal = 900;
 
 // Определение content is overflowing для стрелок
 function determineOverflow(content, container) {
+	 
+	 content = document.querySelector('.info-item-box__abs-appliances');
+	 container = document.querySelector('.appliances-box .info-item-box__rel');
 	var containerMetrics = container.getBoundingClientRect();
 	var containerMetricsRight = Math.floor(containerMetrics.right);
 	var containerMetricsLeft = Math.floor(containerMetrics.left);
@@ -139,12 +142,24 @@ function determineOverflow(content, container) {
 	var contentMetricsRight = Math.floor(contentMetrics.right);
 	var contentMetricsLeft = Math.floor(contentMetrics.left);
 	if (containerMetricsLeft > contentMetricsLeft && containerMetricsRight < contentMetricsRight) {
+		document.querySelector('.appliances-box .arrow-right').style.opacity = 1;
+		document.querySelector('.appliances-box .arrow-left').style.opacity = 1;
 		return 'both';
+
 	} else if (contentMetricsLeft < containerMetricsLeft) {
+		document.querySelector('.appliances-box .arrow-right').style.opacity = .45;
+		document.querySelector('.appliances-box .arrow-left').style.opacity = 1;
 		return 'left';
+
 	} else if (contentMetricsRight > containerMetricsRight) {
+
+		document.querySelector('.appliances-box .arrow-right').style.opacity = 1;
+		document.querySelector('.appliances-box .arrow-left').style.opacity = .45;
 		return 'right';
 	} else {
+
+		document.querySelector('.appliances-box .arrow-right').style.opacity = .45;
+		document.querySelector('.appliances-box .arrow-left').style.opacity = .45;
 		return 'none';
 	}
 }
@@ -179,6 +194,9 @@ function determineOverflow(content, container) {
 	});
 })();
 
+
+determineOverflow()
+
 /**********************\ 
   Функция для стрелок
 \**********************/
@@ -202,8 +220,6 @@ let arrowScroll = function (arrows, relCont) {
 		absCont = document.querySelector('.info-item-box__abs-appliances');
 		relCont = document.querySelector('.appliances-box .info-item-box__rel');
 		console.log('Что то есть');
-
-
 
 		// Если стрелка нажата во время скролла
 		if (SETTINGS.inScrollingNow === true) {
@@ -231,7 +247,7 @@ let arrowScroll = function (arrows, relCont) {
 
 	// ПРАВАЯ СТРЕЛКА
 	arrowRight.addEventListener('click', function () {
-		
+
 		absCont = document.querySelector('.info-item-box__abs-appliances');
 		relCont = document.querySelector('.appliances-box .info-item-box__rel');
 
@@ -394,12 +410,15 @@ let slideNext = function (relCont, absCont) {
 	let maxStep = absCont.clientHeight + absCont.offsetTop - relCont.clientHeight;
 
 	if (!absBlockTop) absBlockTop = 0;
-	if (step / 4 > maxStep) return;
+	if (step / 4 > maxStep) {
+		return;
+	}
 
 	absCont.style.opacity = 0;
 	setTimeout(function () {
 		absCont.style.top = parseInt(absBlockTop) - step + 'px';
 		absCont.style.opacity = 1;
+		checkSliderArrows()
 	}, 300);
 };
 
@@ -420,8 +439,34 @@ let slidePrev = function (relCont, absCont) {
 		console.log(parseInt(absBlockTop) + step + 'px')
 		absCont.style.top = parseInt(absBlockTop) + step + 'px';
 		absCont.style.opacity = 1;
+		checkSliderArrows()
 	}, 300);
 };
+
+
+let checkSliderArrows = function () {
+	let absCont = document.querySelector('.scenarios-box .info-item-box__rel > .info-item-box__abs');
+	let relCont = document.querySelector('.scenarios-box .info-item-box__rel');
+	let step = relCont.clientHeight;
+	// Пространство снизу
+	let maxStepBottom = absCont.clientHeight + absCont.offsetTop - relCont.clientHeight;
+	// Пространство сверху
+	let maxStepTop =
+		absCont.clientHeight -
+		relCont.clientHeight -
+		(absCont.clientHeight - Math.abs(absCont.offsetTop) - relCont.clientHeight);
+
+
+	if (step / 4 > maxStepTop) {
+		document.querySelector('.scenarios-box .arrow-left').style.opacity = .45;
+		document.querySelector('.scenarios-box .arrow-right').style.opacity = 1;
+	} else if (step / 4 > maxStepBottom) {
+		document.querySelector('.scenarios-box .arrow-left').style.opacity = 1;
+		document.querySelector('.scenarios-box .arrow-right').style.opacity = .45;
+	}
+
+};
+checkSliderArrows();
 
 /********************************************\ 
   END ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
