@@ -1,6 +1,5 @@
 @import 'helpers/helpers';
-
-// Секции
+@import 'elements/icons';
 @import 'layouts/header';
 @import 'layouts/info-item';
 @import 'layouts/hello-box/hello-box';
@@ -11,7 +10,6 @@
 @import 'layouts/favorite-devices-btn';
 @import 'layouts/footer';
 @import 'elements/buttons';
-@import 'elements/icons';
 
 body {
     padding: 0 20px;

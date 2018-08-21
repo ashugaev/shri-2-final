@@ -21,9 +21,9 @@ var favoritesScenariosHorizontal = 900;
 		// 	if (event.target.className.indexOf('popup_circle-regulator') >= 0) {} else if (event.target.className.indexOf('popup_stripe-regulator') >= 0) {}
 		// } else
 		if (
-			event.target.className.indexOf('popup-bg') >= 0 ||
-			event.target.className.indexOf('popup__close') >= 0 ||
-			event.target.className.indexOf('popup__apply') >= 0
+			event.target.classList.contains('popup-bg') ||
+			event.target.classList.contains('popup__close') ||
+			event.target.classList.contains('popup__apply')
 		) {
 			//Закрытие popup
 			closePopup(event.target.closest('.info-item'));
@@ -34,25 +34,24 @@ var favoritesScenariosHorizontal = 900;
 	document.querySelectorAll('.info-item').forEach((el) => {
 		el.addEventListener('click', function(event) {
 			if (event.timeStamp - timeStamp < 200 && event.button === 0) {
-				console.log('e')
 				openPopup(el);
 			}
 		});
 	});
-	
+
 	//Переменные, которые будут нужны для закрытия Popup
 	let targetPageTop, targetPageLeft, targetHeight, targetWidth, itemSelector, popupModificator;
 
 	// Popup Open/Close
 	let openPopup = function(elem) {
 		// Включаем нужный контент попапа
-		if (elem.className.indexOf('info-item_stripe-yellow') >= 0) {
+		if (elem.classList.contains('info-item_stripe-yellow')) {
 			document.querySelector('.popup').classList.add('popup_stripe-yellow');
 			popupModificator = 'popup_stripe-yellow';
-		} else if (elem.className.indexOf('info-item_stripe-three-col') >= 0) {
+		} else if (elem.classList.contains('info-item_stripe-three-col')) {
 			document.querySelector('.popup').classList.add('popup_stripe-three-col');
 			popupModificator = 'popup_stripe-three-col';
-		} else if (elem.className.indexOf('info-item_circle-regulator') >= 0) {
+		} else if (elem.classList.contains('info-item_circle-regulator')) {
 			document.querySelector('.popup').classList.add('popup_circle-regulator');
 			popupModificator = 'popup_circle-regulator';
 		} else {
@@ -61,9 +60,11 @@ var favoritesScenariosHorizontal = 900;
 
 		itemSelector = elem;
 
-		document.body.style.overflow = 'hidden';
+		// document.body.style.overflow = 'hidden';
+		disableScrolling()
 		document.querySelector('.popup').style.display = 'flex';
-
+		console.log(elem.offsetLeft, '  ', elem.getBoundingClientRect().left);
+		console.dir(elem);
 		targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
 		targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
 		targetWidth = elem.clientWidth;
@@ -74,6 +75,10 @@ var favoritesScenariosHorizontal = 900;
 		const popupBodyHeight = popUpBody.clientHeight;
 		const popupBodyWidth = popUpBody.clientWidth;
 
+		// В разных браузерах по разному себя ведет left в position fixed
+		const crossBrowserCorrection = document.querySelector('.zero-element').getBoundingClientRect().left;
+
+		console.log('разница', crossBrowserCorrection, targetPageLeft);
 		// Пока откл, потому что поставил фиксированные размеры стандартно
 		// Зададим размеры, что бы элемент не растянуло при фиксированном display
 		// elem.style.width = targetWidth + 'px';
@@ -82,9 +87,10 @@ var favoritesScenariosHorizontal = 900;
 		// Оставляя элемент на той же позиции сделаем его фиксированным
 		elem.style.top = targetPageTop + 'px';
 		// 20 это паддинг у body
-		elem.style.left = targetPageLeft - 20 + 'px';
+		elem.style.left = targetPageLeft - crossBrowserCorrection + 'px';
 		elem.style.position = 'fixed';
 
+		console.log('После фиксации', (targetPageLeft = elem.getBoundingClientRect().left), targetPageLeft);
 		// Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков)
 		setTimeout(function() {
 			elem.classList.add('info-item_open');
@@ -102,7 +108,8 @@ var favoritesScenariosHorizontal = 900;
 			setTimeout(function() {
 				popBgStyle.opacity = 1;
 				// Отключаем скролл
-				document.body.style.overflow = 'hidden';
+				// document.body.style.overflow = 'hidden';
+				disableScrolling()
 			}, 50);
 			setTimeout(function() {
 				document.querySelector('.blur-box').style.filter = 'blur(2px)';
@@ -117,17 +124,21 @@ var favoritesScenariosHorizontal = 900;
 		let popBgStyle = document.querySelector('.popup-bg').style;
 		popBgStyle.opacity = 0;
 
+		// В разных браузерах по разному себя ведет left в position fixed
+		const crossBrowserCorrection = document.querySelector('.zero-element').getBoundingClientRect().left;
+
 		setTimeout(function() {
 			itemSelector.classList.remove('info-item_open');
 			itemSelector.style.top = targetPageTop + 'px';
-			itemSelector.style.left = targetPageLeft - 20 + 'px';
+			itemSelector.style.left = targetPageLeft - crossBrowserCorrection + 'px';
 			itemSelector.style.height = targetHeight + 'px';
 			itemSelector.style.width = targetWidth + 'px';
 
 			setTimeout(function() {
 				itemSelector.style.position = 'unset';
 				itemSelector.style.display = 'flex';
-				document.body.style.overflow = 'unset';
+				// document.body.style.overflow = 'unset';
+				enableScrolling()
 				popBgStyle.display = 'none';
 				popup.style.display = 'none';
 				// Если часто открыть-закрыть окно, то блюр может не убраться, поэтому повторно убираем
@@ -897,3 +908,15 @@ touchRegulator(
 /*************************\ 
  END ФИЛЬТР НА УСТРОЙСТВАХ
 \*************************/
+
+function disableScrolling(){
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+}
+
+function enableScrolling(){
+    window.onscroll=function(){};
+}
+
+
