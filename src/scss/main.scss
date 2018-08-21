@@ -1,17 +1,17 @@
-@import 'normalize';
 @import 'helpers/helpers';
 
 // Секции
-@import 'header';
-@import 'info-item';
+@import 'layouts/header';
+@import 'layouts/info-item';
 @import 'layouts/hello-box/hello-box';
-@import 'scenarios';
-@import 'main-top-box';
-@import 'slide-menu';
+@import 'layouts/scenarios';
+@import 'layouts/main-top-box';
+@import 'layouts/slide-menu';
 @import 'layouts/popup/popup';
 @import 'layouts/favorite-devices-btn';
-@import 'footer';
-
+@import 'layouts/footer';
+@import 'elements/buttons';
+@import 'elements/icons';
 
 body {
     padding: 0 20px;
