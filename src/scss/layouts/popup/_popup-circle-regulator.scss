@@ -4,15 +4,21 @@
     }
 }
 
-.popup.popup_circle-regulator {
+.popup .popup_circle-regulator {
     max-height: 642px;
     min-height: 590px;
 }
 
+.popup_circle-regulator .popup__settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (min-width: $bp-popup) {
     .popup.popup_circle-regulator {
-        width: 630px; 
-        max-height: 600px;
+        width: 630px;
+        max-height: 424px;
         min-height: 423px;
         width: calc(100vw - 40px);
         min-width: 400px;
@@ -22,8 +28,7 @@
 
 ///////////////
 .circle-regulator {
-    position: absolute;
-    top: 163px;
+    position: absolute; // top: 163px;
     left: 50%;
     transform: translateX(-50%);
     height: 221px;

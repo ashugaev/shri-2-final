@@ -135,7 +135,8 @@
 (min-width: $bp-hello-box-toRight-3) {
     .hello-box .info-item-box {
         margin-left: 0;
-        &:not(:first-child) {
+        margin-top: 15px;
+        &:first-child {
             margin-top: 20px;
         }
     }

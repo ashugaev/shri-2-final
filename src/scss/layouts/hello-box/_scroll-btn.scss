@@ -1,0 +1,20 @@
+.hello-box__scroll-btn {
+    position: absolute;
+    display: none;
+}
+
+//Перенос скролла вправо
+@media (min-width: $bp-hello-box-toRight-1) and (max-width: $bp-hello-box-toBottom-1),
+(min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
+(min-width: $bp-hello-box-toRight-3) {
+    .hello-box__scroll-btn {
+        display: block;
+        z-index: 10;
+        height: 41px;
+        width: 200px;
+        background: #F7F7F7;
+        bottom: 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+ }

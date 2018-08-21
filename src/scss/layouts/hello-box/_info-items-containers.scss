@@ -34,18 +34,22 @@
             flex-shrink: 0;
             height: 100%;
             top: 0;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: scroll;
+
         }
         &__appliances-abs {
             padding: 0;
             flex-direction: column;
             height: auto;
             width: 100%;
+            margin-bottom: 36px;
         }
         &__appliances-scroll {
             margin-right: 20px;
             height: 100%;
             width: 200px;
+            margin-top: -25px;
         }
     }
 }

@@ -909,6 +909,32 @@ touchRegulator(
  END ФИЛЬТР НА УСТРОЙСТВАХ
 \*************************/
 
+
+/*************************\ 
+   СТРЕЛКА В HELLO BOX
+\*************************/
+
+// (function() {
+// 	document.querySelector('.hello-box__scroll-btn').addEventListener('click', function() {
+// 		let container = document.querySelector('.hello-box__appliances-scroll');
+// 		let content = document.querySelector('.hello-box__appliances-abs');
+
+// 		let contentY = content.getBoundingClientRect().top;
+// 		let containerY = container.getBoundingClientRect().top;
+
+// 		console.dir(content)
+// 		console.log(contentY, containerY)
+// 	})
+// })()
+
+/*************************\ 
+  END СТРЕЛКА В HELLO BOX
+\*************************/
+
+
+/*************************\ 
+  ОТКЛЮЧЕНИЕ СКРОЛЛА
+\*************************/
 function disableScrolling(){
     var x=window.scrollX;
     var y=window.scrollY;
@@ -919,4 +945,7 @@ function enableScrolling(){
     window.onscroll=function(){};
 }
 
+/*************************\ 
+  END ОТКЛЮЧЕНИЕ СКРОЛЛА
+\*************************/
 
