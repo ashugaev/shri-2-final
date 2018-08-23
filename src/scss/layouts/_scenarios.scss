@@ -15,7 +15,9 @@
         color: #333333;
         display: flex;
         justify-content: space-between;
-    } // &__rel {
+    } 
+   
+    // &__rel {
     //     position: relative;
     //     height: 120px;
     //     margin-top: 20px;
@@ -26,26 +28,18 @@
     //     width: auto;
     //     height: 100%;
     // }
-}
-
-.appliances-box {
-    margin-top: 5px;
-    width: 100%;
     & .info-item-box__scroll {
-        margin-top: 17px;
-    }
-    &__slider {
+        margin-left: -20px;
+        width: calc(100% + 40px);
         overflow: hidden;
     }
-    &__title {
-        font: 600 18px Arial;
-        color: #333333;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    & .info-item-box__abs {
+        padding-left: 20px;
+        padding-right: 20px;
     }
-
 }
+
+
 
 .appliances-box .info-item-box__rel,
 .scenarios-box .info-item-box__scroll {
@@ -86,17 +80,25 @@
     transition: none !important;
 }
 
-// hello-box после высоты 1365
-@media all and (min-width: 1365px) {
-    .appliances-box {
-        margin-top: 28px;
-    }
-}
 
 @media (min-width: $bp-change-filter-btn) {
     .appliances-box {
         &__title {
             justify-content: unset;
+        }
+    }
+}
+
+@media (min-width: $bp-main-top-box-1) {
+    .scenarios-box {
+        & .info-item-box__scroll {
+            margin-left: 0;
+            width: auto;
+            overflow: hidden;
+        }
+        & .info-item-box__abs {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 }

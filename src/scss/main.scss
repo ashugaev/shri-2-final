@@ -10,6 +10,7 @@
 @import 'layouts/favorite-devices-btn';
 @import 'layouts/footer';
 @import 'elements/buttons';
+@import 'layouts/favorite-devices/favorite-devices-container';
 
 body {
     padding: 0 20px;
@@ -26,6 +27,10 @@ body {
     flex-grow: 1;
     align-items: center;
     justify-content: flex-end;
+}
+
+input[type="checkbox"] {
+    display: none;
 }
 
 @media all and (min-width: $bp-change-filter-btn) {
