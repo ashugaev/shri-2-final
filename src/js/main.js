@@ -1,4 +1,6 @@
-import "../scss/main.scss";
+// import "../scss/main.scss";
+import style from "../css/main.css";
+
 
 // Ширина перехода избранных сценарием на правую сторону от hello-box
 var favoritesScenariosHorizontal = 900;
