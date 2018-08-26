@@ -46,7 +46,7 @@
       // width: 84px;
       height: 30px;
       padding: 0 15px;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       font-weight: 400;
 
       &:not(:first-child) {
@@ -110,7 +110,7 @@
   &__max-value {
     font-size: $fs-md-2;
     color: white;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-weight: 600;
     position: absolute;
     left: 50%;
