@@ -65,7 +65,6 @@
   }
 
   &__menu-item {
-    // border-top: solid 1px #dedede;
     line-height: 40px;
     font-weight: 600;
     margin: 0 40px;
@@ -91,5 +90,4 @@
 
 #menu-buton-chb:checked ~ .slide-menu {
   transform: translateX(0);
-
 }

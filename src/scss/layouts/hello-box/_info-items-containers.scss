@@ -7,7 +7,7 @@
 
   &__appliances-rel {
     position: relative;
-    height: 150px; // overflow: hidden;
+    height: 150px; 
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
@@ -22,7 +22,7 @@
     display: flex;
     position: absolute;
     width: auto;
-    height: 100%; // padding: 0 20px;
+    height: 100%; 
   }
 }
 
@@ -33,7 +33,6 @@
   .hello-box {
     &__appliances-rel {
       width: 250px; 
-      // min-width: 200px;
       flex-shrink: 0;
       height: 100%;
       top: 0;
