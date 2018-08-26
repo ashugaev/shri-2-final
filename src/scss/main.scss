@@ -37,6 +37,7 @@ input[type="checkbox"] {
 @media screen and (min-width: $bp-change-filter-btn) {
   .arrows {
     display: flex;
+    margin-top: 3px;
   }
 
   .arrows-appliances-box {
