@@ -34,7 +34,7 @@
   &__title {
     font-family: Arial;
     font-size: $fs-sm-3;
-    color: #333;
+    color: $col-black;
     font-weight: 600;
     max-width: 200px;
     user-select: none;
@@ -43,7 +43,7 @@
   &__info {
     font-family: Arial;
     font-size: $fs-sm-1;
-    color: #858585;
+    color: $col-gray;
     letter-spacing: 0.01px;
     margin-top: 3px;
     user-select: none;
