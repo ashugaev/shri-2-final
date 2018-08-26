@@ -26,9 +26,8 @@
   }
 }
 
-///////////////
 .circle-regulator {
-  position: absolute; // top: 163px;
+  position: absolute; 
   left: 50%;
   transform: translateX(-50%);
   height: 221px;
@@ -39,7 +38,7 @@
   justify-content: center;
 
   &__dash {
-    height: 50%; // width: 1px;
+    height: 50%; 
     border-top: solid 21px #333;
     position: absolute;
     left: 50%;
