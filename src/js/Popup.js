@@ -1,3 +1,4 @@
+import { disableScrolling, enableScrolling } from './ScrollDisable';
 
 (function () {
   // Сделим время зажатия кнопки, что бы не вылетали попапы при перетягивании мышью

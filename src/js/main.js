@@ -9,6 +9,7 @@ import './MouseDrag';
 import './Slider';
 import './SliderSwipe';
 import './ArrowsScroll';
+import './Popup';
 
 // Ширина перехода избранных сценарием на правую сторону от hello-box
 export var favoritesScenariosHorizontal = 900;
