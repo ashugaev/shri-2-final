@@ -1,55 +1,60 @@
 // Контейнеры для элементов info-item
 .hello-box {
-    &__appliances-scroll {
-        height: 120px;
-        overflow: hidden;
+  &__appliances-scroll {
+    height: 120px;
+    overflow: hidden;
+  }
+
+  &__appliances-rel {
+    position: relative;
+    height: 150px; // overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* Remove the default scrollbar for WebKit implementations */
+    &::-webkit-scrollbar {
+      display: none;
     }
-    &__appliances-rel {
-        position: relative;
-        height: 150px; // overflow: hidden;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        /* Remove the default scrollbar for WebKit implementations */
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-    &__appliances-abs {
-        display: flex;
-        position: absolute;
-        width: auto;
-        height: 100%; // padding: 0 20px;
-    }
+  }
+
+  &__appliances-abs {
+    display: flex;
+    position: absolute;
+    width: auto;
+    height: 100%; // padding: 0 20px;
+  }
 }
 
 //Перенос скролла вправо
 @media (min-width: $bp-hello-box-toRight-1) and (max-width: $bp-hello-box-toBottom-1),
-(min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
-(min-width: $bp-hello-box-toRight-3) {
-    .hello-box {
-        &__appliances-rel {
-            width: 250px; 
-            // min-width: 200px;
-            flex-shrink: 0;
-            height: 100%;
-            top: 0;
-            overflow-x: hidden;
-            overflow-y: scroll;
+  (min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
+  (min-width: $bp-hello-box-toRight-3) {
+  .hello-box {
+    &__appliances-rel {
+      width: 250px; 
+      // min-width: 200px;
+      flex-shrink: 0;
+      height: 100%;
+      top: 0;
+      overflow-x: hidden;
+      overflow-y: scroll;
 
-        }
-        &__appliances-abs {
-            padding: 0;
-            flex-direction: column;
-            height: auto;
-            width: 100%;
-            margin-bottom: 36px;
-        }
-        &__appliances-scroll {
-            margin-right: 20px;
-            height: 100%;
-            width: 200px;
-            margin-top: -25px;
-        }
     }
+
+    &__appliances-abs {
+      padding: 0;
+      flex-direction: column;
+      height: auto;
+      width: 100%;
+      margin-bottom: 36px;
+    }
+
+    &__appliances-scroll {
+      margin-right: 20px;
+      height: 100%;
+      width: 200px;
+      margin-top: -25px;
+    }
+  }
 }

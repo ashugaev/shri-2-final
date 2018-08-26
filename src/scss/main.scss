@@ -13,31 +13,33 @@
 @import 'layouts/favorite-devices/favorite-devices-container';
 
 body {
-    padding: 0 20px;
-    min-width: 320px;
+  padding: 0 20px;
+  min-width: 320px;
 }
 
 .arrows {
-    display: none;
-    width: 44px;
-    justify-content: space-between;
+  display: none;
+  width: 44px;
+  justify-content: space-between;
 }
+
 .arrows-appliances-box {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 input[type="checkbox"] {
-    display: none;
+  display: none;
 }
 
 @media all and (min-width: $bp-change-filter-btn) {
-    .arrows {
-        display: flex;
-    }
-    .arrows-appliances-box {
-        justify-content: space-between;
-    }
+  .arrows {
+    display: flex;
+  }
+
+  .arrows-appliances-box {
+    justify-content: space-between;
+  }
 }

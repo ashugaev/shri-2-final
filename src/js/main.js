@@ -1,16 +1,16 @@
-import "../scss/main.scss";
+import '../scss/main.scss';
 
 // Ширина перехода избранных сценарием на правую сторону от hello-box
 var favoritesScenariosHorizontal = 900;
 
-(function() {
+(function () {
   // Events handler
   // Сделим время зажатия кнопки, что бы не вылетали попапы при перетягивании мышью
   let timeStamp = 0;
-  document.querySelector("body").addEventListener("mousedown", function(event) {
+  document.querySelector('body').addEventListener('mousedown', function (event) {
     timeStamp = event.timeStamp;
   });
-  document.querySelector("body").addEventListener("mouseup", function(event) {
+  document.querySelector('body').addEventListener('mouseup', function (event) {
     // console.log('Обычный клик', timeStamp, event)
     // Открытие popup
     // if (
@@ -23,25 +23,25 @@ var favoritesScenariosHorizontal = 900;
     // 	if (event.target.className.indexOf('popup_circle-regulator') >= 0) {} else if (event.target.className.indexOf('popup_stripe-regulator') >= 0) {}
     // } else
     if (
-      event.target.classList.contains("popup-bg") ||
-      event.target.classList.contains("popup__close") ||
-      event.target.classList.contains("popup__apply")
+      event.target.classList.contains('popup-bg') ||
+      event.target.classList.contains('popup__close') ||
+      event.target.classList.contains('popup__apply')
     ) {
-      //Закрытие popup
-      closePopup(event.target.closest(".info-item"));
+      // Закрытие popup
+      closePopup(event.target.closest('.info-item'));
     }
   });
 
   // Вешаем событие на info-item
-  document.querySelectorAll(".info-item").forEach(el => {
-    el.addEventListener("click", function(event) {
+  document.querySelectorAll('.info-item').forEach(el => {
+    el.addEventListener('click', function (event) {
       if (event.timeStamp - timeStamp < 200 && event.button === 0) {
         openPopup(el);
       }
     });
   });
 
-  //Переменные, которые будут нужны для закрытия Popup
+  // Переменные, которые будут нужны для закрытия Popup
   let targetPageTop,
     targetPageLeft,
     targetHeight,
@@ -50,17 +50,17 @@ var favoritesScenariosHorizontal = 900;
     popupModificator;
 
   // Popup Open/Close
-  let openPopup = function(elem) {
+  let openPopup = function (elem) {
     // Включаем нужный контент попапа
-    if (elem.classList.contains("info-item_stripe-yellow")) {
-      document.querySelector(".popup").classList.add("popup_stripe-yellow");
-      popupModificator = "popup_stripe-yellow";
-    } else if (elem.classList.contains("info-item_stripe-three-col")) {
-      document.querySelector(".popup").classList.add("popup_stripe-three-col");
-      popupModificator = "popup_stripe-three-col";
-    } else if (elem.classList.contains("info-item_circle-regulator")) {
-      document.querySelector(".popup").classList.add("popup_circle-regulator");
-      popupModificator = "popup_circle-regulator";
+    if (elem.classList.contains('info-item_stripe-yellow')) {
+      document.querySelector('.popup').classList.add('popup_stripe-yellow');
+      popupModificator = 'popup_stripe-yellow';
+    } else if (elem.classList.contains('info-item_stripe-three-col')) {
+      document.querySelector('.popup').classList.add('popup_stripe-three-col');
+      popupModificator = 'popup_stripe-three-col';
+    } else if (elem.classList.contains('info-item_circle-regulator')) {
+      document.querySelector('.popup').classList.add('popup_circle-regulator');
+      popupModificator = 'popup_circle-regulator';
     } else {
       return;
     }
@@ -69,15 +69,15 @@ var favoritesScenariosHorizontal = 900;
 
     // document.body.style.overflow = 'hidden';
     disableScrolling();
-    document.querySelector(".popup").style.display = "flex";
-    console.log(elem.offsetLeft, "  ", elem.getBoundingClientRect().left);
+    document.querySelector('.popup').style.display = 'flex';
+    console.log(elem.offsetLeft, '  ', elem.getBoundingClientRect().left);
     console.dir(elem);
     targetPageTop = elem.getBoundingClientRect().top + window.pageYOffset;
     targetPageLeft = elem.getBoundingClientRect().left + window.pageXOffset;
     targetWidth = elem.clientWidth;
     targetHeight = elem.clientHeight;
 
-    const popUpBody = document.querySelector(".popup__body");
+    const popUpBody = document.querySelector('.popup__body');
     const popupBodyTop =
       popUpBody.getBoundingClientRect().top + window.pageYOffset;
     const popupBodyHeight = popUpBody.clientHeight;
@@ -85,82 +85,82 @@ var favoritesScenariosHorizontal = 900;
 
     // В разных браузерах по разному себя ведет left в position fixed
     const crossBrowserCorrection = document
-      .querySelector(".zero-element")
+      .querySelector('.zero-element')
       .getBoundingClientRect().left;
 
-    console.log("разница", crossBrowserCorrection, targetPageLeft);
+    console.log('разница', crossBrowserCorrection, targetPageLeft);
     // Пока откл, потому что поставил фиксированные размеры стандартно
     // Зададим размеры, что бы элемент не растянуло при фиксированном display
     // elem.style.width = targetWidth + 'px';
     // elem.style.height = targetHeight + 'px';
 
     // Оставляя элемент на той же позиции сделаем его фиксированным
-    elem.style.top = targetPageTop + "px";
+    elem.style.top = targetPageTop + 'px';
     // 20 это паддинг у body
-    elem.style.left = targetPageLeft - crossBrowserCorrection + "px";
-    elem.style.position = "fixed";
+    elem.style.left = targetPageLeft - crossBrowserCorrection + 'px';
+    elem.style.position = 'fixed';
 
     console.log(
-      "После фиксации",
+      'После фиксации',
       (targetPageLeft = elem.getBoundingClientRect().left),
       targetPageLeft
     );
     // Меняю позиционирование и размеры элемента на значения попапа 100мс(что бы не было скачков)
-    setTimeout(function() {
-      elem.classList.add("info-item_open");
-      elem.style.top = popupBodyTop + "px";
-      elem.style.height = popupBodyHeight + "px";
-      elem.style.width = popupBodyWidth + "px";
+    setTimeout(function () {
+      elem.classList.add('info-item_open');
+      elem.style.top = popupBodyTop + 'px';
+      elem.style.height = popupBodyHeight + 'px';
+      elem.style.width = popupBodyWidth + 'px';
     }, 50);
 
-    setTimeout(function() {
-      document.querySelector(".popup").style.opacity = 1;
+    setTimeout(function () {
+      document.querySelector('.popup').style.opacity = 1;
 
       // Включаем бэкграунт и блюр
-      let popBgStyle = document.querySelector(".popup-bg").style;
-      popBgStyle.display = "block";
-      setTimeout(function() {
+      let popBgStyle = document.querySelector('.popup-bg').style;
+      popBgStyle.display = 'block';
+      setTimeout(function () {
         popBgStyle.opacity = 1;
         // Отключаем скролл
         // document.body.style.overflow = 'hidden';
         disableScrolling();
       }, 50);
-      setTimeout(function() {
-        document.querySelector(".blur-box").style.filter = "blur(2px)";
+      setTimeout(function () {
+        document.querySelector('.blur-box').style.filter = 'blur(2px)';
       }, 300);
     }, 500);
   };
 
-  let closePopup = function() {
-    let popup = document.querySelector(".popup");
+  let closePopup = function () {
+    let popup = document.querySelector('.popup');
     popup.style.opacity = 0;
-    document.querySelector(".blur-box").style.filter = "blur(0)";
-    let popBgStyle = document.querySelector(".popup-bg").style;
+    document.querySelector('.blur-box').style.filter = 'blur(0)';
+    let popBgStyle = document.querySelector('.popup-bg').style;
     popBgStyle.opacity = 0;
 
     // В разных браузерах по разному себя ведет left в position fixed
     const crossBrowserCorrection = document
-      .querySelector(".zero-element")
+      .querySelector('.zero-element')
       .getBoundingClientRect().left;
 
-    setTimeout(function() {
-      itemSelector.classList.remove("info-item_open");
-      itemSelector.style.top = targetPageTop + "px";
-      itemSelector.style.left = targetPageLeft - crossBrowserCorrection + "px";
-      itemSelector.style.height = targetHeight + "px";
-      itemSelector.style.width = targetWidth + "px";
+    setTimeout(function () {
+      itemSelector.classList.remove('info-item_open');
+      itemSelector.style.top = targetPageTop + 'px';
+      itemSelector.style.left = targetPageLeft - crossBrowserCorrection + 'px';
+      itemSelector.style.height = targetHeight + 'px';
+      itemSelector.style.width = targetWidth + 'px';
 
-      setTimeout(function() {
-        itemSelector.style.position = "unset";
-        itemSelector.style.display = "flex";
+      setTimeout(function () {
+        itemSelector.style.position = 'unset';
+        itemSelector.style.display = 'flex';
         // document.body.style.overflow = 'unset';
         enableScrolling();
-        popBgStyle.display = "none";
-        popup.style.display = "none";
+        popBgStyle.display = 'none';
+        popup.style.display = 'none';
         // Если часто открыть-закрыть окно, то блюр может не убраться, поэтому повторно убираем
-        document.querySelector(".blur-box").style.filter = "blur(0)";
+        document.querySelector('.blur-box').style.filter = 'blur(0)';
         // Удалим контент попапа
-        document.querySelector(".popup").classList.remove(popupModificator);
+        document.querySelector('.popup').classList.remove(popupModificator);
       }, 600);
     }, 200);
   };
@@ -169,9 +169,9 @@ var favoritesScenariosHorizontal = 900;
 // СКРОЛЛ
 
 // Определение content is overflowing для стрелок
-function determineOverflow(content, container) {
-  content = document.querySelector(".info-item-box__abs-appliances");
-  container = document.querySelector(".appliances-box .info-item-box__rel");
+function determineOverflow (content, container) {
+  content = document.querySelector('.info-item-box__abs-appliances');
+  container = document.querySelector('.appliances-box .info-item-box__rel');
   var containerMetrics = container.getBoundingClientRect();
   var containerMetricsRight = Math.floor(containerMetrics.right);
   var containerMetricsLeft = Math.floor(containerMetrics.left);
@@ -182,46 +182,46 @@ function determineOverflow(content, container) {
     containerMetricsLeft > contentMetricsLeft &&
     containerMetricsRight < contentMetricsRight
   ) {
-    document.querySelector(".appliances-box .arrow-right").style.opacity = 1;
-    document.querySelector(".appliances-box .arrow-left").style.opacity = 1;
-    return "both";
+    document.querySelector('.appliances-box .arrow-right').style.opacity = 1;
+    document.querySelector('.appliances-box .arrow-left').style.opacity = 1;
+    return 'both';
   } else if (contentMetricsLeft < containerMetricsLeft) {
-    document.querySelector(".appliances-box .arrow-right").style.opacity = 0.45;
-    document.querySelector(".appliances-box .arrow-left").style.opacity = 1;
-    return "left";
+    document.querySelector('.appliances-box .arrow-right').style.opacity = 0.45;
+    document.querySelector('.appliances-box .arrow-left').style.opacity = 1;
+    return 'left';
   } else if (contentMetricsRight > containerMetricsRight) {
-    document.querySelector(".appliances-box .arrow-right").style.opacity = 1;
-    document.querySelector(".appliances-box .arrow-left").style.opacity = 0.45;
-    return "right";
+    document.querySelector('.appliances-box .arrow-right').style.opacity = 1;
+    document.querySelector('.appliances-box .arrow-left').style.opacity = 0.45;
+    return 'right';
   } else {
-    document.querySelector(".appliances-box .arrow-right").style.opacity = 0.45;
-    document.querySelector(".appliances-box .arrow-left").style.opacity = 0.45;
-    return "none";
+    document.querySelector('.appliances-box .arrow-right').style.opacity = 0.45;
+    document.querySelector('.appliances-box .arrow-left').style.opacity = 0.45;
+    return 'none';
   }
 }
 
-(function() {
+(function () {
   // Внешний контейнер слайдера
-  let relBox = document.querySelector(".info-item-box__rel");
+  let relBox = document.querySelector('.info-item-box__rel');
   // Внутренний контейнер с контентом
-  let absBox = document.querySelector(".info-item-box__abs");
+  let absBox = document.querySelector('.info-item-box__abs');
 
   // Ставим атрибут - индикатор скрола
-  relBox.setAttribute("data-overflowing", determineOverflow(absBox, relBox));
+  relBox.setAttribute('data-overflowing', determineOverflow(absBox, relBox));
 
   // Отслеживаем скролл и обновляем атрибут
   var last_known_scroll_position = 0;
   var ticking = false;
 
-  function doSomething(scroll_pos) {
-    relBox.setAttribute("data-overflowing", determineOverflow(absBox, relBox));
+  function doSomething (scroll_pos) {
+    relBox.setAttribute('data-overflowing', determineOverflow(absBox, relBox));
   }
 
   // Слушаем скролл и меняем атрибуты обозночающие скролл
-  relBox.addEventListener("scroll", function() {
+  relBox.addEventListener('scroll', function () {
     last_known_scroll_position = window.scrollY;
     if (!ticking) {
-      window.requestAnimationFrame(function() {
+      window.requestAnimationFrame(function () {
         doSomething(last_known_scroll_position);
         ticking = false;
       });
@@ -232,31 +232,31 @@ function determineOverflow(content, container) {
 
 determineOverflow();
 
-/**********************\ 
+/** ********************\
   Функция для стрелок
 \**********************/
 
 // Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
-let arrowScroll = function(arrows, relCont) {
-  let arrowLeft = document.querySelector(arrows + " .arrow-left");
-  let arrowRight = document.querySelector(arrows + " .arrow-right");
+let arrowScroll = function (arrows, relCont) {
+  let arrowLeft = document.querySelector(arrows + ' .arrow-left');
+  let arrowRight = document.querySelector(arrows + ' .arrow-right');
   absCont = document.querySelector(
-    relCont + " > .info-item-box__abs-appliances"
+    relCont + ' > .info-item-box__abs-appliances'
   );
   relCont = document.querySelector(relCont);
 
   // Настройки
   var SETTINGS = {
     inScrollingNow: false,
-    scrollDirection: "",
+    scrollDirection: '',
     scrollDistance: 220
   };
 
   // ЛЕВАЯ СТРЕЛКА
-  arrowLeft.addEventListener("click", function(event) {
-    absCont = document.querySelector(".info-item-box__abs-appliances");
-    relCont = document.querySelector(".appliances-box .info-item-box__rel");
-    console.log("Что то есть");
+  arrowLeft.addEventListener('click', function (event) {
+    absCont = document.querySelector('.info-item-box__abs-appliances');
+    relCont = document.querySelector('.appliances-box .info-item-box__rel');
+    console.log('Что то есть');
 
     // Если стрелка нажата во время скролла
     if (SETTINGS.inScrollingNow === true) {
@@ -264,35 +264,35 @@ let arrowScroll = function(arrows, relCont) {
     }
     // Если контент выходит в обе стороты или влево
     if (
-      determineOverflow(absCont, relCont) === "left" ||
-      determineOverflow(absCont, relCont) === "both"
+      determineOverflow(absCont, relCont) === 'left' ||
+      determineOverflow(absCont, relCont) === 'both'
     ) {
       var availableScrollLeft = relCont.scrollLeft;
       // В первом случае крутим до конца, в втором на заданный промежуток
       if (availableScrollLeft < SETTINGS.scrollDistance * 2) {
-        absCont.style.transform = "translateX(" + availableScrollLeft + "px)";
+        absCont.style.transform = 'translateX(' + availableScrollLeft + 'px)';
       } else {
         absCont.style.transform =
-          "translateX(" + SETTINGS.scrollDistance + "px)";
+          'translateX(' + SETTINGS.scrollDistance + 'px)';
       }
 
       // Удаляем класс отключающий транзишн
-      absCont.classList.remove("no-transition");
+      absCont.classList.remove('no-transition');
 
-      SETTINGS.scrollDirection = "left";
+      SETTINGS.scrollDirection = 'left';
       SETTINGS.inScrollingNow = true;
     }
     // Обновляем атрибут контейнера
     relCont.setAttribute(
-      "data-overflowing",
+      'data-overflowing',
       determineOverflow(absCont, relCont)
     );
   });
 
   // ПРАВАЯ СТРЕЛКА
-  arrowRight.addEventListener("click", function() {
-    absCont = document.querySelector(".info-item-box__abs-appliances");
-    relCont = document.querySelector(".appliances-box .info-item-box__rel");
+  arrowRight.addEventListener('click', function () {
+    absCont = document.querySelector('.info-item-box__abs-appliances');
+    relCont = document.querySelector('.appliances-box .info-item-box__rel');
 
     // Если стрелка нажата во время скролла
     if (SETTINGS.inScrollingNow === true) {
@@ -301,8 +301,8 @@ let arrowScroll = function(arrows, relCont) {
 
     // Если контент выходит в обе стороты или вправо
     if (
-      determineOverflow(absCont, relCont) === "right" ||
-      determineOverflow(absCont, relCont) === "both"
+      determineOverflow(absCont, relCont) === 'right' ||
+      determineOverflow(absCont, relCont) === 'both'
     ) {
       // Вычисляем доступной для скролла пространство
       var relContRightEdge = absCont.getBoundingClientRect().right;
@@ -312,38 +312,38 @@ let arrowScroll = function(arrows, relCont) {
       );
       // В первом случае крутим до конца, в втором на заданный промежуток
       if (availableScrollRight < SETTINGS.scrollDistance * 2) {
-        absCont.style.transform = "translateX(-" + availableScrollRight + "px)";
+        absCont.style.transform = 'translateX(-' + availableScrollRight + 'px)';
       } else {
         absCont.style.transform =
-          "translateX(-" + SETTINGS.scrollDistance + "px)";
+          'translateX(-' + SETTINGS.scrollDistance + 'px)';
       }
 
       // Удаляем класс отключающий транзишн
-      absCont.classList.remove("no-transition");
+      absCont.classList.remove('no-transition');
 
-      SETTINGS.scrollDirection = "right";
+      SETTINGS.scrollDirection = 'right';
       SETTINGS.inScrollingNow = true;
     }
     // Обновляем атрибут контейнера
     relCont.setAttribute(
-      "data-overflowing",
+      'data-overflowing',
       determineOverflow(absCont, relCont)
     );
   });
 
   // ОТСЛЕЖИВАНИЕ ЗАВЕРШЕНИЯ ДВИЖЕНИЯ СЛАЙДЕРА
-  absCont.addEventListener("transitionend", function() {
+  absCont.addEventListener('transitionend', function () {
     // получаем значение транзишена и заменяем его на скролл
     var styleOfTransform = window.getComputedStyle(absCont, null);
     var tr =
-      styleOfTransform.getPropertyValue("-webkit-transform") ||
-      styleOfTransform.getPropertyValue("transform");
+      styleOfTransform.getPropertyValue('-webkit-transform') ||
+      styleOfTransform.getPropertyValue('transform');
     // Если транзишена нет, то ставим 0
-    var amount = Math.abs(parseInt(tr.split(",")[4]) || 0);
-    absCont.style.transform = "none";
-    absCont.classList.add("no-transition");
+    var amount = Math.abs(parseInt(tr.split(',')[4]) || 0);
+    absCont.style.transform = 'none';
+    absCont.classList.add('no-transition');
 
-    if (SETTINGS.scrollDirection === "left") {
+    if (SETTINGS.scrollDirection === 'left') {
       relCont.scrollLeft = relCont.scrollLeft - amount;
     } else {
       relCont.scrollLeft = relCont.scrollLeft + amount;
@@ -352,107 +352,104 @@ let arrowScroll = function(arrows, relCont) {
   });
 };
 arrowScroll(
-  ".appliances-box .arrows_favorites",
-  ".appliances-box .appliances-box__slider",
+  '.appliances-box .arrows_favorites',
+  '.appliances-box .appliances-box__slider',
   false
 );
 
-//////////////////
+/// ///////////////
 
-let arrowSlider = function() {
-  console.log("Поехали");
-  let arrowLeft = document.querySelector(".scenarios-box .arrows .arrow-left");
+let arrowSlider = function () {
+  console.log('Поехали');
+  let arrowLeft = document.querySelector('.scenarios-box .arrows .arrow-left');
   let arrowRight = document.querySelector(
-    ".scenarios-box .arrows .arrow-right"
+    '.scenarios-box .arrows .arrow-right'
   );
   absCont = document.querySelector(
-    ".scenarios-box .info-item-box__rel > .info-item-box__abs"
+    '.scenarios-box .info-item-box__rel > .info-item-box__abs'
   );
-  relCont = document.querySelector(".scenarios-box .info-item-box__rel");
+  relCont = document.querySelector('.scenarios-box .info-item-box__rel');
 
   var SETTINGS = {
     inScrollingNow: false,
-    scrollDirection: "",
+    scrollDirection: '',
     scrollDistance: 220
   };
 
   // ЛЕВАЯ СТРЕЛКА
-  arrowLeft.addEventListener("click", function(event) {
+  arrowLeft.addEventListener('click', function (event) {
     absCont = document.querySelector(
-      ".scenarios-box .info-item-box__rel > .info-item-box__abs"
+      '.scenarios-box .info-item-box__rel > .info-item-box__abs'
     );
-    relCont = document.querySelector(".scenarios-box .info-item-box__rel");
+    relCont = document.querySelector('.scenarios-box .info-item-box__rel');
     // Если стрелка нажата во время скролла
     if (SETTINGS.inScrollingNow === true) {
       return;
     }
     slidePrev(relCont, absCont);
-    return;
   });
 
   // ПРАВАЯ СТРЕЛКА
-  arrowRight.addEventListener("click", function() {
+  arrowRight.addEventListener('click', function () {
     absCont = document.querySelector(
-      ".scenarios-box .info-item-box__rel > .info-item-box__abs"
+      '.scenarios-box .info-item-box__rel > .info-item-box__abs'
     );
-    relCont = document.querySelector(".scenarios-box .info-item-box__rel");
+    relCont = document.querySelector('.scenarios-box .info-item-box__rel');
     // Если стрелка нажата во время скролла
     if (SETTINGS.inScrollingNow === true) {
       return;
     }
-    console.log("Делаем по -другому вперед", absCont, relCont);
+    console.log('Делаем по -другому вперед', absCont, relCont);
     slideNext(relCont, absCont);
-    return;
   });
 };
 // Инициализируем скролл
 // arrowScroll('.scenarios-box .arrows', '.scenarios-box .info-item-box__rel', true)
 arrowSlider();
 
-/************************\ 
+/** **********************\
   END Функция для стрелок
 \************************/
 
-/************************************************\ 
+/** **********************************************\
   СВАЙП НА ИЗБРАННЫХ СЦЕНАРИЯХ НА БОЛЬШОМ ЭКРАНЕ
 \************************************************/
-function swipeGesture() {
-  var relCont = document.querySelector(".appliances-box__slider_favorites");
-  var absCont = document.querySelector(".info-item-box__abs_favorites");
+function swipeGesture () {
+  var relCont = document.querySelector('.appliances-box__slider_favorites');
+  var absCont = document.querySelector('.info-item-box__abs_favorites');
   var touchstartX = 0;
   var touchendX = 0;
   var scrollStart = 0;
   var scrollEnd = 0;
-  console.log("sdf");
+  console.log('sdf');
 
-  var scrollArea = document.querySelector(".appliances-box__slider_favorites");
+  var scrollArea = document.querySelector('.appliances-box__slider_favorites');
 
   scrollArea.addEventListener(
-    "touchstart",
-    function(event) {
+    'touchstart',
+    function (event) {
       touchstartX = event.changedTouches[0].screenX;
       scrollStart = window.pageYOffset;
     },
     false
   );
   scrollArea.addEventListener(
-    "touchend",
-    function(event) {
+    'touchend',
+    function (event) {
       touchendX = event.changedTouches[0].screenX;
       scrollEnd = window.pageYOffset;
       // Отменяем свайп, если был скролл или маленький экран
       if (
         scrollStart != scrollEnd ||
         window.innerWidth < favoritesScenariosHorizontal
-      )
-        return;
+      ) { return; }
 
       handleGesure();
     },
     false
   );
 
-  function handleGesure() {
+  function handleGesure () {
     if (touchendX < touchstartX) {
       slidePrev(relCont, absCont);
     }
@@ -463,15 +460,15 @@ function swipeGesture() {
 }
 
 swipeGesture();
-/***************************************************\ 
+/** *************************************************\
   END СВАЙП НА ИЗБРАННЫХ СЦЕНАРИЯХ НА БОЛЬШОМ ЭКРАНЕ
 \***************************************************/
 
-/*****************************************\ 
+/** ***************************************\
   ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
 \*****************************************/
 
-let slideNext = function(relCont, absCont) {
+let slideNext = function (relCont, absCont) {
   let absBlockTop = absCont.style.top;
   let step = relCont.clientHeight;
   // Пространство снизу
@@ -483,15 +480,15 @@ let slideNext = function(relCont, absCont) {
   }
 
   absCont.style.opacity = 0;
-  setTimeout(function() {
-    absCont.style.top = parseInt(absBlockTop) - step + "px";
+  setTimeout(function () {
+    absCont.style.top = parseInt(absBlockTop) - step + 'px';
     absCont.style.opacity = 1;
     checkSliderArrows();
   }, 300);
 };
 
-let slidePrev = function(relCont, absCont) {
-  console.log("prev");
+let slidePrev = function (relCont, absCont) {
+  console.log('prev');
   let absBlockTop = absCont.style.top;
   let step = relCont.clientHeight;
   // Пространство снизу
@@ -503,19 +500,19 @@ let slidePrev = function(relCont, absCont) {
   if (!absBlockTop) absBlockTop = 0;
   if (step / 4 > maxStep) return;
   absCont.style.opacity = 0;
-  setTimeout(function() {
-    console.log(parseInt(absBlockTop) + step + "px");
-    absCont.style.top = parseInt(absBlockTop) + step + "px";
+  setTimeout(function () {
+    console.log(parseInt(absBlockTop) + step + 'px');
+    absCont.style.top = parseInt(absBlockTop) + step + 'px';
     absCont.style.opacity = 1;
     checkSliderArrows();
   }, 300);
 };
 
-let checkSliderArrows = function() {
+let checkSliderArrows = function () {
   let absCont = document.querySelector(
-    ".scenarios-box .info-item-box__rel > .info-item-box__abs"
+    '.scenarios-box .info-item-box__rel > .info-item-box__abs'
   );
-  let relCont = document.querySelector(".scenarios-box .info-item-box__rel");
+  let relCont = document.querySelector('.scenarios-box .info-item-box__rel');
   let step = relCont.clientHeight;
   // Пространство снизу
   let maxStepBottom =
@@ -527,45 +524,45 @@ let checkSliderArrows = function() {
     (absCont.clientHeight - Math.abs(absCont.offsetTop) - relCont.clientHeight);
 
   if (step / 4 > maxStepTop) {
-    document.querySelector(".scenarios-box .arrow-left").style.opacity = 0.45;
-    document.querySelector(".scenarios-box .arrow-right").style.opacity = 1;
+    document.querySelector('.scenarios-box .arrow-left').style.opacity = 0.45;
+    document.querySelector('.scenarios-box .arrow-right').style.opacity = 1;
   } else if (step / 4 > maxStepBottom) {
-    document.querySelector(".scenarios-box .arrow-left").style.opacity = 1;
-    document.querySelector(".scenarios-box .arrow-right").style.opacity = 0.45;
+    document.querySelector('.scenarios-box .arrow-left').style.opacity = 1;
+    document.querySelector('.scenarios-box .arrow-right').style.opacity = 0.45;
   }
 };
 checkSliderArrows();
 
-/********************************************\ 
+/** ******************************************\
   END ФУНКЦИИ ДЛЯ СЛАЙДА ИЗБРАННЫХ СЦЕНАРИЕВ
 \********************************************/
 
-/**************************\ 
-  ФУНКЦИЯ ДЛЯ СКРОЛЛА МЫШЬЮ 
+/** ************************\
+  ФУНКЦИЯ ДЛЯ СКРОЛЛА МЫШЬЮ
 \**************************/
 
-(function(root, factory) {
-  if (typeof define === "function" && define.amd) {
-    define(["exports"], factory);
-  } else if (typeof exports !== "undefined") {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['exports'], factory);
+  } else if (typeof exports !== 'undefined') {
     factory(exports);
   } else {
     factory((root.dragscroll = {}));
   }
-})(this, function(exports) {
+})(this, function (exports) {
   var _window = window;
   var _document = document;
-  var mousemove = "mousemove";
-  var mouseup = "mouseup";
-  var mousedown = "mousedown";
-  var EventListener = "EventListener";
-  var addEventListener = "add" + EventListener;
-  var removeEventListener = "remove" + EventListener;
+  var mousemove = 'mousemove';
+  var mouseup = 'mouseup';
+  var mousedown = 'mousedown';
+  var EventListener = 'EventListener';
+  var addEventListener = 'add' + EventListener;
+  var removeEventListener = 'remove' + EventListener;
   var newScrollX, newScrollY;
 
   var dragged = [];
-  var reset = function(i, el) {
-    for (i = 0; i < dragged.length; ) {
+  var reset = function (i, el) {
+    for (i = 0; i < dragged.length;) {
       el = dragged[i++];
       el = el.container || el;
       el[removeEventListener](mousedown, el.md, 0);
@@ -574,19 +571,19 @@ checkSliderArrows();
     }
 
     // cloning into array since HTMLCollection is updated dynamically
-    dragged = [].slice.call(_document.getElementsByClassName("dragscroll"));
-    for (i = 0; i < dragged.length; ) {
-      (function(el, lastClientX, lastClientY, pushed, scroller, cont) {
+    dragged = [].slice.call(_document.getElementsByClassName('dragscroll'));
+    for (i = 0; i < dragged.length;) {
+      (function (el, lastClientX, lastClientY, pushed, scroller, cont) {
         (cont = el.container || el)[addEventListener](
           mousedown,
-          (cont.md = function(e) {
+          (cont.md = function (e) {
             // В условии дополнительно стоит отключение слайдера "избранные сценарии" для ширины >= ширины переключения
             if (
-              (!el.hasAttribute("nochilddrag") ||
+              (!el.hasAttribute('nochilddrag') ||
                 _document.elementFromPoint(e.pageX, e.pageY) == cont) &&
               (window.innerWidth < favoritesScenariosHorizontal ||
                 (window.innerWidth >= favoritesScenariosHorizontal &&
-                  !el.classList.contains("appliances-box__slider_favorites")))
+                  !el.classList.contains('appliances-box__slider_favorites')))
             ) {
               pushed = 1;
               lastClientX = e.clientX;
@@ -600,7 +597,7 @@ checkSliderArrows();
 
         _window[addEventListener](
           mouseup,
-          (cont.mu = function() {
+          (cont.mu = function () {
             pushed = 0;
           }),
           0
@@ -608,7 +605,7 @@ checkSliderArrows();
 
         _window[addEventListener](
           mousemove,
-          (cont.mm = function(e) {
+          (cont.mm = function (e) {
             if (pushed) {
               (scroller = el.scroller || el).scrollLeft -= newScrollX =
                 -lastClientX + (lastClientX = e.clientX);
@@ -626,60 +623,60 @@ checkSliderArrows();
     }
   };
 
-  if (_document.readyState == "complete") {
+  if (_document.readyState == 'complete') {
     reset();
   } else {
-    _window[addEventListener]("load", reset, 0);
+    _window[addEventListener]('load', reset, 0);
   }
 
   exports.reset = reset;
 });
 
-/*********************\ 
+/** *******************\
   КРУГОВОЙ РЕГУЛЯТОР
 \*********************/
-(function() {
+(function () {
   // Пределы выставляемой  температуры
   const maxTemp = 35;
   const minTemp = 18;
 
-  //Цвет в который красим активные черточки
-  const color = "#F5A623";
+  // Цвет в который красим активные черточки
+  const color = '#F5A623';
 
   let rotation = 0;
   // в rotated мы как бы получили нашу текущую температуру с сервера
   let currentTemp = parseInt(
-    document.querySelector(".circle-regulator__temperature").textContent
+    document.querySelector('.circle-regulator__temperature').textContent
   );
   // Посчитаем поворота регулятора
   let rotated = (360 / (maxTemp - minTemp)) * (currentTemp - minTemp);
 
-  const circle = document.getElementById("circle-regulator");
+  const circle = document.getElementById('circle-regulator');
 
   let gray = false;
   while (rotation < 359) {
     // Выводим черточки и закрашиваем только те, которые находятся до нашей точки поворота
     circle.insertAdjacentHTML(
-      "beforeEnd",
+      'beforeEnd',
       `<div class="circle-regulator__dash" style="transform:rotate( ${rotation}deg);   ${
-        rotation < rotated ? "border-color:" + color : ""
+        rotation < rotated ? 'border-color:' + color : ''
       };"></div>`
     );
     // На первой серой черточке проставляем стрелку на предыдущую
     if (rotation > rotated && !gray) {
       gray = true;
       document.querySelector(
-        ".circle-regulator__arrow"
+        '.circle-regulator__arrow'
       ).style.transform = `rotate(${rotation - 3}deg)`;
     }
     rotation += 3;
   }
 
-  circle.addEventListener("click", function(event) {
+  circle.addEventListener('click', function (event) {
     changeTemperature(event.x, event.y);
   });
 
-  circle.addEventListener("touchmove", function(event) {
+  circle.addEventListener('touchmove', function (event) {
     const posX =
       event.changedTouches[event.changedTouches.length - 1].pageX -
       window.scrollX;
@@ -688,7 +685,7 @@ checkSliderArrows();
       window.scrollY;
     changeTemperature(posX, posY);
   });
-  circle.addEventListener("touchstart", function(event) {
+  circle.addEventListener('touchstart', function (event) {
     const posX =
       event.changedTouches[event.changedTouches.length - 1].pageX -
       window.scrollX;
@@ -698,9 +695,9 @@ checkSliderArrows();
     changeTemperature(posX, posY);
   });
 
-  const changeTemperature = function(posX, posY) {
+  const changeTemperature = function (posX, posY) {
     // console.log(circle.parentNode.parentNode, this.getClientRects)
-    const popupBody = document.querySelector(".popup");
+    const popupBody = document.querySelector('.popup');
     // console.log(popupBody.offsetTop, circle.getBoundingClientRect().top, circle.getBoundingClientRect()
     // .left)
     let a = circle.getBoundingClientRect().left;
@@ -737,7 +734,7 @@ checkSliderArrows();
     // console.log(document.getElementsByClassName("circle-regulator__dash"))
 
     // Получим все полоски
-    var dashes = document.getElementsByClassName("circle-regulator__dash");
+    var dashes = document.getElementsByClassName('circle-regulator__dash');
     var oneDashRad = 360 / dashes.length;
     // Полосок для изменения цвета
     var dashesToChanches = absoluteAngle / oneDashRad;
@@ -748,31 +745,31 @@ checkSliderArrows();
     for (let i = 0; dashes.length > i; i++) {
       i < dashesToChanches
         ? (dashes[i].style.borderColor = color)
-        : (dashes[i].style.borderColor = "#333333");
+        : (dashes[i].style.borderColor = '#333333');
 
       // На последней итерации меняем угол наклона стрелки
       if (i === dashes.length - 1) {
         document.querySelector(
-          ".circle-regulator__arrow"
+          '.circle-regulator__arrow'
         ).style.transform = `rotate(${absoluteAngle}deg)`;
         // Меняем цифру температуры
         let newTemp = absoluteAngle / (360 / (maxTemp - minTemp)) + minTemp;
         newTemp = Math.round(newTemp);
-        document.querySelector(".circle-regulator__temperature").textContent =
-          "+" + newTemp;
+        document.querySelector('.circle-regulator__temperature').textContent =
+          '+' + newTemp;
       }
     }
   };
 })();
 
-/************************\ 
+/** **********************\
  END КРУГОВОЙ РЕГУЛЯТОР
 \************************/
 
 /*
 ///////////СКРИПТ ПОПАПЧИКА
 let zWidth, zHeight, zTop, zLeft
- 
+
 // console.log(document.getElementsByClassName('a'))
 document.querySelector('body').addEventListener('click', function (event) {
 console.log(event.target.className)
@@ -790,35 +787,34 @@ if (event.target.className.indexOf('info-item') >= 0) {
     // document.querySelector('.popup').style.height = event.target.clientHeight + 'px';
     document.querySelector('.popup').style.opacity = 1;
     document.querySelector('.popup').style.display = 'flex';
- 
+
     console.log(event.target.clientHeight)
- 
+
     document.querySelector('.popup').style.transform = 'translate(-50%, -50%)';
     document.querySelector('.popup').style.top = '50%';
     document.querySelector('.popup').style.left = '50%';
- 
+
     // document.querySelector('.popup').style.width = '200px';
     // document.querySelector('.popup').style.height = '200px';
- 
+
     // Включим blur и темный фон
     let popBgStyle = document.querySelector('.popup-bg').style;
     popBgStyle.display = 'block';
     popBgStyle.opacity = 1;
     // уберем скролл
     document.body.style.overflow = "hidden"
- 
+
     document.querySelector('.blur-box').style.filter = 'blur(2px)'
- 
+
 }
 })
- 
- 
+
 document.querySelector('.popup-bg').addEventListener('click', function () {
- 
+
 document.querySelector('.popup').style.top = zTop;
 document.querySelector('.popup').style.left = zLeft;
 document.querySelector('.popup').style.transform = 'scale(.1)';
- 
+
 // document.querySelector('.c').style.width = zWidth;
 // document.querySelector('.c').style.height = zHeight;
 document.querySelector('.popup').style.opacity = 0;
@@ -828,11 +824,11 @@ popBgStyle.display = 'none';
 popBgStyle.opacity = 0;
 // Вернем скролл
 document.body.style.overflow = "unset"
- 
+
 document.querySelector('.blur-box').style.filter = 'blur(0)'
- 
+
 })
- 
+
 /// для радиокнопок
 var form = document.querySelector("#light-mode-form");
 form.addEventListener('click', function (event) {
@@ -847,65 +843,65 @@ if (event.target.getAttribute('name') === 'light-mode' && event.target.getAttrib
     document.querySelector(".stripe-regulator__outer-circle").style.bottom = circleBottom + 'px'
     console.log(value)
 }
-})*/
+}) */
 
-/**************************\ 
+/** ************************\
  ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
 \**************************/
-let touchRegulator = function(stripeSelector, circleSelector) {
+let touchRegulator = function (stripeSelector, circleSelector) {
   let gradientStripe = document.querySelector(stripeSelector);
   let circle = document.querySelector(circleSelector);
 
   // На контрольных точках меняем артибут описывающий положение полоски
-  window.addEventListener("resize", function(event) {
+  window.addEventListener('resize', function (event) {
     onResise(event);
   });
-  let onResise = function(event) {
+  let onResise = function (event) {
     if (window.innerWidth <= 700) {
-      gradientStripe.setAttribute("stripePosition", "vertical");
-      circle.style.left = "-5px";
+      gradientStripe.setAttribute('stripePosition', 'vertical');
+      circle.style.left = '-5px';
     } else {
-      gradientStripe.setAttribute("stripePosition", "horizontal");
-      circle.style.bottom = "-5px";
+      gradientStripe.setAttribute('stripePosition', 'horizontal');
+      circle.style.bottom = '-5px';
     }
 
     // Что бы не делать лишнее событие сюда же закинем сброс для слайдов
     if (window.innerWidth < favoritesScenariosHorizontal) {
-      document.querySelector(".info-item-box__abs_favorites").style.top = 0;
-      console.log("Сброс слайдера");
+      document.querySelector('.info-item-box__abs_favorites').style.top = 0;
+      console.log('Сброс слайдера');
     }
   };
   onResise();
 
-  ///////////////////////////
+  /// ////////////////////////
 
   // Клик для пк
-  gradientStripe.addEventListener("click", function(event) {
+  gradientStripe.addEventListener('click', function (event) {
     let y = event.clientY;
     let x = event.clientX;
     changeCirclePosition(event, x, y);
   });
 
   // Отслеживаем тач
-  gradientStripe.addEventListener("touchmove", function(event) {
+  gradientStripe.addEventListener('touchmove', function (event) {
     let y = event.targetTouches[0].clientY;
     let x = event.targetTouches[0].clientX;
     changeCirclePosition(event, x, y);
   });
-  gradientStripe.addEventListener("touchstart", function(event) {
+  gradientStripe.addEventListener('touchstart', function (event) {
     let y = event.targetTouches[0].clientY;
     let x = event.targetTouches[0].clientX;
     changeCirclePosition(event, x, y);
   });
 
-  let changeCirclePosition = function(event, firstTouchX, firstTouch) {
-    let stripePosition = gradientStripe.getAttribute("stripeposition");
-    console.log("атрибут", stripePosition);
+  let changeCirclePosition = function (event, firstTouchX, firstTouch) {
+    let stripePosition = gradientStripe.getAttribute('stripeposition');
+    console.log('атрибут', stripePosition);
     // Позиция круга на экране
     let circleCurrentTop = circle.getBoundingClientRect().top;
     let circleCurrentLeft = circle.getBoundingClientRect().left;
 
-    if (stripePosition === "horizontal") {
+    if (stripePosition === 'horizontal') {
       let diff = circleCurrentLeft - firstTouchX;
       let left = parseInt(circle.offsetLeft - 70 + 35) - diff;
       if (left < 0) {
@@ -913,9 +909,9 @@ let touchRegulator = function(stripeSelector, circleSelector) {
       } else if (left > gradientStripe.clientWidth - 70) {
         left = gradientStripe.clientWidth - 70;
       }
-      circle.style.left = left + "px";
-      console.log("asdf", diff, left, circle.offsetLeft);
-    } else if (stripePosition === "vertical") {
+      circle.style.left = left + 'px';
+      console.log('asdf', diff, left, circle.offsetLeft);
+    } else if (stripePosition === 'vertical') {
       let diff = circleCurrentTop - firstTouch;
       let bottom =
         parseInt(gradientStripe.clientHeight - circle.offsetTop - 70 + 35) +
@@ -925,7 +921,7 @@ let touchRegulator = function(stripeSelector, circleSelector) {
       } else if (bottom > gradientStripe.clientHeight - 70) {
         bottom = gradientStripe.clientHeight - 70;
       }
-      circle.style.bottom = bottom + "px";
+      circle.style.bottom = bottom + 'px';
     }
   };
   // form.addEventListener("submit", function (event) {
@@ -942,61 +938,61 @@ let touchRegulator = function(stripeSelector, circleSelector) {
 
 // Инициализируем оба регулятора
 touchRegulator(
-  ".stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_yellow",
-  "#circle-orange"
+  '.stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_yellow',
+  '#circle-orange'
 );
 touchRegulator(
-  ".stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_three-color",
-  ".stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_three-color   .stripe-regulator__outer-circle"
+  '.stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_three-color',
+  '.stripe-regulator__gradient-stripe.stripe-regulator__gradient-stripe_three-color   .stripe-regulator__outer-circle'
 );
-/******************************\ 
+/** ****************************\
  END ГОРИЗОНТАЛЬНЫЙ РЕГУЛЯТОР
 \******************************/
 
-/**********************\ 
+/** ********************\
  ФИЛЬТР НА УСТРОЙСТВАХ
 \**********************/
-(function() {
+(function () {
   // Радиокнопки
   let radioButtons = document.querySelectorAll('input[name="filter"]');
   console.log(radioButtons.length);
 
   radioButtons.forEach(el => {
-    el.onchange = function() {
+    el.onchange = function () {
       let t = this;
       hideElements(t);
     };
   });
 
   // Выпадающий список
-  var filter_select_el = document.querySelector(".appliances-box__filter");
+  var filter_select_el = document.querySelector('.appliances-box__filter');
   var items = document.querySelectorAll(
-    ".appliances-box .info-item-box__abs > *"
+    '.appliances-box .info-item-box__abs > *'
   );
 
-  filter_select_el.onchange = function() {
+  filter_select_el.onchange = function () {
     let t = this;
     hideElements(t);
   };
 
   // Фукция фильтрации
-  let hideElements = function(t) {
+  let hideElements = function (t) {
     console.log(t.value, items);
     // var items = items_el.querySelectorAll('item');
     for (var i = 0; i < items.length; i++) {
       if (items[i].classList.contains(t.value)) {
-        items[i].style.display = "block";
+        items[i].style.display = 'block';
       } else {
-        items[i].style.display = "none";
+        items[i].style.display = 'none';
       }
     }
   };
 })();
-/*************************\ 
+/** ***********************\
  END ФИЛЬТР НА УСТРОЙСТВАХ
 \*************************/
 
-/*************************\ 
+/** ***********************\
    СТРЕЛКА В HELLO BOX
 \*************************/
 
@@ -1013,25 +1009,25 @@ touchRegulator(
 // 	})
 // })()
 
-/*************************\ 
+/** ***********************\
   END СТРЕЛКА В HELLO BOX
 \*************************/
 
-/*************************\ 
+/** ***********************\
   ОТКЛЮЧЕНИЕ СКРОЛЛА
 \*************************/
-function disableScrolling() {
+function disableScrolling () {
   var x = window.scrollX;
   var y = window.scrollY;
-  window.onscroll = function() {
+  window.onscroll = function () {
     window.scrollTo(x, y);
   };
 }
 
-function enableScrolling() {
-  window.onscroll = function() {};
+function enableScrolling () {
+  window.onscroll = function () {};
 }
 
-/*************************\ 
+/** ***********************\
   END ОТКЛЮЧЕНИЕ СКРОЛЛА
 \*************************/

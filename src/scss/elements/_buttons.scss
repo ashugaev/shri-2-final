@@ -1,62 +1,71 @@
 .btn {
-    display: inline-block;
-    white-space: nowrap;
-    border: none;
-    border-radius: 20px;
-    font-size: 1rem;
-    line-height: 1.5;
-    transition: background-color 0.05s;
-    outline: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  display: inline-block;
+  white-space: nowrap;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: background-color 0.05s;
+  outline: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 .btn_yellow {
-    background-color: #ffd93e;
-    color: #333333;
-    font-weight: 600;
-    &:hover {
-        background: #fad32b;
-    }
-    &:focus {
-        background: #ffd633
-    }
-    &:active {
-        background: #fecb2f;
-    }
+  background-color: #ffd93e;
+  color: #333;
+  font-weight: 600;
+
+  &:hover {
+    background: #fad32b;
+  }
+
+  &:focus {
+    background: #ffd633;
+  }
+
+  &:active {
+    background: #fecb2f;
+  }
 }
 
 .btn_white {
-    background-color: #fff;
-    color: #333333;
-    font-weight: 600;
-    &:hover {
-        background: #fcfcfc;
-    }
-    &:focus {
-        background: #ebebeb
-    }
-    &:active {
-        background: #f0f0f0;
-    }
+  background-color: #fff;
+  color: #333;
+  font-weight: 600;
+
+  &:hover {
+    background: #fcfcfc;
+  }
+
+  &:focus {
+    background: #ebebeb;
+  }
+
+  &:active {
+    background: #f0f0f0;
+  }
 }
 
 .btn_gray {
-    background-color: #f2f1f0;
-    color: #000;
-    font-weight: 600;
-    &:hover {
-        background: #ecebea;
-    }
-    &:focus {
-        background: #ecebea
-    }
-    &:active {
-        background: #e2e1df;
-    }
+  background-color: #f2f1f0;
+  color: #000;
+  font-weight: 600;
+
+  &:hover {
+    background: #ecebea;
+  }
+
+  &:focus {
+    background: #ecebea;
+  }
+
+  &:active {
+    background: #e2e1df;
+  }
 }

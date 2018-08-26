@@ -1,185 +1,203 @@
 .hello-box-container {
-    width: 100%;
+  width: 100%;
 }
 
 .hello-box {
-    position: relative;
-    max-height: 331px;
-    max-width: 630px;
-    min-height: 282px; //280px исходя из Mobile S(320px) в chrome
-    min-width: 280px;
-    width: 100%; // margin: 0 auto
-    &:before {
-        content: '';
-        display: block;
-        padding-top: 282px;
-    }
-    &__abs {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-    }
-    &__rel {
-        background-image: url(../img/main-bg.png);
-        background-size: cover; // width: 335px;
-        // height: 282px;
-        height: 100%;
-        background-position: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 20px 0;
-        box-sizing: border-box;
-        border-radius: 20px;
-        position: relative;
-    }
-    &__title {
-        font: 600 18px Arial;
-        color: #333333;
-        margin-bottom: 20px;
-        display: none;
-    }
-    &__name {
-        font-family: Arial;
-        font-size: 18px;
-        color: #333333;
-        font-weight: 600;
-    }
-    &__subtitle {
-        font-family: Arial;
-        font-size: 12px;
-        color: #333333;
-        margin-top: 5px;
-    }
+  position: relative;
+  max-height: 331px;
+  max-width: 630px;
+  min-height: 282px; //280px исходя из Mobile S(320px) в chrome
+  min-width: 280px;
+  width: 100%; // margin: 0 auto
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 282px;
+  }
 
-    &__info {
-        padding: 0 20px;
-        width: 100%;
-    }
+  &__abs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__rel {
+    background-image: url(../img/main-bg.png);
+    background-size: cover; // width: 335px;
+    // height: 282px;
+    height: 100%;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  &__title {
+    font: 600 18px Arial;
+    color: #333;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  &__name {
+    font-family: Arial;
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    font-family: Arial;
+    font-size: 12px;
+    color: #333;
+    margin-top: 5px;
+  }
+
+  &__info {
+    padding: 0 20px;
+    width: 100%;
+  }
 }
 
 .temperature-info {
+  display: flex;
+
+  &__item {
+    &_outside {
+      margin-left: 20px;
+    }
+  }
+
+  &__title {
+    font-family: Arial;
+    font-size: 12px;
+    color: #858585;
+    margin-top: 15px;
+  }
+
+  &__temperature {
+    font-family: Arial;
+    font-size: 24px;
+    line-height: 1.17;
+    color: #333;
+    letter-spacing: 0;
+    text-align: left;
+    font-weight: 700;
+    margin-top: 5px;
     display: flex;
-    &__item {
-        &_outside {
-            margin-left: 20px;
-        }
+    align-items: center;
+  }
+
+  &__outside-icon {
+    margin-left: 5px;
+    height: 28px;
+    width: 17px;
+    transform: scale(1.2);
+
+    & img {
+      height: 22px;
     }
-    &__title {
-        font-family: Arial;
-        font-size: 12px;
-        color: #858585;
-        margin-top: 15px;
-    }
-    &__temperature {
-        font-family: Arial;
-        font-size: 24px;
-        line-height: 1.17;
-        color: #333333;
-        letter-spacing: 0;
-        text-align: left;
-        font-weight: 700;
-        margin-top: 5px;
-        display: flex;
-        align-items: center;
-    }
-    &__outside-icon {
-        margin-left: 5px;
-        height: 28px;
-        width: 17px;
-        transform: scale(1.2);
-        & img {
-            height: 22px;
-        }
-    }
+  }
 }
 
 //Шрифт
 // 670px - ширина при которой hello-box перестает расти
 @media screen and (min-width: 376px) and (max-width: 670px) {
-    .hello-box {
-        height: 75vw;
-        &__name {
-            //Функция вычисляющая шрифт по указанным брейкпойнтам
-            font-size: calc(18px + (27 - 18) * (100vw - 376px) / (670 - 376));
-        } //Тут у нас изменени в 3 px, возможно избыточно делать это через формулу, но я думаю, что если делать адаптивность шрифтов, то делать в едином стиле, так этот вариант позволяем нам вносить изменения
-        &__subtitle {
-            font-size: calc(12px + (14 - 12) * (100vw - 376px) / (670 - 376));
-        }
+  .hello-box {
+    height: 75vw;
+
+    &__name {
+      //Функция вычисляющая шрифт по указанным брейкпойнтам
+      font-size: calc(18px + (27 - 18) * (100vw - 376px) / (670 - 376));
+    } //Тут у нас изменени в 3 px, возможно избыточно делать это через формулу, но я думаю, что если делать адаптивность шрифтов, то делать в едином стиле, так этот вариант позволяем нам вносить изменения
+    &__subtitle {
+      font-size: calc(12px + (14 - 12) * (100vw - 376px) / (670 - 376));
     }
-    .temperature-info {
-        &__title {
-            font-size: calc(12px + (14 - 12) * (100vw - 376px) / (670 - 376));
-        }
-        &__temperature {
-            font-size: calc(24px + (36 - 24) * (100vw - 376px) / (670 - 376));
-        }
+  }
+
+  .temperature-info {
+    &__title {
+      font-size: calc(12px + (14 - 12) * (100vw - 376px) / (670 - 376));
     }
+
+    &__temperature {
+      font-size: calc(24px + (36 - 24) * (100vw - 376px) / (670 - 376));
+    }
+  }
 }
 
 //Шрифты
 @media screen and (min-width: 671px) {
-    .hello-box {
-        &__name {
-            font-size: 27px;
-        }
-        &__subtitle {
-            font-size: 14px;
-        }
+  .hello-box {
+    &__name {
+      font-size: 27px;
     }
-    .temperature-info {
-        &__title {
-            font-size: 14px;
-        }
-        &__temperature {
-            font-size: 36px;
-        }
+
+    &__subtitle {
+      font-size: 14px;
     }
+  }
+
+  .temperature-info {
+    &__title {
+      font-size: 14px;
+    }
+
+    &__temperature {
+      font-size: 36px;
+    }
+  }
 }
 
 //Перенос скролла вправо
 @media (min-width: $bp-hello-box-toRight-1) and (max-width: $bp-hello-box-toBottom-1),
-(min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
-(min-width: $bp-hello-box-toRight-3) {
-    .hello-box {
-        &__rel {
-            flex-direction: row;
-            padding-bottom: 0;
-        }
+  (min-width: $bp-hello-box-toRight-2) and (max-width: $bp-hello-box-toBottom-2),
+  (min-width: $bp-hello-box-toRight-3) {
+  .hello-box {
+    &__rel {
+      flex-direction: row;
+      padding-bottom: 0;
+    }
     
-        &__info {
-            max-width: calc(100% - 220px);
-        }
+    &__info {
+      max-width: calc(100% - 220px);
     }
+  }
  
-    .icon_drizzle {
-        height: 22px;
-        width: 22px;
-        margin-left: 7px;
-    }
+  .icon_drizzle {
+    height: 22px;
+    width: 22px;
+    margin-left: 7px;
+  }
 }
 
 //Адаптивная высота
 // 376px исходя из того, что ширина мобильного макета 375px. Дальше начинается адаптив, который растягивается пока не упрется в max-height  и max-width большого макета
 @media all and (min-width: 376px) {
-    .hello-box:before {
-        padding-top: 84.2%;
-    }
+  .hello-box::before {
+    padding-top: 84.2%;
+  }
 }
 
 // hello-box после высоты 1365
 @media all and (min-width: 1365px) {
-    .hello-box {
-        &__rel {
-            padding-top: 25px;
-        }
-        &__info {
-            padding: 0 24px;
-        }
+  .hello-box {
+    &__rel {
+      padding-top: 25px;
     }
-    .temperature-info__title {
-        margin-top: 26px;
+
+    &__info {
+      padding: 0 24px;
     }
+  }
+
+  .temperature-info__title {
+    margin-top: 26px;
+  }
 }

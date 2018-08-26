@@ -1,104 +1,111 @@
 .arrows {
-    z-index: 100;
-    display: none;
+  z-index: 100;
+  display: none;
 }
 
 .scenarios-box {
-    margin-top: 31px;
-    width: 100%; // overflow: hidden;
-    flex-shrink: 0;
-    &__slider {
-        overflow: hidden;
-    }
-    &__title {
-        font: 600 18px Arial;
-        color: #333333;
-        display: flex;
-        justify-content: space-between;
-    } 
+  margin-top: 31px;
+  width: 100%; // overflow: hidden;
+  flex-shrink: 0;
+
+  &__slider {
+    overflow: hidden;
+  }
+
+  &__title {
+    font: 600 18px Arial;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+  }
    
-    // &__rel {
-    //     position: relative;
-    //     height: 120px;
-    //     margin-top: 20px;
-    // }
-    // &__abs {
-    //     display: flex;
-    //     position: absolute;
-    //     width: auto;
-    //     height: 100%;
-    // }
-    & .info-item-box__scroll {
-        margin-left: -20px;
-        width: calc(100% + 40px);
-        overflow: hidden;
-    }
-    & .info-item-box__abs {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  // &__rel {
+  //     position: relative;
+  //     height: 120px;
+  //     margin-top: 20px;
+  // }
+  // &__abs {
+  //     display: flex;
+  //     position: absolute;
+  //     width: auto;
+  //     height: 100%;
+  // }
+  & .info-item-box__scroll {
+    margin-left: -20px;
+    width: calc(100% + 40px);
+    overflow: hidden;
+  }
+
+  & .info-item-box__abs {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 
 
 .appliances-box .info-item-box__rel,
 .scenarios-box .info-item-box__scroll {
-    // Перекрываем паддинг на body 20px
-    //   width: calc(100% + 40px);
-    //   margin-left: -20px;
+  // Перекрываем паддинг на body 20px
+  //   width: calc(100% + 40px);
+  //   margin-left: -20px;
 }
 
 .info-item-box {
-    &__scroll {
-        overflow: hidden;
-        height: 120px; // margin-top: 20px;
-        margin-top: 19px;
+  &__scroll {
+    overflow: hidden;
+    height: 120px; // margin-top: 20px;
+    margin-top: 19px;
+  }
+
+  &__rel {
+    position: relative;
+    height: 150px;
+    overflow-x: auto; // overflow: hidden;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* Remove the default scrollbar for WebKit implementations */
+    &::-webkit-scrollbar {
+      display: none;
     }
-    &__rel {
-        position: relative;
-        height: 150px;
-        overflow-x: auto; // overflow: hidden;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        /* Remove the default scrollbar for WebKit implementations */
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-    &__abs {
-        display: flex;
-        position: absolute;
-        width: auto;
-        height: 100%;
-        transition: transform .2s ease-in-out; // margin-bottom: -25px;
-        // overflow-y: hidden;
-        // overflow-x: scroll;
-    }
+  }
+
+  &__abs {
+    display: flex;
+    position: absolute;
+    width: auto;
+    height: 100%;
+    transition: transform 0.2s ease-in-out; // margin-bottom: -25px;
+    // overflow-y: hidden;
+    // overflow-x: scroll;
+  }
 }
 
 .no-transition {
-    transition: none !important;
+  transition: none !important;
 }
 
 
 @media (min-width: $bp-change-filter-btn) {
-    .appliances-box {
-        &__title {
-            justify-content: unset;
-        }
+  .appliances-box {
+    &__title {
+      justify-content: unset;
     }
+  }
 }
 
 @media (min-width: $bp-main-top-box-1) {
-    .scenarios-box {
-        & .info-item-box__scroll {
-            margin-left: 0;
-            width: auto;
-            overflow: hidden;
-        }
-        & .info-item-box__abs {
-            padding-left: 0;
-            padding-right: 0;
-        }
+  .scenarios-box {
+    & .info-item-box__scroll {
+      margin-left: 0;
+      width: auto;
+      overflow: hidden;
     }
+
+    & .info-item-box__abs {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }

@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server  --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "stylelint": "stylelint **/*.scss --fix"
   },
-  "repository": { 
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/ashugaev/shri-verstka.git"
   },
@@ -32,6 +33,9 @@
     "node-sass": "^4.9.3",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
+    "semistandard": "^12.0.1",
+    "stylelint": "^9.5.0",
+    "stylelint-config-standard": "^18.2.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
