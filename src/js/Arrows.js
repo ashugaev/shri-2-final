@@ -1,7 +1,6 @@
 /** ********************\
   Функция для стрелок
 \**********************/
-export default function() {
   // Входные параменты это контейнер со стрелками и бокс, которым управляюи стрелки
   let arrowScroll = function(arrows, relCont) {
     let arrowLeft = document.querySelector(arrows + " .arrow-left");
@@ -118,26 +117,19 @@ export default function() {
       SETTINGS.inScrollingNow = false;
     });
   };
-  arrowScroll(
-    ".appliances-box .arrows_favorites",
-    ".appliances-box .appliances-box__slider",
-    false
-  );
-
-  /// ///////////////
 
   let arrowSlider = function() {
-    console.log("Поехали");
+    // console.log("Поехали");
     let arrowLeft = document.querySelector(
       ".scenarios-box .arrows .arrow-left"
     );
     let arrowRight = document.querySelector(
       ".scenarios-box .arrows .arrow-right"
     );
-    absCont = document.querySelector(
+    let absCont = document.querySelector(
       ".scenarios-box .info-item-box__rel > .info-item-box__abs"
     );
-    relCont = document.querySelector(".scenarios-box .info-item-box__rel");
+    let relCont = document.querySelector(".scenarios-box .info-item-box__rel");
 
     var SETTINGS = {
       inScrollingNow: false,
@@ -172,10 +164,12 @@ export default function() {
       slideNext(relCont, absCont);
     });
   };
-  // Инициализируем скролл
-  arrowSlider();
 
-  /** **********************\
-    END Функция для стрелок
-  \************************/
-};
+  // Стрелки для скролла
+  arrowScroll(
+    ".appliances-box .arrows_favorites",
+    ".appliances-box .appliances-box__slider",
+    false
+  );
+  // Инициализируем слайдер
+  arrowSlider();
