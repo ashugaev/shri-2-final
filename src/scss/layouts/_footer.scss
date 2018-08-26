@@ -1,6 +1,6 @@
 .footer {
   font-family: Arial;
-  font-size: 12px;
+  font-size: $fs-sm-1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,12 +23,12 @@
 
     & a {
       text-decoration: none;
-      color: #858585;
+      color: $col-gray;
     }
   }
 
   &__copy {
-    color: #858585;
+    color: $col-gray;
     white-space: nowrap;
     margin-top: 10px;
   }

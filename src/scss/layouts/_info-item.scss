@@ -33,7 +33,7 @@
 
   &__title {
     font-family: Arial;
-    font-size: 14px;
+    font-size: $fs-sm-3;
     color: #333;
     font-weight: 600;
     max-width: 200px;
@@ -42,7 +42,7 @@
 
   &__info {
     font-family: Arial;
-    font-size: 12px;
+    font-size: $fs-sm-1;
     color: #858585;
     letter-spacing: 0.01px;
     margin-top: 3px;

@@ -26,19 +26,19 @@
     }
 
     & input:checked + .stripe-regulator__btn {
-      background-color: #ffd93e;
-      color: #333;
+      background-color: $col-yellow;
+      color: $col-black;
 
       &:hover {
-        background: #fad32b;
+        background: $col-yellow_hove;
       }
 
       &:focus {
-        background: #ffd633;
+        background: $col-yellow_hove;
       }
 
       &:active {
-        background: #fecb2f;
+        background: $col-yellow_active;
       }
     }
 
@@ -108,7 +108,7 @@
 
   &__min-value,
   &__max-value {
-    font-size: 18px;
+    font-size: $fs-md-2;
     color: white;
     font-family: Arial;
     font-weight: 600;

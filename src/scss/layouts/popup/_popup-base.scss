@@ -39,12 +39,12 @@
   &__title {
     font-family: Arial;
     font-weight: 600;
-    color: #333;
+    color: $col-black;
   }
 
   &__state {
     font-family: Arial;
-    color: #333;
+    color: $col-black;
     margin-top: 5px;
   }
 
@@ -102,7 +102,7 @@
     font-family: Arial;
     font-weight: 600;
     font-size: 36px;
-    color: #333;
+    color: $col-black;
   }
 }
 
@@ -132,11 +132,11 @@
     }
 
     &__title {
-      font-size: 27px;
+      font-size: $fs-bg-1;
     }
 
     &__state {
-      font-size: 14px;
+      font-size: $fs-sm-3;
       padding-top: 7px;
     }
 

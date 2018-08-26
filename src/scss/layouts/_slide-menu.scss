@@ -37,21 +37,21 @@
   }
 
   &__name {
-    font-size: 18px;
+    font-size: $fs-md-2;
     font-family: Arial;
     text-align: center;
     margin-top: 20px;
-    color: #333;
+    color: $col-black;
 
     &::first-letter {
-      color: #ee2b2b;
+      color: $col-red;
     }
   }
 
   &__mail {
     font-family: Arial;
-    font-size: 14px;
-    color: #858585;
+    font-size: $fs-sm-3;
+    color: $col-gray;
     text-align: center;
     margin-top: 5px;
   }
@@ -59,8 +59,8 @@
   &__menu {
     margin-top: 20px;
     font-family: Arial;
-    font-size: 14px;
-    color: #333;
+    font-size: $fs-sm-3;
+    color: $col-black;
     text-align: center;
   }
 

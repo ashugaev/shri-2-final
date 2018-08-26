@@ -17,55 +17,55 @@
 }
 
 .btn_yellow {
-  background-color: #ffd93e;
-  color: #333;
+  background-color: $col-yellow;
+  color: $col-black;
   font-weight: 600;
 
   &:hover {
-    background: #fad32b;
+    background: $col-yellow_hover;
   }
 
   &:focus {
-    background: #ffd633;
+    background: $col-yellow_hover;
   }
 
   &:active {
-    background: #fecb2f;
+    background: $col-yellow_active;
   }
 }
 
 .btn_white {
   background-color: #fff;
-  color: #333;
+  $col-black: #333;
   font-weight: 600;
 
   &:hover {
-    background: #fcfcfc;
+    background: $col-white_hover;
   }
 
   &:focus {
-    background: #ebebeb;
+    background: $col-white_hover;
   }
 
   &:active {
-    background: #f0f0f0;
+    background: $col-white_active;
   }
 }
 
 .btn_gray {
-  background-color: #f2f1f0;
+  background-color: $col-gray-light;
   color: #000;
   font-weight: 600;
 
   &:hover {
-    background: #ecebea;
+    background: $col-gray-light_hover;
   }
 
   &:focus {
-    background: #ecebea;
+    background: $col-gray-light_hover;
   }
 
   &:active {
-    background: #e2e1df;
+    background: $col-gray-light_active;
   }
 }

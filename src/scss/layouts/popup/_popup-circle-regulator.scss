@@ -49,10 +49,10 @@
   }
 
   &__temperature {
-    font-size: 66px;
+    font-size: $fs-bg-2;
     font-family: Arial;
     font-weight: 600;
-    color: #333;
+    color: $col-black;
     user-select: none;
   }
 
