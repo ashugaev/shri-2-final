@@ -87,7 +87,7 @@
 }
 
 
-@media (min-width: $bp-change-filter-btn) {
+@media screen and (min-width: $bp-change-filter-btn) {
   .appliances-box {
     &__title {
       justify-content: unset;
@@ -95,7 +95,7 @@
   }
 }
 
-@media (min-width: $bp-main-top-box-1) {
+@media screen and (min-width: $bp-main-top-box-1) {
   .scenarios-box {
     & .info-item-box__scroll {
       margin-left: 0;

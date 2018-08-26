@@ -9,7 +9,7 @@
     border: none;
     font-size: $fs-sm-2;
     color: #000;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-weight: 600;
     padding-left: 14px;
     background-color: transparent;
@@ -73,7 +73,7 @@
   }
 }
 
-@media (min-width: $bp-change-filter-btn) {
+@media screen and (min-width: $bp-change-filter-btn) {
   .appliances-box {
     &__filter_btns {
       display: flex;

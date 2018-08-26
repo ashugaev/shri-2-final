@@ -34,7 +34,7 @@ input[type="checkbox"] {
   display: none;
 }
 
-@media all and (min-width: $bp-change-filter-btn) {
+@media screen and (min-width: $bp-change-filter-btn) {
   .arrows {
     display: flex;
   }

@@ -38,7 +38,7 @@
 
   &__name {
     font-size: $fs-md-2;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 20px;
     color: $col-black;
@@ -49,7 +49,7 @@
   }
 
   &__mail {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: $fs-sm-3;
     color: $col-gray;
     text-align: center;
@@ -58,7 +58,7 @@
 
   &__menu {
     margin-top: 20px;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: $fs-sm-3;
     color: $col-black;
     text-align: center;

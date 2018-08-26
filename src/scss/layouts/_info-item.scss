@@ -32,7 +32,7 @@
   }
 
   &__title {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: $fs-sm-3;
     color: $col-black;
     font-weight: 600;
@@ -41,7 +41,7 @@
   }
 
   &__info {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: $fs-sm-1;
     color: $col-gray;
     letter-spacing: 0.01px;
@@ -115,7 +115,7 @@
   }
 }
 
-@media all and (min-width: $bp-main-top-box-1) {
+@media screen and (min-width: $bp-main-top-box-1) {
   // Для всех
   // внутри hello-box ПК
 

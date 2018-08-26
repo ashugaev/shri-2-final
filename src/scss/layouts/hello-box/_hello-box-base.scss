@@ -46,14 +46,14 @@
   }
 
   &__name {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 18px;
     color: $col-black;
     font-weight: 600;
   }
 
   &__subtitle {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 12px;
     color: $col-black;
     margin-top: 5px;
@@ -75,14 +75,14 @@
   }
 
   &__title {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 12px;
     color: $col-gray;
     margin-top: 15px;
   }
 
   &__temperature {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 24px;
     line-height: 1.17;
     color: $col-black;
@@ -179,14 +179,14 @@
 
 //Адаптивная высота
 // 376px исходя из того, что ширина мобильного макета 375px. Дальше начинается адаптив, который растягивается пока не упрется в max-height  и max-width большого макета
-@media all and (min-width: 376px) {
+@media screen and (min-width: 376px) {
   .hello-box::before {
     padding-top: 84.2%;
   }
 }
 
 // hello-box после высоты 1365
-@media all and (min-width: 1365px) {
+@media screen and (min-width: 1365px) {
   .hello-box {
     &__rel {
       padding-top: 25px;
